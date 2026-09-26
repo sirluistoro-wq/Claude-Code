@@ -325,6 +325,12 @@
     .part .bg { position: absolute; inset: -12% 0; }
     .part .bg img { width: 100%; height: 100%; object-fit: cover; }
     .part .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,13,14,.95) 0%, rgba(10,13,14,.75) 45%, rgba(10,13,14,.35) 100%); }
+    .part.photo-right .bg { left: 34%; }
+    .part.photo-right .bg::after { background: linear-gradient(90deg, rgba(10,13,14,1) 0%, rgba(10,13,14,.55) 22%, rgba(10,13,14,.08) 55%, rgba(10,13,14,.3) 100%), linear-gradient(180deg, rgba(10,13,14,.35) 0%, transparent 30%, transparent 70%, rgba(10,13,14,.6) 100%); }
+    @media (max-width: 860px) {
+      .part.photo-right .bg { left: 0; }
+      .part.photo-right .bg::after { background: linear-gradient(180deg, rgba(10,13,14,.25) 0%, rgba(10,13,14,.8) 45%, rgba(10,13,14,.92) 100%); }
+    }
     .part .inner { position: relative; max-width: 1320px; margin: 0 auto; width: 100%; }
     .part .ghost-num { position: absolute; right: -2vw; top: 50%; transform: translateY(-50%); font-family: var(--serif); font-weight: 300; font-size: clamp(260px, 40vw, 640px); line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(123,216,208,.28); pointer-events: none; }
     .part .display { margin: 26px 0 30px; }
@@ -814,8 +820,8 @@
     </section>
 
     <!-- ═══ 13 · Part One ═══ -->
-    <section class="part" id="seen" data-slide="13" data-title="Part One · Get Seen" data-chapter="seen">
-      <div class="bg" data-parallax="-14"><img src="assets/gem-12k.jpg" alt="" loading="lazy" style="object-position: center 30%;" /></div>
+    <section class="part photo-right" id="seen" data-slide="13" data-title="Part One · Get Seen" data-chapter="seen">
+      <div class="bg" data-parallax="-14"><img src="assets/gem-teal.jpg" alt="Gem in a teal set, sitting by a sunlit window" loading="lazy" style="object-position: center 26%;" /></div>
       <span class="ghost-num" aria-hidden="true" data-parallax="10">I</span>
       <div class="inner">
         <span class="eyebrow" data-fade>Part One</span>
