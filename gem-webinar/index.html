@@ -327,7 +327,9 @@
     .part .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,13,14,.95) 0%, rgba(10,13,14,.75) 45%, rgba(10,13,14,.35) 100%); }
     .part.photo-right .bg { left: 34%; }
     .part.photo-right .bg::after { background: linear-gradient(90deg, rgba(10,13,14,1) 0%, rgba(10,13,14,.55) 22%, rgba(10,13,14,.08) 55%, rgba(10,13,14,.3) 100%), linear-gradient(180deg, rgba(10,13,14,.35) 0%, transparent 30%, transparent 70%, rgba(10,13,14,.6) 100%); }
+    #chosen .bg { top: 7%; bottom: -5%; left: 50%; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14%); mask-image: linear-gradient(180deg, transparent 0, #000 14%); }
     @media (max-width: 860px) {
+      #chosen .bg { left: 0; }
       .part.photo-right .bg { left: 0; }
       .part.photo-right .bg::after { background: linear-gradient(180deg, rgba(10,13,14,.25) 0%, rgba(10,13,14,.8) 45%, rgba(10,13,14,.92) 100%); }
     }
@@ -947,8 +949,8 @@
     </section>
 
     <!-- ═══ 21 · Part Two ═══ -->
-    <section class="part" id="chosen" data-slide="21" data-title="Part Two · Get Chosen" data-chapter="chosen">
-      <div class="bg" data-parallax="-14"><img src="assets/gem-home.jpg" alt="" loading="lazy" style="object-position: 70% 30%;" /></div>
+    <section class="part photo-right" id="chosen" data-slide="21" data-title="Part Two · Get Chosen" data-chapter="chosen">
+      <div class="bg" data-parallax="-5"><img src="assets/gem-rolls.jpg" alt="Gem in a black dress beside a pink Rolls-Royce" loading="lazy" style="object-position: center 0%;" /></div>
       <span class="ghost-num" aria-hidden="true" data-parallax="10">II</span>
       <div class="inner">
         <span class="eyebrow" data-fade>Part Two</span>
