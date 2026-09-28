@@ -526,6 +526,7 @@
       .cycle-item { grid-template-columns: 1fr; gap: 10px; }
       .panel { grid-template-columns: 1fr; width: 100%; min-height: 0; }
       .panel .p-media { aspect-ratio: 4 / 3; }
+      .panel .p-media.square { aspect-ratio: 1; }
       .panel.quote-panel .p-media { aspect-ratio: auto; padding: 60px 30px; }
       .panel li { grid-template-columns: 1fr; gap: 4px; }
       .h-track { flex-direction: column; width: auto; }
@@ -910,7 +911,7 @@
           </div>
         </article>
         <article class="panel" data-slide="19" data-title="04 · Conversion">
-          <div class="p-media"><img src="assets/lash-1.jpg" alt="Close-up of a custom lash set" loading="lazy" /></div>
+          <div class="p-media square"><img src="assets/lash-grid.jpg" alt="Nine clients wearing custom lash sets designed by Gem" loading="lazy" style="object-fit: contain;" /></div>
           <div class="p-body">
             <div>
               <span class="h-count">04 — Conversion</span>
@@ -1578,7 +1579,7 @@
           }
         });
         hTrigger = tween.scrollTrigger;
-        $$('.panel .p-media img', track).forEach(function (img) {
+        $$('.panel .p-media img', track).filter(function (img) { return img.style.objectFit !== 'contain'; }).forEach(function (img) {
           gsap.fromTo(img, { xPercent: -8, scale: 1.15 }, { xPercent: 8, ease: 'none',
             scrollTrigger: { trigger: img.closest('.panel'), containerAnimation: tween, start: 'left right', end: 'right left', scrub: true } });
         });
