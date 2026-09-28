@@ -587,6 +587,14 @@
       .topbar { padding-top: 12px; padding-bottom: 12px; }
       .brand img { width: 40px; }
     }
+    @media (max-width: 440px) {
+      .topbar .btn { padding: 10px 12px; font-size: 9.5px; letter-spacing: .08em; gap: 0; }
+      .topbar .btn .arrow { display: none; }
+      .top-actions { gap: 6px; }
+      .lang { padding: 2px; }
+      .lang button { padding: 7px 7px 7px 8px; font-size: 9.5px; letter-spacing: .08em; }
+      .brand img { width: 36px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
@@ -616,6 +624,7 @@
       <div class="lang" role="group" aria-label="Language / Idioma">
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        <button type="button" data-lang="pt" aria-pressed="false">PT</button>
       </div>
       <a href="#enroll" class="btn js-enroll" data-nav>Join the Academy <span class="arrow">→</span></a>
     </div>
@@ -1370,6 +1379,7 @@
   <script src="vendor/ScrollTrigger.min.js"></script>
   <script src="vendor/lenis.min.js"></script>
   <script src="i18n-es.js"></script>
+  <script src="i18n-pt.js"></script>
   <script>
   (function () {
     /* ── Settings: paste Gem's checkout link here ─────────────── */
@@ -1380,24 +1390,27 @@
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var hasGsap = !!(window.gsap && window.ScrollTrigger) && !reduce;
 
-    // Language: #es / #en in the link wins, then the viewer's last choice, then English.
+    // Language: #en / #es / #pt in the link wins, then the viewer's last choice, then English.
+    var LANGS = { en: null, es: window.GEM_ES, pt: window.GEM_PT };
     var LANG = 'en';
     try {
       var hashLang = location.hash.replace('#', '');
-      LANG = (hashLang === 'es' || hashLang === 'en') ? hashLang : (localStorage.getItem('gem-lang') || 'en');
+      var savedLang = localStorage.getItem('gem-lang');
+      LANG = LANGS.hasOwnProperty(hashLang) ? hashLang : (LANGS.hasOwnProperty(savedLang) ? savedLang : 'en');
     } catch (err) {}
-    if (LANG === 'es' && window.GEM_ES) {
-      var dict = window.GEM_ES.blocks, norm = function (h) { return h.replace(/\s+/g, ' ').trim(); };
+    var pack = LANGS[LANG];
+    if (pack) {
+      var dict = pack.blocks, norm = function (h) { return h.replace(/\s+/g, ' ').trim(); };
       (function translate(el) {
         if (/^(SCRIPT|STYLE|SVG)$/.test(el.tagName)) return;
         var direct = Array.prototype.some.call(el.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); });
         if (direct) { var es = dict[norm(el.innerHTML)]; if (es) el.innerHTML = es; return; }
         Array.prototype.forEach.call(el.children, translate);
       })(document.body);
-      $$('[data-title]').forEach(function (el) { var t = window.GEM_ES.titles[el.getAttribute('data-title')]; if (t) el.setAttribute('data-title', t); });
-      document.documentElement.lang = 'es';
-      document.title = window.GEM_ES.meta.title;
-      var md = $('meta[name="description"]'); if (md) md.setAttribute('content', window.GEM_ES.meta.description);
+      $$('[data-title]').forEach(function (el) { var t = pack.titles[el.getAttribute('data-title')]; if (t) el.setAttribute('data-title', t); });
+      document.documentElement.lang = LANG === 'pt' ? 'pt-BR' : LANG;
+      document.title = pack.meta.title;
+      var md = $('meta[name="description"]'); if (md) md.setAttribute('content', pack.meta.description);
     }
     $$('.lang button').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === LANG));
@@ -1406,7 +1419,7 @@
         if (next === LANG) return;
         try { localStorage.setItem('gem-lang', next); } catch (err) {}
         try { sessionStorage.setItem('gem-slide', String(currentIndex())); } catch (err) {}
-        if (location.hash === '#es' || location.hash === '#en') location.hash = next;
+        if (LANGS.hasOwnProperty(location.hash.replace('#', ''))) location.hash = next;
         location.reload();
       });
     });
