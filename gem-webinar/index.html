@@ -574,6 +574,8 @@
       .stats { grid-template-columns: 1fr; }
       .btn { padding: 18px 26px; }
       .topbar .btn { padding: 11px 16px; letter-spacing: .16em; }
+      .topbar { padding-top: 12px; padding-bottom: 12px; }
+      .brand img { width: 40px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -1397,10 +1399,18 @@
       gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
       gsap.ticker.lagSmoothing(0);
     }
+    // Offset so a slide's first line never lands under the fixed top bar.
+    function barOffset(el) {
+      if (el === document.body) return 0;
+      var bar = document.getElementById('topbar').offsetHeight;
+      var pad = parseFloat(getComputedStyle(el).paddingTop) || 0;
+      return pad < bar + 16 ? -(bar - pad + 16) : 0;
+    }
     function scrollToEl(el) {
       if (!el) return;
-      if (lenis) lenis.scrollTo(el, { offset: 0, duration: 1.4 });
-      else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      var off = barOffset(el);
+      if (lenis) lenis.scrollTo(el, { offset: off, duration: 1.4 });
+      else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + off, behavior: reduce ? 'auto' : 'smooth' });
     }
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a[data-nav]');
@@ -1608,7 +1618,7 @@
       },
       '(max-width: 860px)': function () {
         $$('#hTrack .panel').forEach(function (p) {
-          gsap.from(p, { autoAlpha: 0, y: 60, duration: 1.2, ease: ease, scrollTrigger: { trigger: p, start: 'top 88%' } });
+          gsap.from(p, { autoAlpha: 0, duration: 1.2, ease: ease, scrollTrigger: { trigger: p, start: 'top 88%' } });
         });
       }
     });
