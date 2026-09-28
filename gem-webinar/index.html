@@ -171,6 +171,14 @@
     .brand span { font-size: 10.5px; letter-spacing: .32em; text-transform: uppercase; font-weight: 600; line-height: 1.4; }
     .brand span i { display: block; font-style: normal; color: var(--mute-d); font-weight: 400; }
     .topbar .btn { padding: 13px 22px; font-size: 10.5px; }
+    .top-actions { display: flex; align-items: center; gap: 14px; }
+    .lang { display: inline-flex; padding: 3px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line-d); }
+    .lang button { font: 600 10.5px/1 var(--sans); letter-spacing: .18em; padding: 9px 12px 9px 13px; border: 0; border-radius: 999px; background: transparent; color: var(--mute-d); cursor: pointer; transition: background .3s, color .3s; }
+    .lang button[aria-pressed="true"] { background: var(--cream); color: var(--ink); }
+    .lang button:focus-visible { outline: 2px solid var(--aqua); outline-offset: 2px; }
+    .topbar.on-cream .lang { box-shadow: inset 0 0 0 1px var(--line-l); }
+    .topbar.on-cream .lang button { color: var(--mute-l); }
+    .topbar.on-cream .lang button[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
     .progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; background: transparent; }
     .progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), var(--aqua), var(--gold)); transform-origin: left; transform: scaleX(0); }
 
@@ -573,7 +581,9 @@
       .custom-media { height: 420px; }
       .stats { grid-template-columns: 1fr; }
       .btn { padding: 18px 26px; }
-      .topbar .btn { padding: 11px 16px; letter-spacing: .16em; }
+      .topbar .btn { padding: 11px 14px; letter-spacing: .12em; }
+      .top-actions { gap: 8px; }
+      .lang button { padding: 8px 9px 8px 10px; letter-spacing: .12em; }
       .topbar { padding-top: 12px; padding-bottom: 12px; }
       .brand img { width: 40px; }
     }
@@ -602,7 +612,13 @@
       <img src="assets/logo-hg.png" alt="Hidden Gem Lashes" />
       <span>Hidden Gem Lashes<i>Free Masterclass</i></span>
     </a>
-    <a href="#enroll" class="btn js-enroll" data-nav>Join the Academy <span class="arrow">→</span></a>
+    <div class="top-actions">
+      <div class="lang" role="group" aria-label="Language / Idioma">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <a href="#enroll" class="btn js-enroll" data-nav>Join the Academy <span class="arrow">→</span></a>
+    </div>
   </header>
 
   <nav class="rail" id="rail" aria-label="Chapters">
@@ -1353,6 +1369,7 @@
   <script src="vendor/gsap.min.js"></script>
   <script src="vendor/ScrollTrigger.min.js"></script>
   <script src="vendor/lenis.min.js"></script>
+  <script src="i18n-es.js"></script>
   <script>
   (function () {
     /* ── Settings: paste Gem's checkout link here ─────────────── */
@@ -1362,6 +1379,37 @@
     var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var hasGsap = !!(window.gsap && window.ScrollTrigger) && !reduce;
+
+    // Language: #es / #en in the link wins, then the viewer's last choice, then English.
+    var LANG = 'en';
+    try {
+      var hashLang = location.hash.replace('#', '');
+      LANG = (hashLang === 'es' || hashLang === 'en') ? hashLang : (localStorage.getItem('gem-lang') || 'en');
+    } catch (err) {}
+    if (LANG === 'es' && window.GEM_ES) {
+      var dict = window.GEM_ES.blocks, norm = function (h) { return h.replace(/\s+/g, ' ').trim(); };
+      (function translate(el) {
+        if (/^(SCRIPT|STYLE|SVG)$/.test(el.tagName)) return;
+        var direct = Array.prototype.some.call(el.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); });
+        if (direct) { var es = dict[norm(el.innerHTML)]; if (es) el.innerHTML = es; return; }
+        Array.prototype.forEach.call(el.children, translate);
+      })(document.body);
+      $$('[data-title]').forEach(function (el) { var t = window.GEM_ES.titles[el.getAttribute('data-title')]; if (t) el.setAttribute('data-title', t); });
+      document.documentElement.lang = 'es';
+      document.title = window.GEM_ES.meta.title;
+      var md = $('meta[name="description"]'); if (md) md.setAttribute('content', window.GEM_ES.meta.description);
+    }
+    $$('.lang button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === LANG));
+      b.addEventListener('click', function () {
+        var next = b.getAttribute('data-lang');
+        if (next === LANG) return;
+        try { localStorage.setItem('gem-lang', next); } catch (err) {}
+        try { sessionStorage.setItem('gem-slide', String(currentIndex())); } catch (err) {}
+        if (location.hash === '#es' || location.hash === '#en') location.hash = next;
+        location.reload();
+      });
+    });
     $('#year').textContent = new Date().getFullYear();
 
     // Enrollment buttons: external checkout when configured, otherwise the pricing section.
@@ -1434,7 +1482,9 @@
       var prev = ['ArrowUp', 'ArrowLeft', 'PageUp'].indexOf(e.key) > -1;
       if (!next && !prev) return;
       e.preventDefault();
-      var i = currentIndex() + (next ? 1 : -1);
+      goToSlide(currentIndex() + (next ? 1 : -1));
+    });
+    function goToSlide(i, immediate) {
       i = Math.max(0, Math.min(slides.length - 1, i));
       var target = slides[i];
       // Panels inside the horizontal track map to a vertical scroll position.
@@ -1442,10 +1492,22 @@
         var panels = $$('#hTrack .panel');
         var p = panels.indexOf(target) / Math.max(1, panels.length - 1);
         var y = hTrigger.start + (hTrigger.end - hTrigger.start) * p;
-        if (lenis) lenis.scrollTo(y, { duration: 1.2 }); else window.scrollTo({ top: y, behavior: 'smooth' });
+        if (lenis) lenis.scrollTo(y, { duration: 1.2, immediate: !!immediate }); else window.scrollTo({ top: y, behavior: immediate ? 'auto' : 'smooth' });
+        return;
+      }
+      if (i === 0) target = document.body;
+      if (immediate) {
+        var top = target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY + barOffset(target);
+        if (lenis) lenis.scrollTo(top, { immediate: true }); else window.scrollTo(0, top);
         return;
       }
       scrollToEl(target);
+    }
+    // After switching language, come back to the slide that was on screen.
+    window.addEventListener('load', function () {
+      var saved = null;
+      try { saved = sessionStorage.getItem('gem-slide'); sessionStorage.removeItem('gem-slide'); } catch (err) {}
+      if (saved !== null) setTimeout(function () { goToSlide(parseInt(saved, 10) || 0, true); }, 80);
     });
 
     // Slide counter + active chapter in the rail
