@@ -210,6 +210,26 @@
     .cursor.big { width: 76px; height: 76px; margin: -38px 0 0 -38px; background: var(--aqua); }
     @media (hover: none), (pointer: coarse) { .cursor { display: none; } }
 
+    /* ─── Slide-to-slide transition curtain ─────────────────── */
+    .wipe { position: fixed; inset: 0; z-index: 88; pointer-events: none; visibility: hidden; }
+    .wipe-a, .wipe-b { position: absolute; inset: -2px 0; will-change: transform; }
+    .wipe-a { background: linear-gradient(135deg, var(--teal), var(--aqua)); }
+    .wipe-b { background: radial-gradient(ellipse at 50% 120%, rgba(123,216,208,.18), transparent 60%), var(--ink); display: grid; place-items: center; }
+    .wipe-label { display: grid; justify-items: center; gap: 14px; text-align: center; padding: 0 24px; }
+    .wipe-label img { width: 64px; opacity: .9; }
+    .wipe-num { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(90px, 14vw, 200px); line-height: .85; color: var(--aqua); }
+    .wipe-title { font-size: 12px; font-weight: 600; letter-spacing: .36em; text-transform: uppercase; color: var(--cream); }
+
+    /* ─── Soft light that follows the cursor ─────────────────── */
+    .spot { position: fixed; top: 0; left: 0; width: 720px; height: 720px; margin: -360px 0 0 -360px; border-radius: 50%; pointer-events: none; z-index: 60; opacity: 0; background: radial-gradient(circle, rgba(123,216,208,.10) 0%, rgba(123,216,208,.04) 35%, transparent 65%); mix-blend-mode: screen; transition: opacity .6s; }
+    @media (hover: none), (pointer: coarse) { .spot { display: none; } }
+
+    /* ─── Stacked sections (desktop) ─────────────────────────── */
+    main section:not(.cream):not(.ink-2), main .marquee { background-color: var(--ink); }
+    main { position: relative; z-index: 1; }
+    .stacked::after { content: ""; position: absolute; inset: 0; background: #050708; opacity: var(--dim, 0); pointer-events: none; z-index: 30; border-radius: inherit; }
+    .counter b { display: inline-block; }
+
     /* ─── 01 Hero ────────────────────────────────────────────── */
     .hero { position: relative; height: 100vh; height: 100svh; min-height: 640px; overflow: hidden; display: flex; align-items: flex-end; padding: 0 var(--gutter) clamp(40px, 7vh, 90px); }
     .hero-bg { position: absolute; inset: 0; }
@@ -614,6 +634,11 @@
 
   <div class="progress" aria-hidden="true"><i id="progress"></i></div>
   <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="spot" id="spot" aria-hidden="true"></div>
+  <div class="wipe" id="wipe" aria-hidden="true">
+    <div class="wipe-a"></div>
+    <div class="wipe-b"><div class="wipe-label"><img src="assets/logo-hg.png" alt="" /><b class="wipe-num" id="wipeNum"></b><span class="wipe-title" id="wipeTitle"></span></div></div>
+  </div>
 
   <header class="topbar" id="topbar">
     <a href="#top" class="brand" data-nav>
@@ -1467,11 +1492,47 @@
       var pad = parseFloat(getComputedStyle(el).paddingTop) || 0;
       return pad < bar + 16 ? -(bar - pad + 16) : 0;
     }
+    // Where an element sits in the document, even while its section is pinned for the stacking effect.
+    function docTop(el) {
+      if (el === document.body) return 0;
+      var top = el.getBoundingClientRect().top + window.scrollY;
+      var sec = el.closest('main > section, main > .pin-spacer > section');
+      if (sec && sec.parentElement.classList.contains('pin-spacer')) top += sec.parentElement.getBoundingClientRect().top - sec.getBoundingClientRect().top;
+      return top;
+    }
+    function jumpTo(y) {
+      if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else window.scrollTo(0, y);
+      if (window.ScrollTrigger) ScrollTrigger.update();
+    }
     function scrollToEl(el) {
       if (!el) return;
-      var off = barOffset(el);
-      if (lenis) lenis.scrollTo(el, { offset: off, duration: 1.4 });
-      else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + off, behavior: reduce ? 'auto' : 'smooth' });
+      var y = el === document.body ? 0 : docTop(el) + barOffset(el);
+      var i = slides.indexOf(el);
+      if (hasGsap) return cut(y, el === document.body ? 0 : i);
+      window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    // Cinematic curtain between slides: cover, jump, reveal.
+    var cutting = false, queued = 0;
+    if (hasGsap) gsap.set('.wipe-a, .wipe-b', { yPercent: 101 });
+    function cut(y, i) {
+      if (cutting) return;
+      cutting = true;
+      var s = slides[Math.max(0, i)] || slides[0];
+      $('#wipeNum').textContent = s.getAttribute('data-slide');
+      $('#wipeTitle').textContent = s.getAttribute('data-title');
+      gsap.timeline({ onComplete: function () {
+          cutting = false;
+          if (queued) { var d = queued; queued = 0; goToSlide(currentIndex() + d); }
+        } })
+        .set('#wipe', { visibility: 'visible' })
+        .fromTo('.wipe-a', { yPercent: 101 }, { yPercent: 0, duration: .55, ease: 'expo.inOut' }, 0)
+        .fromTo('.wipe-b', { yPercent: 101 }, { yPercent: 0, duration: .55, ease: 'expo.inOut' }, .07)
+        .fromTo('.wipe-label > *', { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .45, ease: 'expo.out', stagger: .05 }, .38)
+        .add(function () { jumpTo(y); }, .62)
+        .to('.wipe-label > *', { autoAlpha: 0, y: -24, duration: .3, ease: 'power2.in', stagger: .03 }, .9)
+        .to('.wipe-b', { yPercent: -101, duration: .65, ease: 'expo.inOut' }, 1.02)
+        .to('.wipe-a', { yPercent: -101, duration: .65, ease: 'expo.inOut' }, 1.1)
+        .set('#wipe', { visibility: 'hidden' });
     }
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a[data-nav]');
@@ -1484,6 +1545,7 @@
 
     // Presenter mode: arrow keys / PageUp / PageDown / Space step through slides.
     var slides = $$('[data-slide]');
+    var hTrigger = null;
     function currentIndex() {
       var mid = window.innerHeight * 0.35, idx = 0;
       slides.forEach(function (s, i) { var r = s.getBoundingClientRect(); if (r.top <= mid && r.left < window.innerWidth * 0.5) idx = i; });
@@ -1491,6 +1553,7 @@
     }
     document.addEventListener('keydown', function (e) {
       if (e.target.closest('input, textarea, [contenteditable]')) return;
+      if (cutting) { e.preventDefault(); queued = next ? 1 : (prev ? -1 : 0); return; }
       var next = ['ArrowDown', 'ArrowRight', 'PageDown', ' '].indexOf(e.key) > -1;
       var prev = ['ArrowUp', 'ArrowLeft', 'PageUp'].indexOf(e.key) > -1;
       if (!next && !prev) return;
@@ -1509,11 +1572,7 @@
         return;
       }
       if (i === 0) target = document.body;
-      if (immediate) {
-        var top = target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY + barOffset(target);
-        if (lenis) lenis.scrollTo(top, { immediate: true }); else window.scrollTo(0, top);
-        return;
-      }
+      if (immediate) return jumpTo(target === document.body ? 0 : docTop(target) + barOffset(target));
       scrollToEl(target);
     }
     // After switching language, come back to the slide that was on screen.
@@ -1529,7 +1588,7 @@
     var chapters = $$('[data-chapter]');
     var blocks = $$('main > section, main > .marquee, footer');
     function creamAt(y) {
-      for (var i = 0; i < blocks.length; i++) {
+      for (var i = blocks.length - 1; i >= 0; i--) {
         var r = blocks[i].getBoundingClientRect();
         if (r.top <= y && r.bottom > y) return blocks[i].classList.contains('cream');
       }
@@ -1537,7 +1596,11 @@
     }
     function onScroll() {
       var i = currentIndex(), s = slides[i];
-      counterNum.textContent = s.getAttribute('data-slide');
+      var num = s.getAttribute('data-slide');
+      if (counterNum.textContent !== num) {
+        counterNum.textContent = num;
+        if (hasGsap) gsap.fromTo(counterNum, { yPercent: 70, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: .5, ease: 'expo.out' });
+      }
       counterTitle.textContent = s.getAttribute('data-title');
       var ch = null;
       chapters.forEach(function (c) { if (c.getBoundingClientRect().top <= window.innerHeight * 0.5) ch = c.getAttribute('data-chapter'); });
@@ -1566,6 +1629,16 @@
       var yTo = gsap.quickTo(cursor, 'y', { duration: .5, ease: 'power3' });
       window.addEventListener('mousemove', function (e) { cursor.style.opacity = 1; xTo(e.clientX); yTo(e.clientY); });
       document.addEventListener('mouseover', function (e) { cursor.classList.toggle('big', !!e.target.closest('a, .btn')); });
+      var spot = $('#spot');
+      var sx = gsap.quickTo(spot, 'x', { duration: 1.2, ease: 'power3' }), sy = gsap.quickTo(spot, 'y', { duration: 1.2, ease: 'power3' });
+      window.addEventListener('mousemove', function (e) { spot.style.opacity = 1; sx(e.clientX); sy(e.clientY); });
+      $$('.btn').forEach(function (btn) {
+        btn.addEventListener('mousemove', function (e) {
+          var r = btn.getBoundingClientRect();
+          gsap.to(btn, { x: (e.clientX - r.left - r.width / 2) * .22, y: (e.clientY - r.top - r.height / 2) * .35, duration: .5, ease: 'power3.out' });
+        });
+        btn.addEventListener('mouseleave', function () { gsap.to(btn, { x: 0, y: 0, duration: .8, ease: 'elastic.out(1, .4)' }); });
+      });
     }
 
     if (!hasGsap) return;
@@ -1608,7 +1681,7 @@
     // Word reveals
     $$('[data-split]').forEach(function (el) {
       split(el);
-      gsap.from($$('.wi', el), { yPercent: 115, duration: 1.3, ease: ease, stagger: .045,
+      gsap.from($$('.wi', el), { yPercent: 115, filter: 'blur(10px)', duration: 1.3, ease: ease, stagger: .045, clearProps: 'filter',
         scrollTrigger: { trigger: el, start: 'top 88%' } });
     });
 
@@ -1672,7 +1745,6 @@
     gsap.to('#ladder .strike', { scaleX: 1, duration: .9, ease: 'expo.inOut', stagger: .5, scrollTrigger: { trigger: '#ladder', start: 'top 75%' } });
 
     // 4C horizontal scroll (desktop), vertical stack on small screens
-    var hTrigger = null;
     ScrollTrigger.matchMedia({
       '(min-width: 861px)': function () {
         var track = $('#hTrack');
@@ -1695,6 +1767,33 @@
         $$('#hTrack .panel').forEach(function (p) {
           gsap.from(p, { autoAlpha: 0, duration: 1.2, ease: ease, scrollTrigger: { trigger: p, start: 'top 88%' } });
         });
+      }
+    });
+
+    // Stacked sections: each slide glides over the previous one, which settles back, dims and rounds off.
+    ScrollTrigger.matchMedia({
+      '(min-width: 861px)': function () {
+        var items = $$('main > section, main > .marquee');
+        // Paint order follows document order so each slide covers the one before it (set before pinning caches styles).
+        items.forEach(function (el, k) { el.style.zIndex = k + 1; if (getComputedStyle(el).position === 'static') el.style.position = 'relative'; });
+        items.forEach(function (sec, k) {
+          var next = items[k + 1];
+          if (!next || sec.id === 'fourc' || sec.classList.contains('marquee')) return;
+          sec.classList.add('stacked');
+          var tall = function () { return sec.offsetHeight > window.innerHeight; };
+          var range = function () { return Math.min(sec.offsetHeight, window.innerHeight); };
+          // Shrink around the middle of what is on screen, so the slide recedes like a card.
+          var origin = function () { gsap.set(sec, { transformOrigin: '50% ' + (tall() ? sec.offsetHeight - window.innerHeight / 2 : sec.offsetHeight / 2) + 'px' }); };
+          gsap.timeline({ scrollTrigger: {
+            trigger: sec, start: function () { return tall() ? 'bottom bottom' : 'top top'; },
+            end: function () { return '+=' + range(); },
+            pin: true, pinSpacing: false, scrub: true, invalidateOnRefresh: true, onRefresh: origin
+          } })
+            .fromTo(sec, { scale: 1, borderRadius: 0, '--dim': 0 }, { scale: .9, borderRadius: 36, '--dim': .55, ease: 'none' });
+          gsap.fromTo(next, { borderTopLeftRadius: 44, borderTopRightRadius: 44 }, { borderTopLeftRadius: 0, borderTopRightRadius: 0, ease: 'none',
+            scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 20%', scrub: true } });
+        });
+        return function () { items.forEach(function (sec) { sec.classList.remove('stacked'); }); };
       }
     });
 
