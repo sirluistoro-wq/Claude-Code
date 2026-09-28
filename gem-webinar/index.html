@@ -327,9 +327,11 @@
     .part .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,13,14,.95) 0%, rgba(10,13,14,.75) 45%, rgba(10,13,14,.35) 100%); }
     .part.photo-right .bg { left: 34%; }
     .part.photo-right .bg::after { background: linear-gradient(90deg, rgba(10,13,14,1) 0%, rgba(10,13,14,.55) 22%, rgba(10,13,14,.08) 55%, rgba(10,13,14,.3) 100%), linear-gradient(180deg, rgba(10,13,14,.35) 0%, transparent 30%, transparent 70%, rgba(10,13,14,.6) 100%); }
+    #custom .bg { left: 44%; }
     #chosen .bg { top: 7%; bottom: -5%; left: 50%; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14%); mask-image: linear-gradient(180deg, transparent 0, #000 14%); }
     @media (max-width: 860px) {
       #chosen .bg { left: 0; }
+      #custom .bg { left: 0; }
       .part.photo-right .bg { left: 0; }
       .part.photo-right .bg::after { background: linear-gradient(180deg, rgba(10,13,14,.25) 0%, rgba(10,13,14,.8) 45%, rgba(10,13,14,.92) 100%); }
     }
@@ -1047,12 +1049,12 @@
     </section>
 
     <!-- ═══ 27 · Part Three ═══ -->
-    <section class="part" id="custom" data-slide="27" data-title="Part Three · Custom Lash Design" data-chapter="custom">
-      <div class="bg" data-parallax="-14"><img src="assets/lash-1.jpg" alt="" loading="lazy" /></div>
+    <section class="part photo-right" id="custom" data-slide="27" data-title="Part Three · Custom Lash Design" data-chapter="custom">
+      <div class="bg" data-parallax="-8"><img src="assets/lash-design.jpg" alt="Custom wispy lash set shown from two angles" loading="lazy" style="object-position: center 50%;" /></div>
       <span class="ghost-num" aria-hidden="true" data-parallax="10">III</span>
       <div class="inner">
         <span class="eyebrow" data-fade>Part Three</span>
-        <h2 class="display" data-split>Custom <em>Lash Design</em></h2>
+        <h2 class="display" data-split>Custom<br /><em>Lash Design</em></h2>
         <p class="lead" data-fade>Getting seen and chosen brings clients to your chair. A custom design experience gives them a reason to return and tell other people. Part Three focuses on creating a result for the specific person in front of you.</p>
       </div>
     </section>
