@@ -337,7 +337,7 @@ window.GEM_ES = {
   "The support extends <em>beyond the lessons</em>": "El apoyo va <em>más allá de las lecciones</em>",
   "“Lashing changed my life, and the Academy was built to help you replace confusion with a clear process, practice, and support.”": "“Las pestañas cambiaron mi vida, y la Academia fue creada para ayudarte a cambiar la confusión por un proceso claro, práctica y apoyo.”",
   "You do not need another pile of information. You need a system you can use and guidance while you use it.": "No necesitas otra pila de información. Necesitas un sistema que puedas usar y guía mientras lo usas.",
-  "Join Today for $397 <span class=\"arrow\">→</span>": "Únete hoy por $397 <span class=\"arrow\">→</span>",
+  "Join Today for $697 <span class=\"arrow\">→</span>": "Únete hoy por $697 <span class=\"arrow\">→</span>",
   "Visit the enrollment link in the chat.": "Visita el enlace de inscripción en el chat.",
   "Is This for You?": "¿Es para ti?",
   "Custom Lash Academy may be right for you <em>if…</em>": "Custom Lash Academy puede ser para ti <em>si…</em>",
@@ -357,7 +357,12 @@ window.GEM_ES = {
   "If the Academy matches the support you need, join today using the enrollment link in the chat.": "Si la Academia te ofrece el apoyo que necesitas, únete hoy con el enlace de inscripción en el chat.",
   "Join Custom Lash Academy <span class=\"arrow\">→</span>": "Únete a Custom Lash Academy <span class=\"arrow\">→</span>",
   "Thank you for being here. Now let's put this into <span style=\"color: var(--aqua);\">practice.</span>": "Gracias por estar aquí. Ahora pongámoslo en <span style=\"color: var(--aqua);\">práctica.</span>",
-  "Individual results vary. Revenue figures and student results shared on this page reflect individual experiences and are not a guarantee of future earnings.": "Los resultados individuales varían. Las cifras de ingresos y los resultados de alumnas que se muestran en esta página reflejan experiencias individuales y no garantizan ganancias futuras."
+  "Individual results vary. Revenue figures and student results shared on this page reflect individual experiences and are not a guarantee of future earnings.": "Los resultados individuales varían. Las cifras de ingresos y los resultados de alumnas que se muestran en esta página reflejan experiencias individuales y no garantizan ganancias futuras.",
+  "The total value of everything inside <em>Custom Lash Academy</em>": "El valor total de todo lo que incluye <em>Custom Lash Academy</em>",
+  "The standard value of <em>the Academy</em>": "El valor regular de <em>la Academia</em>",
+  "This is what the complete program is normally valued at.": "Esto es lo que normalmente vale el programa completo.",
+  "Your price today": "Tu precio hoy",
+  "But if you join <em>today…</em>": "Pero si te unes <em>hoy…</em>"
  },
  "titles": {
   "The Blueprint": "El Blueprint",
@@ -398,6 +403,9 @@ window.GEM_ES = {
   "Enrollment Bonuses": "Bonos de inscripción",
   "Proof + Next Step": "Prueba + Siguiente paso",
   "Is This for You?": "¿Es para ti?",
-  "Questions + Final Invitation": "Preguntas + Invitación final"
+  "Questions + Final Invitation": "Preguntas + Invitación final",
+  "Total Value": "Valor total",
+  "Standard Value": "Valor regular",
+  "Today's Price": "Precio de hoy"
  }
 };

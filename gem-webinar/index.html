@@ -523,6 +523,28 @@
     .guarantee h5 { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
     .guarantee p { font-size: 14.5px; color: var(--mute-d); }
 
+    /* ─── Price reveal slides ─────────────────────────────── */
+    .price-stage { min-height: 100vh; display: flex; align-items: center; }
+    .price-stage .wrap { width: 100%; display: grid; justify-items: center; gap: clamp(22px, 3vw, 34px); text-align: center; }
+    .price-stage .eyebrow { justify-content: center; }
+    .price-stage .h2 { max-width: 20ch; }
+    .price-stage .lead { margin: 0 auto; }
+    .reveal-price { font-family: var(--serif); font-weight: 300; font-size: clamp(110px, 19vw, 290px); line-height: .85; letter-spacing: -.03em; color: var(--aqua); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .reveal-price .cur { font-size: .34em; vertical-align: top; position: relative; top: .22em; margin-right: .06em; }
+    .was { display: flex; gap: clamp(20px, 4vw, 56px); font-family: var(--serif); font-size: clamp(30px, 3.4vw, 52px); font-weight: 300; color: var(--mute-d); }
+    .was .v { position: relative; }
+    .was .strike { position: absolute; left: -6px; right: -6px; top: 54%; height: 2px; background: var(--rose); transform-origin: left; transform: scaleX(0); }
+    .price-tags { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 760px; }
+    .price-tags li { padding: 10px 18px; border-radius: 99px; border: 1px solid var(--line-d); font-size: 14px; color: var(--mute-d); }
+    .today-stage { background: radial-gradient(ellipse at 50% 55%, rgba(45,156,149,.28), transparent 60%), var(--ink) !important; }
+    .today-stage .reveal-price { font-size: clamp(140px, min(21vw, 36vh), 340px); text-shadow: 0 0 80px rgba(123,216,208,.35); }
+    .reveal-price { font-size: clamp(110px, min(19vw, 32vh), 290px); }
+    .price-stage { padding-top: clamp(96px, 11vh, 140px); padding-bottom: clamp(56px, 8vh, 110px); }
+    .price-stage .wrap { gap: clamp(16px, 2.6vh, 34px); }
+    .today-cta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 48px; }
+    .today-cta .guarantee { margin-top: 0; text-align: left; }
+    @media (max-width: 860px) { .price-stage { min-height: 88vh; } .was { flex-direction: column; gap: 6px; align-items: center; } }
+
     /* ─── Bonuses ────────────────────────────────────────────── */
     .fast { border: 1px solid var(--gold); border-radius: 28px; padding: clamp(30px, 3.6vw, 56px); display: grid; grid-template-columns: auto 1fr auto; gap: clamp(20px, 3vw, 50px); align-items: center; margin-bottom: 24px; background: linear-gradient(90deg, rgba(217,179,106,.08), transparent); }
     .fast .star { font-size: 44px; color: var(--gold); line-height: 1; }
@@ -669,7 +691,7 @@
     <a href="#questions" data-nav data-rail="questions"><span>Q&amp;A</span><i></i></a>
   </nav>
 
-  <div class="counter" id="counter" aria-hidden="true"><b id="counterNum">01</b><span>/ 40</span><span id="counterTitle">The Blueprint</span></div>
+  <div class="counter" id="counter" aria-hidden="true"><b id="counterNum">01</b><span>/ 42</span><span id="counterTitle">The Blueprint</span></div>
   <div class="keys" id="keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Present</div>
 
   <main>
@@ -1281,44 +1303,52 @@
       </div>
     </section>
 
-    <!-- ═══ 36 · Enrollment ═══ -->
-    <section class="section" id="enroll" style="padding-top: clamp(90px, 9vw, 130px);" data-slide="36" data-title="Enrollment" data-chapter="enroll">
+    <!-- ═══ 36 · Total value ═══ -->
+    <section class="section price-stage" id="enroll" data-slide="36" data-title="Total Value" data-chapter="enroll">
       <div class="wrap">
-        <div class="center stack" style="margin-bottom: clamp(40px, 5vw, 70px);">
-          <span class="eyebrow" data-fade>Enrollment</span>
-          <h2 class="h2" data-split>Everything inside <em>Custom Lash Academy</em></h2>
-        </div>
-        <div class="pricing">
-          <div class="price-card" data-fade>
-            <span class="eyebrow">Custom Lash Academy</span>
-            <div class="ladder" id="ladder">
-              <div class="old"><small>Total value</small><span class="v">$10,000<span class="strike"></span></span></div>
-              <div class="old"><small>Standard value</small><span class="v">$5,000<span class="strike"></span></span></div>
-            </div>
-            <div class="today">
-              <div><span class="eyebrow" style="margin-bottom: 14px;">Today</span><div class="amt"><sup>$</sup><span data-count="397">397</span></div></div>
-              <a href="#" class="btn js-enroll-out">Join Today <span class="arrow">→</span></a>
-            </div>
-          </div>
-          <div>
-            <ul class="included" data-stagger>
-              <li>Complete training</li>
-              <li>Expert coaching and support</li>
-              <li>Templates, scripts, and checklists</li>
-              <li>All five enrollment bonuses</li>
-            </ul>
-            <div class="guarantee" data-fade>
-              <div class="seal">14</div>
-              <div><h5>14-Day Satisfaction Guarantee</h5><p>Request a full refund within 14 days if you are not satisfied.</p></div>
-            </div>
-            <p class="small" data-fade style="margin-top: 28px;">Payment options may be available through Klarna, Affirm, or Afterpay.</p>
-          </div>
-        </div>
+        <span class="eyebrow" data-fade>Enrollment</span>
+        <h2 class="h2" data-split>The total value of everything inside <em>Custom Lash Academy</em></h2>
+        <div class="reveal-price" data-price-reveal><span class="cur">$</span><span data-count="10000">10,000</span></div>
+        <ul class="price-tags" data-stagger>
+          <li>Complete training</li>
+          <li>Expert coaching and support</li>
+          <li>Templates, scripts, and checklists</li>
+          <li>All five enrollment bonuses</li>
+        </ul>
       </div>
     </section>
 
-    <!-- ═══ 37 · Bonuses ═══ -->
-    <section class="section ink-2" data-slide="37" data-title="Enrollment Bonuses">
+    <!-- ═══ 37 · Standard value ═══ -->
+    <section class="section price-stage ink-2" data-slide="37" data-title="Standard Value">
+      <div class="wrap">
+        <span class="eyebrow" data-fade>Enrollment</span>
+        <h2 class="h2" data-split>The standard value of <em>the Academy</em></h2>
+        <div class="was"><span class="v">$10,000<span class="strike"></span></span></div>
+        <div class="reveal-price" data-price-reveal><span class="cur">$</span><span data-count="5000">5,000</span></div>
+        <p class="lead" data-fade>This is what the complete program is normally valued at.</p>
+      </div>
+    </section>
+
+    <!-- ═══ 38 · Today's price ═══ -->
+    <section class="section price-stage today-stage" data-slide="38" data-title="Today's Price">
+      <div class="wrap">
+        <span class="eyebrow" data-fade>Your price today</span>
+        <h2 class="h2" data-split>But if you join <em>today…</em></h2>
+        <div class="was"><span class="v">$10,000<span class="strike"></span></span><span class="v">$5,000<span class="strike"></span></span></div>
+        <div class="reveal-price" data-price-reveal><span class="cur">$</span><span data-count="697">697</span></div>
+        <div class="today-cta" data-price-after>
+          <a href="#" class="btn js-enroll-out">Join Today <span class="arrow">→</span></a>
+          <div class="guarantee">
+            <div class="seal">14</div>
+            <div><h5>14-Day Satisfaction Guarantee</h5><p>Request a full refund within 14 days if you are not satisfied.</p></div>
+          </div>
+        </div>
+        <p class="small" data-price-after>Payment options may be available through Klarna, Affirm, or Afterpay.</p>
+      </div>
+    </section>
+
+    <!-- ═══ 39 · Bonuses ═══ -->
+    <section class="section ink-2" data-slide="39" data-title="Enrollment Bonuses">
       <div class="wrap">
         <div class="head">
           <div class="stack">
@@ -1341,21 +1371,21 @@
       </div>
     </section>
 
-    <!-- ═══ 38 · Proof + next step ═══ -->
-    <section class="fullbleed" data-slide="38" data-title="Proof + Next Step">
+    <!-- ═══ 40 · Proof + next step ═══ -->
+    <section class="fullbleed" data-slide="40" data-title="Proof + Next Step">
       <div class="bg" data-parallax="-12"><img src="assets/gem-mirror.jpg" alt="Gem taking a mirror selfie in her content studio" loading="lazy" style="object-position: center 6%;" /></div>
       <div class="inner">
         <span class="eyebrow" data-fade>Proof + Next Step</span>
         <h2 class="h1" data-split>The support extends <em>beyond the lessons</em></h2>
         <p class="h3" data-fade style="font-style: italic;">“Lashing changed my life, and the Academy was built to help you replace confusion with a clear process, practice, and support.”</p>
         <p class="lead" data-fade style="margin-left:auto;margin-right:auto;">You do not need another pile of information. You need a system you can use and guidance while you use it.</p>
-        <div data-fade><a href="#" class="btn js-enroll-out">Join Today for $397 <span class="arrow">→</span></a></div>
+        <div data-fade><a href="#" class="btn js-enroll-out">Join Today for $697 <span class="arrow">→</span></a></div>
         <p class="small" data-fade>Visit the enrollment link in the chat.</p>
       </div>
     </section>
 
-    <!-- ═══ 39 · Who it's for ═══ -->
-    <section class="section cream" data-slide="39" data-title="Is This for You?">
+    <!-- ═══ 41 · Who it's for ═══ -->
+    <section class="section cream" data-slide="41" data-title="Is This for You?">
       <div class="wrap">
         <div class="head">
           <div class="stack">
@@ -1376,14 +1406,14 @@
       </div>
     </section>
 
-    <!-- ═══ 40 · Questions ═══ -->
-    <section class="final" id="questions" data-slide="40" data-title="Questions + Final Invitation" data-chapter="questions">
+    <!-- ═══ 42 · Questions ═══ -->
+    <section class="final" id="questions" data-slide="42" data-title="Questions + Final Invitation" data-chapter="questions">
       <div>
         <span class="eyebrow" data-fade>Questions + Final Invitation</span>
         <h2 class="display" data-split style="margin-top: 26px;"><em>Questions?</em></h2>
         <p class="lead" data-fade style="margin-top: 26px;">This is your moment to ask anything about the Blueprint, the Academy, or whether this is the right next step for your business.</p>
         <div class="final-offer" data-fade>
-          <span class="eyebrow">Custom Lash Academy</span><b>$397</b>
+          <span class="eyebrow">Custom Lash Academy</span><b>$697</b>
           <span class="small" style="flex-basis: 100%;">Payment plan options may be available through Klarna, Affirm, or Afterpay.</span>
         </div>
         <p class="lead" data-fade>If the Academy matches the support you need, join today using the enrollment link in the chat.</p>
@@ -1715,6 +1745,7 @@
 
     // Counters
     $$('[data-count]').forEach(function (el) {
+      if (el.closest('[data-price-reveal]')) return;
       var end = parseFloat(el.getAttribute('data-count')), o = { v: 0 };
       el.textContent = '0';
       gsap.to(o, { v: end, duration: 2.2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' },
@@ -1743,8 +1774,17 @@
     gsap.to('#growth .bar i', { scaleX: 1, duration: 1.6, ease: 'expo.inOut', stagger: .35, scrollTrigger: { trigger: '#growth', start: 'top 80%' } });
     gsap.from('#growth > div', { autoAlpha: 0, y: 40, duration: 1.1, ease: ease, stagger: .2, scrollTrigger: { trigger: '#growth', start: 'top 85%' } });
 
-    // Pricing: strike old values, count today's price
-    gsap.to('#ladder .strike', { scaleX: 1, duration: .9, ease: 'expo.inOut', stagger: .5, scrollTrigger: { trigger: '#ladder', start: 'top 75%' } });
+    // Price reveal slides: cross out the old values, then the new number lands and counts up.
+    $$('.price-stage').forEach(function (stage) {
+      var price = $('[data-price-reveal]', stage), num = $('[data-count]', price), end = parseFloat(num.getAttribute('data-count')), o = { v: 0 };
+      var after = $$('[data-price-after]', stage);
+      gsap.set(price, { autoAlpha: 0 }); gsap.set(after, { autoAlpha: 0, y: 30 });
+      gsap.timeline({ delay: .55, scrollTrigger: { trigger: stage, start: 'top 55%' } })
+        .to($$('.was .strike', stage), { scaleX: 1, duration: .7, ease: 'expo.inOut', stagger: .35 })
+        .fromTo(price, { autoAlpha: 0, scale: .72, filter: 'blur(14px)' }, { autoAlpha: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'expo.out', clearProps: 'filter' }, '>-0.1')
+        .to(o, { v: end, duration: 1.6, ease: 'power3.out', onUpdate: function () { num.textContent = Math.round(o.v).toLocaleString('en-US'); } }, '<')
+        .to(after, { autoAlpha: 1, y: 0, duration: .9, ease: 'expo.out', stagger: .12 }, '-=0.6');
+    });
 
     // 4C horizontal scroll (desktop), vertical stack on small screens
     ScrollTrigger.matchMedia({
