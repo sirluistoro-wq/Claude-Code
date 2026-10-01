@@ -362,7 +362,10 @@ window.GEM_ES = {
   "The standard value of <em>the Academy</em>": "El valor regular de <em>la Academia</em>",
   "This is what the complete program is normally valued at.": "Esto es lo que normalmente vale el programa completo.",
   "Your price today": "Tu precio hoy",
-  "But if you join <em>today…</em>": "Pero si te unes <em>hoy…</em>"
+  "But if you join <em>today…</em>": "Pero si te unes <em>hoy…</em>",
+  "Save $9,303": "Ahorras $9,303",
+  "Fast-action bonus: personalized 1:1 consultation with Gem for the first 15 confirmed enrollees.": "Bono de acción rápida: consulta personalizada 1 a 1 con Gem para las primeras 15 inscripciones confirmadas.",
+  "Payment options may be available through": "Puede haber opciones de pago con"
  },
  "titles": {
   "The Blueprint": "El Blueprint",
