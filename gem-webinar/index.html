@@ -9,14 +9,11 @@
   <link rel="icon" type="image/png" href="assets/logo-hg.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Manrope:wght@300..700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Manrope:wght@300..700&display=swap" rel="stylesheet" />
   <style>
     /* Self-hosted type so the page looks right even offline (Google Fonts link above is the backup) */
-    @font-face { font-family: 'Bodoni Moda'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/bodoni-moda-latin-400-normal.woff2) format('woff2'); }
-    @font-face { font-family: 'Bodoni Moda'; font-style: italic; font-weight: 400; font-display: swap; src: url(fonts/bodoni-moda-latin-400-italic.woff2) format('woff2'); }
-    @font-face { font-family: 'Bodoni Moda'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/bodoni-moda-latin-500-normal.woff2) format('woff2'); }
-    @font-face { font-family: 'Bodoni Moda'; font-style: italic; font-weight: 500; font-display: swap; src: url(fonts/bodoni-moda-latin-500-italic.woff2) format('woff2'); }
-    @font-face { font-family: 'Bodoni Moda'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/bodoni-moda-latin-600-normal.woff2) format('woff2'); }
+    @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 100 900; font-display: swap; src: url(fonts/fraunces-latin-opsz-normal.woff2) format('woff2'); }
+    @font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 100 900; font-display: swap; src: url(fonts/fraunces-latin-opsz-italic.woff2) format('woff2'); }
     @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 200 800; font-display: swap; src: url(fonts/manrope-latin-wght-normal.woff2) format('woff2'); }
     /* ─── Tokens ─────────────────────────────────────────────── */
     :root {
@@ -31,9 +28,9 @@
       --rose:     #D7AAA5;
       --line-d:   rgba(245, 240, 232, 0.14);
       --line-l:   rgba(10, 13, 14, 0.14);
-      --mute-d:   rgba(245, 240, 232, 0.62);
-      --mute-l:   rgba(10, 13, 14, 0.62);
-      --serif:    'Bodoni Moda', 'Bodoni 72', Didot, 'Times New Roman', serif;
+      --mute-d:   rgba(245, 240, 232, 0.76);
+      --mute-l:   rgba(10, 13, 14, 0.72);
+      --serif:    'Fraunces', Georgia, 'Times New Roman', serif;
       --sans:     'Manrope', 'Helvetica Neue', Arial, sans-serif;
       --gutter:   clamp(20px, 6.2vw, 112px);
       --gloss:    linear-gradient(180deg, #E6FFFB 0%, #A6F0E7 22%, #6FD6CC 48%, #3AAFA5 70%, #7FDCD2 100%);
@@ -46,6 +43,7 @@
     html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
     body {
+      font-variation-settings: 'opsz' 30; /* sturdier Fraunces strokes at every size */
       background: var(--ink);
       color: var(--cream);
       font-family: var(--sans);
@@ -76,11 +74,11 @@
     @keyframes twinkle { 0%, 100% { opacity: .55; transform: scale(.78) rotate(0deg); } 50% { opacity: 1; transform: scale(1.12) rotate(45deg); } }
     .cream .eyebrow { color: var(--teal); }
     .display {
-      font-family: var(--serif); font-weight: 300; line-height: .95;
+      font-family: var(--serif); font-weight: 420; line-height: .95;
       letter-spacing: -0.025em; font-size: clamp(50px, 9vw, 150px);
     }
-    .h1 { font-family: var(--serif); font-weight: 400; line-height: 1.04; letter-spacing: -0.02em; font-size: clamp(38px, 5.4vw, 88px); }
-    .h2 { font-family: var(--serif); font-weight: 400; line-height: 1.08; letter-spacing: -0.015em; font-size: clamp(32px, 3.9vw, 62px); }
+    .h1 { font-family: var(--serif); font-weight: 430; line-height: 1.05; letter-spacing: -0.025em; font-size: clamp(38px, 5.4vw, 88px); }
+    .h2 { font-family: var(--serif); font-weight: 430; line-height: 1.1; letter-spacing: -0.02em; font-size: clamp(32px, 3.9vw, 62px); }
     .h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; font-size: clamp(24px, 2.2vw, 34px); }
     /* Liquid-teal gloss on emphasized words, borrowed from the logo's finish */
     .display em, .h1 em, .h2 em, .h3 em, .keymsg em,
@@ -88,9 +86,9 @@
     .cream .display em, .cream .h1 em, .cream .h2 em, .cream .h3 em, .cream .keymsg em,
     .cream .display em .wi, .cream .h1 em .wi, .cream .h2 em .wi, .cream .h3 em .wi, .cream .keymsg em .wi { background-image: var(--gloss-deep); }
     em .wi { padding-right: .12em; margin-right: -.12em; }
-    .lead { font-size: clamp(17px, 1.35vw, 21px); line-height: 1.6; color: var(--mute-d); max-width: 60ch; font-weight: 300; }
+    .lead { font-size: clamp(17px, 1.35vw, 21px); line-height: 1.6; color: var(--mute-d); max-width: 60ch; font-weight: 400; }
     .cream .lead { color: var(--mute-l); }
-    .small { font-size: 13.5px; line-height: 1.6; color: var(--mute-d); }
+    .small { font-size: 14.5px; line-height: 1.6; color: var(--mute-d); }
     .cream .small { color: var(--mute-l); }
     .num { font-family: var(--serif); font-style: italic; color: var(--aqua); font-weight: 400; }
     .cream .num { color: var(--teal); }
@@ -115,7 +113,7 @@
     .cream .cell { background: var(--cream); }
     .cell .num { font-size: 44px; line-height: 1; display: block; margin-bottom: 36px; }
     .cell h4 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2vw, 30px); line-height: 1.15; margin-bottom: 14px; }
-    .cell p { font-size: 15px; color: var(--mute-d); line-height: 1.65; }
+    .cell p { font-size: 15.5px; color: var(--mute-d); line-height: 1.65; }
     .cream .cell p { color: var(--mute-l); }
     .hr { height: 1px; background: var(--line-d); border: 0; }
     .cream .hr { background: var(--line-l); }
@@ -865,7 +863,7 @@
     </section>
 
     <!-- ═══ 07 · Gem's story ═══ -->
-    <section class="section cream" id="story" data-slide="07" data-title="Gem's Story" data-chapter="story" style="padding-top: 0;">
+    <section class="section cream" id="story" data-slide="07" data-title="Gem's Story" data-chapter="story">
       <div class="wrap grid-2" style="align-items: start;">
         <div class="story-media">
           <div class="media m1" data-reveal><img src="assets/bedroom.jpg" alt="The bedroom where Gem started lashing" loading="lazy" /></div>
