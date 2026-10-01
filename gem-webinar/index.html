@@ -9,8 +9,15 @@
   <link rel="icon" type="image/png" href="assets/logo-hg.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Manrope:wght@300..700&display=swap" rel="stylesheet" />
   <style>
+    /* Self-hosted type so the page looks right even offline (Google Fonts link above is the backup) */
+    @font-face { font-family: 'Bodoni Moda'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/bodoni-moda-latin-400-normal.woff2) format('woff2'); }
+    @font-face { font-family: 'Bodoni Moda'; font-style: italic; font-weight: 400; font-display: swap; src: url(fonts/bodoni-moda-latin-400-italic.woff2) format('woff2'); }
+    @font-face { font-family: 'Bodoni Moda'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/bodoni-moda-latin-500-normal.woff2) format('woff2'); }
+    @font-face { font-family: 'Bodoni Moda'; font-style: italic; font-weight: 500; font-display: swap; src: url(fonts/bodoni-moda-latin-500-italic.woff2) format('woff2'); }
+    @font-face { font-family: 'Bodoni Moda'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/bodoni-moda-latin-600-normal.woff2) format('woff2'); }
+    @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 200 800; font-display: swap; src: url(fonts/manrope-latin-wght-normal.woff2) format('woff2'); }
     /* ─── Tokens ─────────────────────────────────────────────── */
     :root {
       --ink:      #0A0D0E;
@@ -26,9 +33,11 @@
       --line-l:   rgba(10, 13, 14, 0.14);
       --mute-d:   rgba(245, 240, 232, 0.62);
       --mute-l:   rgba(10, 13, 14, 0.62);
-      --serif:    'Cormorant Garamond', 'Times New Roman', serif;
+      --serif:    'Bodoni Moda', 'Bodoni 72', Didot, 'Times New Roman', serif;
       --sans:     'Manrope', 'Helvetica Neue', Arial, sans-serif;
-      --gutter:   clamp(16px, 5vw, 88px);
+      --gutter:   clamp(20px, 6.2vw, 112px);
+      --gloss:    linear-gradient(180deg, #E6FFFB 0%, #A6F0E7 22%, #6FD6CC 48%, #3AAFA5 70%, #7FDCD2 100%);
+      --gloss-deep: linear-gradient(180deg, #57C9BF 0%, #2D9C95 46%, #1B6F69 72%, #39A9A0 100%);
       --ease:     cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -63,17 +72,22 @@
       letter-spacing: .32em; text-transform: uppercase; color: var(--aqua);
       display: inline-flex; align-items: center; gap: 14px;
     }
-    .eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; opacity: .7; }
+    .eyebrow::before { content: "✦"; display: inline-block; font-size: 12px; letter-spacing: 0; animation: twinkle 3.6s ease-in-out infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: .55; transform: scale(.78) rotate(0deg); } 50% { opacity: 1; transform: scale(1.12) rotate(45deg); } }
     .cream .eyebrow { color: var(--teal); }
     .display {
       font-family: var(--serif); font-weight: 300; line-height: .95;
-      letter-spacing: -0.02em; font-size: clamp(52px, 10.5vw, 176px);
+      letter-spacing: -0.025em; font-size: clamp(50px, 9vw, 150px);
     }
-    .h1 { font-family: var(--serif); font-weight: 300; line-height: 1.02; letter-spacing: -0.015em; font-size: clamp(40px, 6.4vw, 104px); }
-    .h2 { font-family: var(--serif); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; font-size: clamp(34px, 4.6vw, 72px); }
+    .h1 { font-family: var(--serif); font-weight: 400; line-height: 1.04; letter-spacing: -0.02em; font-size: clamp(38px, 5.4vw, 88px); }
+    .h2 { font-family: var(--serif); font-weight: 400; line-height: 1.08; letter-spacing: -0.015em; font-size: clamp(32px, 3.9vw, 62px); }
     .h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; font-size: clamp(24px, 2.2vw, 34px); }
-    .display em, .h1 em, .h2 em, .h3 em { color: var(--aqua); font-weight: 300; }
-    .cream .display em, .cream .h1 em, .cream .h2 em, .cream .h3 em { color: var(--teal); }
+    /* Liquid-teal gloss on emphasized words, borrowed from the logo's finish */
+    .display em, .h1 em, .h2 em, .h3 em, .keymsg em,
+    .display em .wi, .h1 em .wi, .h2 em .wi, .h3 em .wi, .keymsg em .wi { background: var(--gloss); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 400; }
+    .cream .display em, .cream .h1 em, .cream .h2 em, .cream .h3 em, .cream .keymsg em,
+    .cream .display em .wi, .cream .h1 em .wi, .cream .h2 em .wi, .cream .h3 em .wi, .cream .keymsg em .wi { background-image: var(--gloss-deep); }
+    em .wi { padding-right: .12em; margin-right: -.12em; }
     .lead { font-size: clamp(17px, 1.35vw, 21px); line-height: 1.6; color: var(--mute-d); max-width: 60ch; font-weight: 300; }
     .cream .lead { color: var(--mute-l); }
     .small { font-size: 13.5px; line-height: 1.6; color: var(--mute-d); }
@@ -82,15 +96,15 @@
     .cream .num { color: var(--teal); }
 
     /* Split-word masks (filled by JS) */
-    .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+    .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .14em .1em 0; margin: 0 -.14em -.1em 0; }
     .wi { display: inline-block; will-change: transform; }
 
     /* ─── Layout ─────────────────────────────────────────────── */
-    .section { position: relative; padding: clamp(96px, 14vw, 200px) var(--gutter); }
+    .section { position: relative; padding: clamp(92px, 11vw, 160px) var(--gutter); }
     .cream { background: var(--cream); color: var(--ink); }
     .ink-2 { background: var(--ink-2); }
     .wrap { max-width: 1320px; margin: 0 auto; }
-    .stack > * + * { margin-top: 28px; }
+    .stack > * + * { margin-top: clamp(22px, 2.4vw, 32px); }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 120px); align-items: center; }
     .grid-2 > *, .head > *, .pricing > *, .final > * { min-width: 0; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-d); border: 1px solid var(--line-d); }
@@ -122,7 +136,8 @@
     .btn {
       display: inline-flex; align-items: center; gap: 16px; padding: 20px 34px;
       border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
-      background: var(--aqua); color: var(--ink); position: relative; overflow: hidden; isolation: isolate;
+      background: linear-gradient(180deg, #CFF8F2 0%, #94E4DB 40%, #5CC6BC 100%); color: var(--ink); position: relative; overflow: hidden; isolation: isolate;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.75), inset 0 -3px 8px rgba(20,95,90,.28), 0 14px 30px -16px rgba(123,216,208,.75);
       transition: color .5s var(--ease);
     }
     .btn::before { content: ""; position: absolute; inset: 0; background: var(--cream); transform: translateY(101%); transition: transform .6s var(--ease); z-index: -1; border-radius: inherit; }
@@ -131,7 +146,7 @@
     .btn:hover .arrow { transform: translateX(6px); }
     .btn.ghost { background: transparent; color: var(--cream); box-shadow: inset 0 0 0 1px var(--line-d); }
     .btn.ghost:hover { color: var(--ink); }
-    .cream .btn { background: var(--ink); color: var(--cream); }
+    .cream .btn { background: linear-gradient(180deg, #24302F 0%, #0A0D0E 100%); color: var(--cream); box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 14px 30px -16px rgba(10,13,14,.6); }
     .cream .btn::before { background: var(--teal); }
 
     .chat {
@@ -165,7 +180,7 @@
     .topbar.scrolled { background: rgba(10, 13, 14, .9); }
     .topbar.scrolled.on-cream { background: rgba(245, 240, 232, .94); color: var(--ink); }
     .topbar.on-cream .brand span i { color: var(--mute-l); }
-    .topbar.on-cream .btn { background: var(--ink); color: var(--cream); }
+    .topbar.on-cream .btn { background: linear-gradient(180deg, #24302F 0%, #0A0D0E 100%); color: var(--cream); box-shadow: inset 0 1px 0 rgba(255,255,255,.14); }
     .brand { display: flex; align-items: center; gap: 14px; }
     .brand img { width: 48px; }
     .brand span { font-size: 10.5px; letter-spacing: .32em; text-transform: uppercase; font-weight: 600; line-height: 1.4; }
@@ -182,25 +197,28 @@
     .progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; background: transparent; }
     .progress i { display: block; height: 100%; background: var(--aqua); transform-origin: left; transform: scaleX(0); }
 
-    .rail { position: fixed; right: 26px; top: 50%; transform: translateY(-50%); z-index: 40; display: grid; gap: 14px; }
+    .rail { position: fixed; right: 22px; top: 50%; transform: translateY(-50%); z-index: 40; display: grid; gap: 14px; }
     .rail a { display: flex; align-items: center; justify-content: flex-end; gap: 12px; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--mute-d); }
     .rail a span { opacity: 0; transform: translateX(8px); transition: .5s var(--ease); white-space: nowrap; }
     .rail a i { width: 18px; height: 1px; background: currentColor; transition: width .5s var(--ease), background .3s; }
-    .rail a:hover span, .rail a.active span { opacity: 1; transform: none; }
+    .rail a:hover span { opacity: 1; transform: none; }
     .rail a.active { color: var(--aqua); }
     .rail a.active i { width: 36px; }
     .rail.on-cream a { color: var(--mute-l); }
     .rail.on-cream a.active { color: var(--teal); }
 
     .counter {
-      position: fixed; left: var(--gutter); bottom: 22px; z-index: 40; font-size: 10.5px; letter-spacing: .28em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 14px; color: var(--mute-d); pointer-events: none;
-      padding: 6px 16px; border-radius: 99px; background: rgba(10, 13, 14, .78);
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 10px; letter-spacing: .26em; text-transform: uppercase;
+      display: flex; align-items: baseline; gap: 10px; color: var(--mute-d); pointer-events: none; white-space: nowrap;
     }
+    .counter #counterTitle { max-width: 230px; overflow: hidden; text-overflow: ellipsis; }
+    .topbar.on-cream .counter { color: var(--mute-l); }
+    .topbar.on-cream .counter b { color: var(--teal); }
+    @media (max-width: 1180px) { .counter #counterTitle { display: none; } }
     .counter b { font-family: var(--serif); font-size: 22px; letter-spacing: 0; font-weight: 400; font-style: italic; color: var(--aqua); }
-    .counter.on-cream { color: var(--mute-l); background: rgba(245, 240, 232, .9); }
+    .counter.on-cream { color: var(--mute-l); }
     .counter.on-cream b { color: var(--teal); }
-    .keys { position: fixed; right: var(--gutter); bottom: 22px; z-index: 40; padding: 8px 14px; border-radius: 99px; background: rgba(10, 13, 14, .78); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--mute-d); display: flex; gap: 8px; align-items: center; }
+    .keys { display: none !important; position: fixed; right: var(--gutter); bottom: 22px; z-index: 40; padding: 8px 14px; border-radius: 99px; background: rgba(10, 13, 14, .78); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--mute-d); display: flex; gap: 8px; align-items: center; }
     .keys kbd { font-family: var(--sans); border: 1px solid var(--line-d); border-radius: 6px; padding: 3px 7px; font-size: 10px; }
     .keys.on-cream { color: var(--mute-l); background: rgba(245, 240, 232, .9); }
     .keys.on-cream kbd { border-color: var(--line-l); }
@@ -238,6 +256,7 @@
     .hero-content { position: relative; width: 100%; max-width: 1320px; margin: 0 auto; }
     .hero .display { margin: 26px 0 34px; }
     .hero .display .line2 { display: block; font-style: italic; color: var(--aqua); padding-left: clamp(0px, 8vw, 150px); }
+    .hero .display .line2 .wi { background: var(--gloss); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .12em; margin-right: -.12em; }
     .hero-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; border-top: 1px solid var(--line-d); padding-top: 28px; }
     .hero-foot .lead { max-width: 44ch; color: rgba(245,240,232,.82); }
     .presenter { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; line-height: 2; text-align: right; }
@@ -520,13 +539,22 @@
     .guarantee h5 { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
     .guarantee p { font-size: 14.5px; color: var(--mute-d); }
 
+    /* ─── Liquid drips (from the logo) ───────────────────────── */
+    .drips { position: absolute; left: 0; right: 0; top: 0; height: 240px; z-index: 4; pointer-events: none; }
+    .drips svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 6px 10px rgba(0,0,0,.35)); }
+
+    /* ─── Lash map illustration ──────────────────────────────── */
+    .lash-map { margin-top: clamp(28px, 4vh, 44px); width: min(100%, 440px); color: var(--aqua); }
+    .lash-map svg { width: 100%; height: auto; overflow: visible; }
+    .lash-map figcaption { margin-top: 10px; font-size: 10.5px; letter-spacing: .26em; text-transform: uppercase; color: var(--mute-d); }
+
     /* ─── Price reveal slides ─────────────────────────────── */
     .price-stage { min-height: 100vh; display: flex; align-items: center; padding-top: clamp(104px, 13vh, 150px); padding-bottom: clamp(72px, 10vh, 120px); }
     .price-grid { width: 100%; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(48px, 7vw, 120px); align-items: end; }
     .pg-main { display: grid; justify-items: start; gap: clamp(20px, 3.2vh, 36px); }
     .pg-main .h2 { max-width: 16ch; }
-    .reveal-price { font-family: var(--serif); font-weight: 300; font-size: clamp(104px, min(17vw, 30vh), 260px); line-height: .82; letter-spacing: -.035em; color: var(--aqua); font-variant-numeric: lining-nums; white-space: nowrap; margin-top: clamp(4px, 1.5vh, 16px); }
-    .reveal-price .cur { font-size: .3em; vertical-align: top; position: relative; top: .3em; margin-right: .08em; letter-spacing: 0; }
+    .reveal-price { background: var(--gloss); -webkit-background-clip: text; background-clip: text; font-family: var(--serif); font-weight: 400; font-size: clamp(104px, min(17vw, 30vh), 260px); line-height: .86; letter-spacing: -.03em; color: transparent; padding-right: .06em; font-variant-numeric: lining-nums; white-space: nowrap; margin-top: clamp(4px, 1.5vh, 16px); }
+    .reveal-price .cur { font-size: .3em; vertical-align: .95em; margin-right: .08em; letter-spacing: 0; background: inherit; -webkit-background-clip: text; background-clip: text; color: transparent; }
     .was { font-family: var(--serif); font-size: clamp(28px, 3vw, 44px); font-weight: 300; color: var(--mute-d); line-height: 1; }
     .v { position: relative; display: inline-block; }
     .price-stage .strike { position: absolute; left: -4%; right: -4%; top: 52%; height: 2px; background: var(--rose); transform-origin: left; transform: scaleX(0); }
@@ -554,7 +582,7 @@
     .rc-line .v { font-family: var(--serif); font-size: clamp(22px, 2vw, 28px); color: var(--ink); }
     .rc-total { position: relative; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-top: 10px; padding-top: clamp(14px, 2.4vh, 22px); border-top: 2px solid var(--ink); }
     .rc-label { font-size: 11px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; padding-bottom: 14px; }
-    .receipt .reveal-price { color: var(--teal); font-size: clamp(86px, min(10vw, 19vh), 150px); margin-top: 0; }
+    .receipt .reveal-price { background: var(--gloss-deep); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: clamp(86px, min(10vw, 19vh), 150px); margin-top: 0; }
     .stamp { position: absolute; left: 0; top: clamp(18px, 3vh, 28px); transform: rotate(-9deg); font-size: 12px; font-weight: 800; letter-spacing: .15em; line-height: 1.3; text-align: center; max-width: 42%; text-transform: uppercase; color: #B4433F; padding: 8px 12px; border: 2.5px solid currentColor; border-radius: 6px; box-shadow: inset 0 0 0 2px #F4EEE3, inset 0 0 0 3.5px currentColor; opacity: .88; mix-blend-mode: multiply; }
     .rc-foot { display: flex; align-items: center; gap: 16px; margin-top: clamp(16px, 2.6vh, 24px); padding-top: clamp(14px, 2.2vh, 20px); border-top: 1px dashed rgba(10,13,14,.3); }
     .rc-foot p { font-size: 12.5px; line-height: 1.5; color: rgba(10,13,14,.68); }
@@ -701,6 +729,7 @@
       <img src="assets/logo-hg.png" alt="Hidden Gem Lashes" />
       <span>Hidden Gem Lashes<i>Free Masterclass</i></span>
     </a>
+    <div class="counter" id="counter" aria-hidden="true"><b id="counterNum">01</b><span>/ 42</span><span id="counterTitle">The Blueprint</span></div>
     <div class="top-actions">
       <div class="lang" role="group" aria-label="Language / Idioma">
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -724,7 +753,6 @@
     <a href="#questions" data-nav data-rail="questions"><span>Q&amp;A</span><i></i></a>
   </nav>
 
-  <div class="counter" id="counter" aria-hidden="true"><b id="counterNum">01</b><span>/ 42</span><span id="counterTitle">The Blueprint</span></div>
   <div class="keys" id="keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Present</div>
 
   <main>
@@ -953,6 +981,7 @@
 
     <!-- ═══ 13 · Part One ═══ -->
     <section class="part photo-right" id="seen" data-slide="13" data-title="Part One · Get Seen" data-chapter="seen">
+      <div class="drips" data-drips aria-hidden="true"></div>
       <div class="bg" data-parallax="-14"><img src="assets/gem-teal.jpg" alt="Gem in a teal set, sitting by a sunlit window" loading="lazy" style="object-position: center 26%;" /></div>
       <span class="ghost-num" aria-hidden="true" data-parallax="10">I</span>
       <div class="inner">
@@ -1080,6 +1109,7 @@
 
     <!-- ═══ 21 · Part Two ═══ -->
     <section class="part photo-right" id="chosen" data-slide="21" data-title="Part Two · Get Chosen" data-chapter="chosen">
+      <div class="drips" data-drips aria-hidden="true"></div>
       <div class="bg" data-parallax="-5"><img src="assets/gem-rolls.jpg" alt="Gem in a black dress beside a pink Rolls-Royce" loading="lazy" style="object-position: center 0%;" /></div>
       <span class="ghost-num" aria-hidden="true" data-parallax="10">II</span>
       <div class="inner">
@@ -1177,12 +1207,22 @@
 
     <!-- ═══ 27 · Part Three ═══ -->
     <section class="part photo-right" id="custom" data-slide="27" data-title="Part Three · Custom Lash Design" data-chapter="custom">
+      <div class="drips" data-drips aria-hidden="true"></div>
       <div class="bg" data-parallax="-8"><img src="assets/lash-design.jpg" alt="Custom wispy lash set shown from two angles" loading="lazy" style="object-position: center 50%;" /></div>
       <span class="ghost-num" aria-hidden="true" data-parallax="10">III</span>
       <div class="inner">
         <span class="eyebrow" data-fade>Part Three</span>
         <h2 class="display" data-split>Custom<br /><em>Lash Design</em></h2>
         <p class="lead" data-fade>Getting seen and chosen brings clients to your chair. A custom design experience gives them a reason to return and tell other people. Part Three focuses on creating a result for the specific person in front of you.</p>
+        <figure class="lash-map" data-lashmap aria-hidden="true">
+          <svg viewBox="0 0 440 210">
+            <path d="M30 190 Q220 40 410 190" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M58 196 Q220 120 382 196" fill="none" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 5" opacity=".5"/>
+            <g class="lm-lashes" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><line x1="68.0" y1="163.0" x2="45.8" y2="127.8"/><line x1="98.4" y1="145.7" x2="77.3" y2="103.9"/><line x1="128.8" y1="132.3" x2="110.4" y2="83.7"/><line x1="159.2" y1="122.7" x2="145.2" y2="67.2"/><line x1="189.6" y1="116.9" x2="181.8" y2="55.0"/><line x1="220.0" y1="115.0" x2="220.0" y2="47.4"/><line x1="250.4" y1="116.9" x2="258.9" y2="49.9"/><line x1="280.8" y1="122.7" x2="296.1" y2="62.2"/><line x1="311.2" y1="132.3" x2="331.5" y2="78.8"/><line x1="341.6" y1="145.7" x2="365.1" y2="99.3"/><line x1="372.0" y1="163.0" x2="397.0" y2="123.4"/></g>
+            <g class="lm-labels" fill="currentColor" font-family="Manrope, sans-serif" font-size="11" font-weight="600" text-anchor="middle"><text x="38.3" y="120.0">8</text><text x="71.0" y="95.5">9</text><text x="105.4" y="74.6">10</text><text x="141.8" y="57.6">11</text><text x="180.0" y="45.1">12</text><text x="220.0" y="37.4">13</text><text x="260.6" y="40.0">13</text><text x="299.5" y="52.6">12</text><text x="336.4" y="69.7">11</text><text x="371.4" y="90.8">10</text><text x="404.5" y="115.6">9</text></g>
+          </svg>
+          <figcaption>Lash map — length in mm</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -1285,6 +1325,7 @@
 
     <!-- ═══ 33 · Custom Lash Academy ═══ -->
     <section class="section academy" id="academy" data-slide="33" data-title="Introducing the Academy" data-chapter="academy">
+      <div class="drips" data-drips aria-hidden="true"></div>
       <div class="wrap">
         <span class="eyebrow" data-fade style="justify-content:center;">Introducing</span>
         <h2 class="display" data-split style="margin-top: 26px;">Gem's Custom Lash <em>Academy</em></h2>
@@ -1832,6 +1873,50 @@
     // Growth bars
     gsap.to('#growth .bar i', { scaleX: 1, duration: 1.6, ease: 'expo.inOut', stagger: .35, scrollTrigger: { trigger: '#growth', start: 'top 80%' } });
     gsap.from('#growth > div', { autoAlpha: 0, y: 40, duration: 1.1, ease: ease, stagger: .2, scrollTrigger: { trigger: '#growth', start: 'top 85%' } });
+
+    // Liquid drips along the top edge of key slides, echoing the logo.
+    function dripPath(w) {
+      var band = 14, r = 0, out = 'M0 0 H' + w + ' V' + band, x = w - 30, rnd = 7;
+      var rand = function () { rnd = (rnd * 9301 + 49297) % 233280; return rnd / 233280; };
+      var drops = [];
+      while (x > 40) { var dw = 16 + rand() * 24, len = 34 + Math.pow(rand(), 1.25) * 190; drops.push([x - dw, dw, len]); x -= dw + 40 + rand() * 130; }
+      drops.forEach(function (d) {
+        var x0 = d[0], dw = d[1], L = d[2], c = x0 + dw / 2; r = dw * .3;
+        out += ' L' + (x0 + dw) + ' ' + band +
+          ' C' + (x0 + dw * .64) + ' ' + (band + 3) + ' ' + (c + r) + ' ' + (band + L - 2 * r) + ' ' + (c + r) + ' ' + (band + L - r) +
+          ' A' + r + ' ' + r + ' 0 1 1 ' + (c - r) + ' ' + (band + L - r) +
+          ' C' + (c - r) + ' ' + (band + L - 2 * r) + ' ' + (x0 + dw * .36) + ' ' + (band + 3) + ' ' + x0 + ' ' + band;
+      });
+      return { d: out + ' L0 ' + band + ' Z', drops: drops, band: band };
+    }
+    $$('[data-drips]').forEach(function (host, n) {
+      var draw = function () {
+        var w = Math.round(host.clientWidth), g = dripPath(w), id = 'dripGrad' + n, clip = 'dripClip' + n;
+        var shine = g.drops.map(function (d) { var r = d[1] * .3, cx = d[0] + d[1] / 2, cy = g.band + d[2] - r; return '<ellipse cx="' + (cx - r * .35) + '" cy="' + (cy - r * .3) + '" rx="' + (r * .28) + '" ry="' + (r * .42) + '" fill="#fff" opacity=".55"/>'; }).join('');
+        host.innerHTML = '<svg viewBox="0 0 ' + w + ' 240" preserveAspectRatio="xMidYMin meet"><defs>' +
+          '<linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2D9C95"/><stop offset=".25" stop-color="#7BD8D0"/><stop offset="1" stop-color="#A9EFE7"/></linearGradient>' +
+          '<clipPath id="' + clip + '"><rect class="drip-reveal" x="0" y="0" width="' + w + '" height="240"/></clipPath></defs>' +
+          '<g clip-path="url(#' + clip + ')"><path d="' + g.d + '" fill="url(#' + id + ')"/>' + shine + '</g></svg>';
+      };
+      draw();
+      var played = false;
+      ScrollTrigger.create({ trigger: host.parentElement, start: 'top 75%', once: true, onEnter: function () {
+        played = true;
+        gsap.fromTo($('.drip-reveal', host), { attr: { height: 16 } }, { attr: { height: 240 }, duration: 2.6, ease: 'power2.inOut' });
+      } });
+      gsap.set($('.drip-reveal', host), { attr: { height: 14 } });
+      var lastW = host.clientWidth;
+      window.addEventListener('resize', function () { if (Math.abs(host.clientWidth - lastW) < 40) return; lastW = host.clientWidth; draw(); if (!played) gsap.set($('.drip-reveal', host), { attr: { height: 14 } }); });
+    });
+
+    // Lash map: lashes draw out from the lid, then the lengths appear.
+    $$('[data-lashmap]').forEach(function (fig) {
+      var ls = $$('.lm-lashes line', fig);
+      ls.forEach(function (l) { var len = Math.hypot(l.x2.baseVal.value - l.x1.baseVal.value, l.y2.baseVal.value - l.y1.baseVal.value); l.style.strokeDasharray = len; l.style.strokeDashoffset = len; });
+      gsap.timeline({ scrollTrigger: { trigger: fig, start: 'top 85%' } })
+        .to(ls, { strokeDashoffset: 0, duration: .8, ease: 'power2.out', stagger: .06 })
+        .from($$('.lm-labels text', fig), { autoAlpha: 0, y: 6, duration: .4, stagger: .05 }, '-=.6');
+    });
 
     // Price reveal slides: cross out the old values, then the new number lands and counts up.
     var rcDate = $('#rcDate');

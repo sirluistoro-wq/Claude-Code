@@ -365,7 +365,8 @@ window.GEM_PT = {
   "But if you join <em>today…</em>": "Mas se você entrar <em>hoje…</em>",
   "Fast-action bonus: personalized 1:1 consultation with Gem for the first 15 confirmed enrollees.": "Bônus de ação rápida: consulta individual personalizada com a Gem para as primeiras 15 inscrições confirmadas.",
   "Payment options may be available through": "Pode haver opções de pagamento via",
-  "Save $4,303": "Economize $4,303"
+  "Save $4,303": "Economize $4,303",
+  "Lash map — length in mm": "Mapeamento de cílios — comprimento em mm"
  },
  "titles": {
   "The Blueprint": "O Blueprint",
