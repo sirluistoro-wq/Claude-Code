@@ -23,7 +23,7 @@
   renderer.setPixelRatio(1);
   renderer.outputEncoding = T.sRGBEncoding;
   renderer.toneMapping = T.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.1;
+  renderer.toneMappingExposure = 1.0;
   renderer.physicallyCorrectLights = false;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = T.PCFShadowMap;
@@ -31,52 +31,90 @@
   renderer.domElement.setAttribute('aria-hidden', 'true');
   stage.insertBefore(renderer.domElement, stage.firstChild);
 
-  var BG = 0x0e1012;
+  // sunset: the sun sits low ahead-left of the car, so front shots are lit and chase shots look into the glow
+  var SUN = new T.Vector3(-0.45, 0.16, -0.88).normalize();
+  var HAZE = 0xc98f78;
   var scene = new T.Scene();
-  scene.background = new T.Color(BG);
-  scene.fog = new T.Fog(BG, 28, 150);
+  scene.background = new T.Color(HAZE);
+  scene.fog = new T.Fog(HAZE, 70, 330);
+  var sky = new T.Mesh(new T.SphereGeometry(420, 48, 24), new T.ShaderMaterial({
+    side: T.BackSide, depthWrite: false, fog: false,
+    uniforms: { sun: { value: SUN } },
+    vertexShader: 'varying vec3 vD; void main(){ vD = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+    fragmentShader: [
+      'uniform vec3 sun; varying vec3 vD;',
+      'void main(){',
+      '  float h = clamp(vD.y, -1.0, 1.0);',
+      '  vec3 zen = vec3(0.11,0.16,0.33); vec3 mid = vec3(0.45,0.31,0.52); vec3 hor = vec3(0.97,0.55,0.33); vec3 low = vec3(0.79,0.56,0.47);',
+      '  vec3 c = h > 0.0 ? mix(hor, mix(mid, zen, smoothstep(0.18, 0.75, h)), smoothstep(0.0, 0.22, h)) : low;',
+      '  float s = max(dot(vD, sun), 0.0);',
+      '  c += vec3(1.0,0.62,0.3) * pow(s, 6.0) * 0.55 + vec3(1.0,0.85,0.6) * pow(s, 120.0) * 1.2;',
+      '  gl_FragColor = vec4(c, 1.0);',
+      '}'].join('\n')
+  }));
+  scene.add(sky);
+  var sunDisc = new T.Mesh(new T.CircleGeometry(9, 40), new T.MeshBasicMaterial({ color: 0xfff0d2, fog: false }));
+  sunDisc.position.copy(SUN).multiplyScalar(400);
+  sunDisc.lookAt(0, 0, 0);
+  scene.add(sunDisc);
   var camera = new T.PerspectiveCamera(34, 1, 0.1, 700);
 
-  // ---------- reflections: a small studio-at-night environment for the paint and glass ----------
+  // ---------- reflections: the sunset sky painted as an equirectangular image ----------
   var envMap = (function () {
-    // painted on a 2D canvas as an equirectangular image: works on every device without float render targets
+    var W = 1024, Hh = 512;
     var c = document.createElement('canvas');
-    c.width = 512; c.height = 256;
+    c.width = W; c.height = Hh;
     var g = c.getContext('2d');
-    var grad = g.createLinearGradient(0, 0, 0, 256);
-    grad.addColorStop(0, '#101214');
-    grad.addColorStop(0.42, '#3b3f43');
-    grad.addColorStop(0.5, '#7d8389');
-    grad.addColorStop(0.56, '#2a2d30');
-    grad.addColorStop(1, '#08090a');
-    g.fillStyle = grad; g.fillRect(0, 0, 512, 256);
-    // soft boxes: give the panels a clean highlight line
-    g.fillStyle = 'rgba(255,255,255,0.95)';
-    g.fillRect(40, 70, 170, 12);
-    g.fillRect(300, 92, 150, 8);
-    g.fillStyle = 'rgba(230,235,240,0.9)';
-    g.beginPath(); g.arc(120, 40, 14, 0, Math.PI * 2); g.fill();
+    var grad = g.createLinearGradient(0, 0, 0, Hh);
+    grad.addColorStop(0, '#1c2a55');
+    grad.addColorStop(0.3, '#6b4d86');
+    grad.addColorStop(0.46, '#f0905a');
+    grad.addColorStop(0.5, '#ffd0a0');
+    grad.addColorStop(0.53, '#9a6a52');
+    grad.addColorStop(1, '#2a1d18');
+    g.fillStyle = grad; g.fillRect(0, 0, W, Hh);
+    // sun hot spot at the same direction as the sun in the scene
+    var u = (Math.atan2(SUN.z, SUN.x) / (2 * Math.PI) + 0.5) * W, v = (0.5 - Math.asin(SUN.y) / Math.PI) * Hh;
+    var sg = g.createRadialGradient(u, v, 0, u, v, 120);
+    sg.addColorStop(0, 'rgba(255,240,210,1)'); sg.addColorStop(0.15, 'rgba(255,190,120,0.9)'); sg.addColorStop(1, 'rgba(255,140,80,0)');
+    g.fillStyle = sg; g.fillRect(0, 0, W, Hh);
     var tex = new T.CanvasTexture(c);
     tex.mapping = T.EquirectangularReflectionMapping;
     tex.encoding = T.sRGBEncoding;
     return tex;
   })();
 
+  function noiseTexture(size, base, spread, streak) {
+    // grainy canvas texture used as a bump map for sand ripples and asphalt
+    var c = document.createElement('canvas'); c.width = c.height = size;
+    var g = c.getContext('2d'), img = g.createImageData(size, size);
+    for (var y = 0; y < size; y++) for (var x = 0; x < size; x++) {
+      var r = streak ? Math.sin((y + Math.sin(x * 0.05) * 6) * 0.45) * 0.5 + 0.5 : 0.5;
+      var v = base + (Math.random() - 0.5) * spread + (r - 0.5) * (streak || 0);
+      var k = (y * size + x) * 4;
+      img.data[k] = img.data[k + 1] = img.data[k + 2] = Math.max(0, Math.min(255, v)); img.data[k + 3] = 255;
+    }
+    g.putImageData(img, 0, 0);
+    var t = new T.CanvasTexture(c);
+    t.wrapS = t.wrapT = T.RepeatWrapping;
+    return t;
+  }
+
   // ---------- lights ----------
-  scene.add(new T.HemisphereLight(0x9aa3ab, 0x15171a, 0.5));
-  var moon = new T.DirectionalLight(0xe2e8ee, 1.2);
-  moon.position.set(-16, 24, 12);
-  moon.castShadow = true;
-  moon.shadow.mapSize.set(4096, 4096);
-  moon.shadow.camera.left = -7; moon.shadow.camera.right = 7;
-  moon.shadow.camera.top = 7; moon.shadow.camera.bottom = -7;
-  moon.shadow.camera.near = 1; moon.shadow.camera.far = 70;
-  moon.shadow.bias = -0.0006;
-  moon.shadow.normalBias = 0.02;
-  scene.add(moon);
-  var rim = new T.DirectionalLight(0xbfc6cc, 0.7);   // back light to outline the car
-  rim.position.set(14, 8, 22);
-  scene.add(rim);
+  scene.add(new T.HemisphereLight(0x8a96c8, 0x7a4a30, 0.5));
+  var sunLight = new T.DirectionalLight(0xffb27a, 1.7);
+  sunLight.position.copy(SUN).multiplyScalar(60);
+  sunLight.castShadow = true;
+  sunLight.shadow.mapSize.set(4096, 4096);
+  sunLight.shadow.camera.left = -12; sunLight.shadow.camera.right = 12;
+  sunLight.shadow.camera.top = 12; sunLight.shadow.camera.bottom = -12;
+  sunLight.shadow.camera.near = 1; sunLight.shadow.camera.far = 140;
+  sunLight.shadow.bias = -0.0004;
+  sunLight.shadow.normalBias = 0.03;
+  scene.add(sunLight);
+  var fill = new T.DirectionalLight(0x7f8fd0, 0.45);   // cool sky fill from the opposite side
+  fill.position.set(20, 12, 18);
+  scene.add(fill);
 
   // ---------- terrain: two pre-built tiles that slide, so nothing is rebuilt per frame ----------
   var Z_NEAR = 120, Z_FAR = -220, LEN = Z_NEAR - Z_FAR;
@@ -99,17 +137,21 @@
   var tp = tileGeo.attributes.position;
   for (var i = 0; i < tp.count; i++) tp.setY(i, H(tp.getX(i), tp.getZ(i)));
   tileGeo.computeVertexNormals();
-  var sandMat = new T.MeshStandardMaterial({ color: 0x5b5f62, roughness: 1, metalness: 0, flatShading: true });
+  var sandBump = noiseTexture(256, 128, 50, 26);
+  sandBump.repeat.set(70, 90);
+  var sandMat = new T.MeshStandardMaterial({ color: 0xb87a4e, roughness: 1, metalness: 0, bumpMap: sandBump, bumpScale: 0.12 });
   var tiles = [new T.Mesh(tileGeo, sandMat), new T.Mesh(tileGeo, sandMat)];
   tiles.forEach(function (t) { t.receiveShadow = true; scene.add(t); });
 
-  var road = new T.Mesh(new T.PlaneGeometry(7.2, LEN * 2), new T.MeshStandardMaterial({ color: 0x1b1d1f, roughness: 0.9 }));
+  var asphalt = noiseTexture(256, 128, 70, 0);
+  asphalt.repeat.set(4, 260);
+  var road = new T.Mesh(new T.PlaneGeometry(7.2, LEN * 2), new T.MeshStandardMaterial({ color: 0x2a2627, roughness: 0.85, bumpMap: asphalt, bumpScale: 0.06 }));
   road.rotation.x = -Math.PI / 2;
   road.position.set(0, 0.03, (Z_NEAR + Z_FAR) / 2);
   road.receiveShadow = true;
   scene.add(road);
   [-3.35, 3.35].forEach(function (x) {
-    var edge = new T.Mesh(new T.PlaneGeometry(0.12, LEN * 2), new T.MeshBasicMaterial({ color: 0x8a9196 }));
+    var edge = new T.Mesh(new T.PlaneGeometry(0.12, LEN * 2), new T.MeshStandardMaterial({ color: 0xe9e4dc, roughness: 0.6 }));
     edge.rotation.x = -Math.PI / 2;
     edge.position.set(x, 0.04, (Z_NEAR + Z_FAR) / 2);
     scene.add(edge);
@@ -128,8 +170,8 @@
     }
   }
 
-  var dashGeo = new T.BoxGeometry(0.16, 0.02, 2.4);
-  var dashMat = new T.MeshBasicMaterial({ color: 0xc9cdd0 });
+  var dashGeo = new T.BoxGeometry(0.14, 0.02, 3);
+  var dashMat = new T.MeshStandardMaterial({ color: 0xe8b23a, roughness: 0.55 });   // yellow centre line
   var DASHES = 40;
   for (i = 0; i < DASHES; i++) addMover(new T.Mesh(dashGeo, dashMat), 0, Z_FAR + i * (LEN / DASHES), -0.04);
 
@@ -137,7 +179,7 @@
   function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
   function side() { return rnd() < 0.5 ? -1 : 1; }
 
-  var rockMat = new T.MeshStandardMaterial({ color: 0x45494c, roughness: 1, flatShading: true });
+  var rockMat = new T.MeshStandardMaterial({ color: 0x8a5a3c, roughness: 1, flatShading: true });
   for (i = 0; i < (small ? 30 : 50); i++) {
     var r = new T.Mesh(new T.DodecahedronGeometry(0.4 + rnd() * 1.1, 0), rockMat);
     r.scale.y = 0.55 + rnd() * 0.4;
@@ -146,8 +188,8 @@
   }
 
   // Joshua trees: the Mojave's signature plant
-  var trunkMat = new T.MeshStandardMaterial({ color: 0x3a3d40, roughness: 1, flatShading: true });
-  var tuftMat = new T.MeshStandardMaterial({ color: 0x24272a, roughness: 1, flatShading: true });
+  var trunkMat = new T.MeshStandardMaterial({ color: 0x6a5240, roughness: 1, flatShading: true });
+  var tuftMat = new T.MeshStandardMaterial({ color: 0x5d7a3c, roughness: 1, flatShading: true });
   function joshuaTree(scale) {
     var g = new T.Group();
     var trunkH = 2.2 + rnd() * 1.4;
@@ -179,26 +221,37 @@
   }
   for (i = 0; i < (small ? 20 : 30); i++) addMover(joshuaTree(0.8 + rnd() * 0.7), side() * (7 + rnd() * 60), Z_FAR + rnd() * LEN, 0.1);
 
-  var mtnMat = new T.MeshBasicMaterial({ color: 0x17191c, fog: false });
-  for (i = 0; i < 26; i++) {
-    var ang = (i / 26) * Math.PI * 2 + rnd() * 0.2;
-    var mh = 22 + rnd() * 38;
-    var mtn = new T.Mesh(new T.ConeGeometry(30 + rnd() * 40, mh, 5), mtnMat);
-    mtn.position.set(Math.sin(ang) * 270, mh / 2 - 4, Math.cos(ang) * 270);
-    mtn.rotation.y = rnd() * 3;
-    scene.add(mtn);
+  // desert scrub: creosote and brittlebush clumps
+  var scrubMats = [0x6f7d3e, 0x8a8a4a, 0x55693a].map(function (c) { return new T.MeshStandardMaterial({ color: c, roughness: 1, flatShading: true }); });
+  for (i = 0; i < (small ? 110 : 170); i++) {
+    var clump = new T.Group(), parts = 2 + Math.floor(rnd() * 3), mat = scrubMats[Math.floor(rnd() * 3)];
+    for (var q = 0; q < parts; q++) {
+      var bsh = new T.Mesh(new T.IcosahedronGeometry(0.25 + rnd() * 0.35, 0), mat);
+      bsh.position.set((rnd() - 0.5) * 0.7, 0.15, (rnd() - 0.5) * 0.7);
+      bsh.scale.y = 0.6 + rnd() * 0.3;
+      clump.add(bsh);
+    }
+    addMover(clump, side() * (4.4 + rnd() * 70), Z_FAR + rnd() * LEN, 0.05);
   }
-  var moonDisc = new T.Mesh(new T.SphereGeometry(7, 24, 16), new T.MeshBasicMaterial({ color: 0xe4e7ea, fog: false }));
-  moonDisc.position.set(70, 70, 230);
-  scene.add(moonDisc);
-  var starArr = [];
-  for (i = 0; i < 900; i++) {
-    var th = rnd() * Math.PI * 2, ph = rnd() * Math.PI * 0.45;
-    starArr.push(Math.cos(th) * Math.sin(ph) * 420, Math.cos(ph) * 420 * 0.6 + 20, Math.sin(th) * Math.sin(ph) * 420);
-  }
-  var starGeo = new T.BufferGeometry();
-  starGeo.setAttribute('position', new T.Float32BufferAttribute(starArr, 3));
-  scene.add(new T.Points(starGeo, new T.PointsMaterial({ color: 0xc9cdd0, size: 1.3, sizeAttenuation: false, fog: false })));
+
+  // layered mountain ranges, hazier with distance
+  [[180, 16, 0x8c5363, 0xc98f78], [235, 26, 0x6b4c74, 0xb88a86], [300, 38, 0x4f4a7a, 0xa58694]].forEach(function (L, li) {
+    var seg = 360, pos = [], col = [], idx = [];
+    var top = new T.Color(L[2]), base = new T.Color(L[3]);
+    for (var k = 0; k <= seg; k++) {
+      var a = (k / seg) * Math.PI * 2;
+      var hgt = L[1] * (0.55 + 0.3 * Math.sin(a * 3 + li) + 0.18 * Math.sin(a * 11 + li * 2) + 0.08 * Math.sin(a * 37 + li * 5));
+      var x = Math.sin(a) * L[0], z = Math.cos(a) * L[0];
+      pos.push(x, -6, z, x, hgt, z);
+      col.push(base.r, base.g, base.b, top.r, top.g, top.b);
+      if (k < seg) { var v = k * 2; idx.push(v, v + 2, v + 1, v + 1, v + 2, v + 3); }
+    }
+    var geo = new T.BufferGeometry();
+    geo.setAttribute('position', new T.Float32BufferAttribute(pos, 3));
+    geo.setAttribute('color', new T.Float32BufferAttribute(col, 3));
+    geo.setIndex(idx);
+    scene.add(new T.Mesh(geo, new T.MeshBasicMaterial({ vertexColors: true, fog: false, side: T.DoubleSide })));
+  });
 
 
   // ---------- the car ----------
@@ -343,14 +396,56 @@
     var ex = mesh(new T.CylinderGeometry(0.04, 0.04, 0.12, 16), chrome);
     ex.rotation.z = Math.PI / 2; ex.position.set(2.3, 0.24, z);
   });
+  // panel seams and flush handles that follow the curve of the body side
+  function surfZ(x, y) {
+    var yt = bodyTop(x) + fender(x, AX_F, 0.07) + fender(x, AX_R, 0.08);
+    var yb = Math.max(bodyBot(x), arch(x, AX_F), arch(x, AX_R));
+    var yn = Math.min(1, Math.max(0, (y - yb) / (yt - yb))), ey = 2 * yn - 1;
+    var hw = bodyHW(x), hwy = hw + (hw * 0.9 - hw) * Math.max(0, yn - 0.5) * 2;
+    return hwy * Math.pow(Math.max(0, 1 - Math.pow(Math.abs(ey), 3.4)), 1 / 3.4);
+  }
+  var seamMat = new T.MeshBasicMaterial({ color: 0x1a0204 });
+  function seam(pts2) {
+    [1, -1].forEach(function (sd) {
+      var pts = pts2.map(function (p) { return new T.Vector3(p[0], p[1], sd * (surfZ(p[0], p[1]) + 0.002)); });
+      mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts), 40, 0.0035, 4, false), seamMat, body, false);
+    });
+  }
+  var doorF = -0.74, doorR = 0.6;
+  var ptsF = [], ptsR = [], ptsB = [];
+  for (var sy = 0; sy <= 10; sy++) {
+    var yy = 0.26 + (sy / 10) * 0.56;
+    ptsF.push([doorF + (yy - 0.26) * 0.12, yy]);
+    ptsR.push([doorR - (yy - 0.26) * 0.18, yy]);
+  }
+  for (var sx = 0; sx <= 12; sx++) ptsB.push([doorF + 0.02 + (sx / 12) * (doorR - doorF - 0.04), 0.255]);
+  seam(ptsF); seam(ptsR); seam(ptsB);
+  [1, -1].forEach(function (sd) {
+    var hx = 0.32, hy = 0.66;
+    var handle = box(0.16, 0.022, 0.02, chrome, hx, hy, sd * (surfZ(hx, hy) + 0.004), body, false);
+    handle.rotation.y = 0;
+  });
+
+  // soft contact shadow so the car sits on the road
+  (function () {
+    var c = document.createElement('canvas'); c.width = 256; c.height = 128;
+    var g = c.getContext('2d');
+    var rg = g.createRadialGradient(128, 64, 10, 128, 64, 128);
+    rg.addColorStop(0, 'rgba(0,0,0,0.75)'); rg.addColorStop(0.55, 'rgba(0,0,0,0.45)'); rg.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = rg; g.fillRect(0, 0, 256, 128);
+    var sh = new T.Mesh(new T.PlaneGeometry(5.6, 2.6), new T.MeshBasicMaterial({ map: new T.CanvasTexture(c), transparent: true, depthWrite: false }));
+    sh.rotation.x = -Math.PI / 2; sh.position.set(0, 0.035, 0);
+    S.add(sh);
+  })();
+
   // dark underbody so the arches read as openings
   box(3.9, 0.3, 1.5, trim, 0, 0.32, 0);
 
   // wheels: low-profile tires, ten-spoke rims, big brakes
   var wheels = [];
-  var rubber = new T.MeshStandardMaterial({ color: 0x141516, roughness: 0.9 });
-  var rimMat = new T.MeshStandardMaterial({ color: 0x1c1d20, metalness: 0.9, roughness: 0.28, envMap: envMap, envMapIntensity: 1.2 });
-  var caliperMat = new T.MeshStandardMaterial({ color: 0xc9cdd0, metalness: 0.6, roughness: 0.35, envMap: envMap });
+  var rubber = new T.MeshStandardMaterial({ color: 0x0f0f10, roughness: 0.92 });
+  var rimMat = new T.MeshStandardMaterial({ color: 0x26282c, metalness: 0.7, roughness: 0.38, envMap: envMap, envMapIntensity: 0.45 });
+  var caliperMat = new T.MeshStandardMaterial({ color: 0xf0b323, metalness: 0.3, roughness: 0.35, envMap: envMap });
   function makeWheel(sideSign, width) {
     var w = new T.Group();
     var hw = width / 2, prof = [];
@@ -385,7 +480,7 @@
   });
 
   // headlight spots and soft beams (pointing toward -x in side-view space)
-  var beamMat = new T.MeshBasicMaterial({ color: 0xdfe5ea, transparent: true, opacity: 0.04, depthWrite: false, blending: T.AdditiveBlending, side: T.DoubleSide });
+  var beamMat = new T.MeshBasicMaterial({ color: 0xdfe5ea, transparent: true, opacity: 0.018, depthWrite: false, blending: T.AdditiveBlending, side: T.DoubleSide });
   [0.62, -0.62].forEach(function (z) {
     var s = new T.SpotLight(0xf3f4f5, 3, 40, 0.4, 0.55, 1.2);
     s.position.set(-2.1, 0.64, z);

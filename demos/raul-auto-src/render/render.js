@@ -11,8 +11,8 @@ const OUT = path.resolve(process.argv[3]);
 const FRAMES = 144;          // 6 s at 24 fps
 const DT = 6 / FRAMES;
 const WARMUP = 36;           // frames simulated before the clip so dust is already flying
-// night grade: a touch more contrast and less glare from the sand
-const GRADE = 'eq=contrast=1.14:brightness=-0.04:gamma=0.9:saturation=1.05,vignette=PI/5';
+// sunset grade: a little extra saturation and a soft vignette
+const GRADE = 'eq=contrast=1.06:brightness=-0.01:gamma=0.97:saturation=1.08,vignette=PI/6';
 
 const VARIANTS = [
   { name: 'landscape', w: 1920, h: 1080, outW: 1280, outH: 720, portrait: 0 },
