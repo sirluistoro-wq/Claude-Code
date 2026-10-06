@@ -46,6 +46,8 @@
 
   function load() {
     var src = video.getAttribute(portraitQuery.matches ? 'data-portrait' : 'data-landscape');
+    // MP4 (H.264) everywhere it plays; WebM (VP9) for browsers built without H.264
+    if (!video.canPlayType('video/mp4; codecs="avc1.640028"')) src = src.replace(/\.mp4$/, '.webm');
     ready = false;
     wrap.classList.remove('video-ready');
     // download the whole clip first so every frame is available instantly while scrubbing
