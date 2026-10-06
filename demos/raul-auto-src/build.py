@@ -88,6 +88,8 @@ FAQ = [
     ("What areas do you serve?", "We're in Las Vegas and see customers from across the valley, including North Las Vegas, Henderson, Paradise and Spring Valley."),
 ]
 
+HERO_SCRIPTS = '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>\n<script src="assets/hero3d.js"></script>\n'
+
 TOW_SVG = '<svg viewBox="0 0 72 48" aria-hidden="true"><path d="M4 34V20h22l6-10h14v24M46 34h20V24l-8-4H46M10 34a5 5 0 1 0 10 0 5 5 0 1 0-10 0M50 34a5 5 0 1 0 10 0 5 5 0 1 0-10 0M20 34h30M26 20 40 4h8"/></svg>'
 
 BUSINESS = {
@@ -190,7 +192,7 @@ def nav_links(page):
     return "\n".join(out)
 
 
-def foot():
+def foot(extra=""):
     svc = "\n".join(f'        <a href="services.html#{s[0]}">{s[1]}</a>' for s in SERVICES)
     return f"""</main>
 <footer class="site-footer">
@@ -219,7 +221,7 @@ def foot():
   </div>
 </footer>
 <script src="assets/site.js"></script>
-</body>
+{extra}</body>
 </html>
 """
 
@@ -301,26 +303,41 @@ def home():
         <h3>{name}</h3>
         <ul class="spec-list">{''.join(f'<li>{b}</li>' for b in bullets)}</ul>
       </a>""" for sid, code, name, bullets, *_ in SPECIALTY)
-    body = f"""<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <span class="label">Full-service auto repair · Las Vegas, NV</span>
-      <h1>Bumper to bumper.<br><span class="dim">Everything but body work.</span></h1>
-      <p>Maintenance, brakes, suspension, A/C, electrical and full engine and transmission swaps. We handle insurance and warranty claims, offer financing, and can get your car towed in.</p>
-      <div class="ctas">
-        <a class="btn btn-solid" href="contact.html#book">Book an appointment</a>
-        <a class="btn btn-ghost" href="tel:{TEL}">Call {PHONE}</a>
+    body = f"""<section class="hero3d" aria-label="Introduction">
+  <div class="hero3d-stage">
+    <div class="hero3d-shade"></div>
+    <div class="wrap hero3d-copy">
+      <div class="hero3d-a">
+        <span class="label">Full-service auto repair · Las Vegas, NV</span>
+        <h1>Bumper to bumper.<br><span class="dim">Everything but body work.</span></h1>
+        <p>Maintenance, brakes, suspension, A/C, electrical and full engine and transmission swaps. We handle insurance and warranty claims, offer financing, and can get your car towed in.</p>
+        <div class="ctas">
+          <a class="btn btn-solid" href="contact.html#book">Book an appointment</a>
+          <a class="btn btn-ghost" href="tel:{TEL}">Call {PHONE}</a>
+        </div>
+      </div>
+      <div class="hero3d-b">
+        <span class="label">Specialty work</span>
+        <h2>Built for the Mojave.</h2>
+        <p>Lift kits, engine and transmission swaps, fuel injection conversions and A/C that holds up in July. The bigger jobs most shops send away.</p>
+        <ul><li>Lift kits</li><li>Lowering kits</li><li>Engine swaps</li><li>Transmission swaps</li><li>EFI conversions</li></ul>
+        <div class="ctas"><a class="btn btn-solid" href="specialty.html">See specialty work</a></div>
       </div>
     </div>
-    <dl class="ticket" aria-label="Shop details">
-      <div class="ticket-head"><span>Repair order</span><span>RO-0001</span></div>
-      <div class="ticket-row"><dt>Shop</dt><dd><span class="open-dot" aria-hidden="true"></span><span data-status style="color:inherit">Mon – Fri 8 AM – 6 PM · Sat 9 AM – 3 PM</span></dd></div>
-      <div class="ticket-row"><dt>Phone</dt><dd><a href="tel:{TEL}" style="text-decoration:none">{PHONE}</a></dd></div>
-      <div class="ticket-row"><dt>Location</dt><dd>{STREET}<br><span>{CITYLINE}</span></dd></div>
-      <div class="ticket-row"><dt>Payment</dt><dd>Cash · Card<br><span>Affirm · Sunbit · Klarna</span></dd></div>
-      <div class="ticket-row"><dt>Claims</dt><dd>Insurance &amp; extended warranty</dd></div>
-      <div class="ticket-row"><dt>Tow</dt><dd>Los Crazies Towing</dd></div>
-    </dl>
+    <div class="hero3d-hint">Scroll</div>
+  </div>
+</section>
+
+<section class="section glance" aria-label="Shop details">
+  <div class="wrap">
+    <div class="grid grid-3">
+      <div class="cell"><span class="label">Shop</span><span class="val"><span class="open-dot" aria-hidden="true"></span><span data-status style="color:inherit">Mon – Fri 8 AM – 6 PM · Sat 9 AM – 3 PM</span></span></div>
+      <div class="cell"><span class="label">Phone</span><a class="val" href="tel:{TEL}" style="text-decoration:none">{PHONE}</a></div>
+      <div class="cell"><span class="label">Location</span><span class="val">{STREET}, <span>{CITYLINE}</span></span></div>
+      <div class="cell"><span class="label">Payment</span><span class="val">Cash · Card · <span>Affirm · Sunbit · Klarna</span></span></div>
+      <div class="cell"><span class="label">Claims</span><span class="val">Insurance &amp; extended warranty</span></div>
+      <div class="cell"><span class="label">Towing</span><span class="val">Los Crazies Towing</span></div>
+    </div>
   </div>
 </section>
 
@@ -397,7 +414,7 @@ def home():
 {cta_band()}"""
     return head("index.html", f"{SHOP} | Auto Repair in Las Vegas, NV",
                 "Full-service auto repair in Las Vegas. Maintenance, oil changes, brakes, suspension, A/C, electrical, engine and transmission swaps. Insurance and warranty claims, financing and towing.",
-                faq_ld(FAQ)) + body + foot()
+                faq_ld(FAQ)) + body + foot(HERO_SCRIPTS)
 
 
 def services():

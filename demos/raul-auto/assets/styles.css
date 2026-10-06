@@ -36,7 +36,9 @@ a { color: inherit; }
 .skip:focus { left: 8px; top: 8px; }
 
 h1, h2, h3 { font-family: var(--font-display); color: var(--white); text-transform: uppercase; line-height: 0.95; margin: 0; text-wrap: balance; letter-spacing: 0.005em; }
-h2 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; }
+h2 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; }
+h1, h2 { overflow-wrap: break-word; }
+.section-head { grid-template-columns: minmax(0, 1fr); }
 h2.sm { font-size: clamp(2rem, 4.5vw, 3rem); }
 h3 { font-size: 1.45rem; font-weight: 700; line-height: 1.05; }
 p { margin: 0; max-width: 62ch; }
@@ -235,3 +237,52 @@ textarea { min-height: 96px; resize: vertical; }
 .foot-grid a { text-decoration: none; }
 .foot-grid a:hover { color: var(--white); }
 .foot-base { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; }
+
+/* ---------- 3D scroll hero (home) ---------- */
+.hero3d { position: relative; height: 230vh; height: 230svh; background: var(--ink); border-bottom: 1px solid var(--line); }
+.hero3d-stage { --p: 0; position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: radial-gradient(120% 80% at 70% 70%, #2a2d30 0%, var(--ink) 70%); }
+.hero3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero3d-shade { position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(11,12,13,0.88) 0%, rgba(11,12,13,0.6) 34%, rgba(11,12,13,0) 60%),
+    linear-gradient(0deg, var(--ink) 0%, rgba(11,12,13,0) 16%); }
+.hero3d-copy { position: relative; height: 100%; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; padding-block: 110px 80px; }
+.hero3d-copy > div { grid-area: 1 / 1; display: grid; gap: 22px; max-width: 600px; min-width: 0; }
+.hero3d h1 { font-size: clamp(3rem, 8vw, 6.2rem); font-weight: 800; line-height: 0.88; }
+.hero3d h1 .dim { color: var(--steel); }
+.hero3d-copy p { font-size: 1.1rem; color: var(--chrome); }
+.hero3d-a { opacity: calc(1 - var(--p) * 2.4); transform: translateY(calc(var(--p) * -90px)); }
+.hero3d-b { opacity: clamp(0, calc((var(--p) - 0.5) * 3.5), 1); transform: translateY(calc((1 - var(--p)) * 50px)); pointer-events: none; }
+.hero3d.is-late .hero3d-a { pointer-events: none; }
+.hero3d.is-late .hero3d-b { pointer-events: auto; }
+.hero3d-b ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.hero3d-b li { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); border: 1px solid var(--steel); padding: 6px 10px; background: rgba(11,12,13,0.5); }
+.hero3d-hint { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); display: grid; justify-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel); opacity: calc(1 - var(--p) * 5); pointer-events: none; }
+.hero3d-hint::after { content: ""; width: 1px; height: 34px; background: linear-gradient(var(--steel), transparent); animation: hint 1.8s ease-in-out infinite; transform-origin: top; }
+@keyframes hint { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+@media (max-width: 760px) {
+  .hero3d-shade { background:
+    linear-gradient(180deg, rgba(11,12,13,0.92) 0%, rgba(11,12,13,0.7) 38%, rgba(11,12,13,0) 58%),
+    linear-gradient(0deg, var(--ink) 0%, rgba(11,12,13,0) 14%); }
+  .hero3d-copy { align-items: start; padding-block: 88px 40px; }
+  .hero3d-copy > div { gap: 14px; }
+  .hero3d h1 { font-size: clamp(2.6rem, 12vw, 3.4rem); }
+  .hero3d-copy p { font-size: 0.98rem; }
+  .hero3d-a p { display: none; }
+  .hero3d .btn { padding: 10px 16px; font-size: 0.98rem; }
+  .hero3d-hint { display: none; }
+}
+@media (max-width: 760px) and (max-height: 700px) { .hero3d-b p { display: none; } }
+.hero3d.no-webgl { height: auto; }
+.hero3d.no-webgl .hero3d-stage { position: relative; height: auto; min-height: 80vh; }
+.hero3d.no-webgl .hero3d-b, .hero3d.no-webgl .hero3d-hint { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero3d { height: 100vh; height: 100svh; }
+  .hero3d-b, .hero3d-hint { display: none; }
+  .hero3d-a { opacity: 1; transform: none; }
+}
+
+/* shop details strip under the hero */
+.glance .cell { gap: 6px; }
+.glance .val { color: var(--white); font-family: var(--font-mono); font-size: 0.9rem; }
+.glance .val span { color: var(--steel); }
