@@ -40,12 +40,12 @@ const VARIANTS = [
     }
     await page.close();
     const mp4 = path.join(OUT, `hero-${v.name}.mp4`);
-    // every frame is a keyframe so the browser can jump to any frame instantly while scrubbing
+    // a keyframe every 6 frames and no B-frames keeps scrubbing seeks fast at a fraction of the size
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-framerate', '24', '-i', path.join(tmp, '%04d.png'),
-      '-vf', `scale=${v.outW}:${v.outH}:flags=lanczos,${GRADE}`,
-      '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-pix_fmt', 'yuv420p', '-g', '1', '-keyint_min', '1',
+      '-vf', `scale=${v.outW}:${v.outH}:flags=lanczos,${GRADE},hqdn3d=3:2:0:0`,
+      '-c:v', 'libx264', '-preset', 'slow', '-crf', '28', '-pix_fmt', 'yuv420p', '-g', '6', '-keyint_min', '6', '-sc_threshold', '0', '-bf', '0',
       '-tune', 'film', '-movflags', '+faststart', '-an', mp4]);
-    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', mp4, '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '36', '-g', '1',
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', mp4, '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '40', '-g', '6',
       '-row-mt', '1', '-deadline', 'good', '-cpu-used', '2', '-an', mp4.replace(/\.mp4$/, '.webm')]);
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', path.join(tmp, '0000.png'),
       '-vf', `scale=${v.outW}:${v.outH}:flags=lanczos,${GRADE}`, '-q:v', '4', path.join(OUT, `hero-${v.name}.jpg`)]);
