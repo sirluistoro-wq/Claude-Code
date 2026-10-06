@@ -1,7 +1,8 @@
-// Raul's Automotive — scroll-driven 3D hero.
-// A lifted crew-cab pickup sits in the Mojave at night. It stays parked until the
-// visitor scrolls: scrolling down drives it forward, scrolling up rolls it back,
-// and the camera swings from a front three-quarter view to a chase view.
+// Raul's Automotive — 3D truck scene used to render the hero video offline.
+// render.js loads this in a headless browser, steps it frame by frame with
+// window.renderHeroFrame(t, dt) and encodes the frames into assets/hero-*.mp4.
+// A lifted crew-cab pickup drives through the Mojave at night while the camera
+// swings from a front three-quarter view to a chase view.
 (function () {
   var stage = document.querySelector('.hero3d-stage');
   var wrap = document.querySelector('.hero3d');
@@ -13,14 +14,14 @@
 
   var renderer;
   try {
-    renderer = new T.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+    renderer = new T.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
   } catch (e) {
     wrap.classList.add('no-webgl');
     return;
   }
 
-  var small = window.innerWidth < 760;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.5 : 1.6));
+  var small = !!window.HERO_PORTRAIT;
+  renderer.setPixelRatio(1);
   renderer.outputEncoding = T.sRGBEncoding;
   renderer.toneMapping = T.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
@@ -67,7 +68,7 @@
   var moon = new T.DirectionalLight(0xe2e8ee, 1.2);
   moon.position.set(-16, 24, 12);
   moon.castShadow = true;
-  moon.shadow.mapSize.set(small ? 1024 : 2048, small ? 1024 : 2048);
+  moon.shadow.mapSize.set(4096, 4096);
   moon.shadow.camera.left = -7; moon.shadow.camera.right = 7;
   moon.shadow.camera.top = 7; moon.shadow.camera.bottom = -7;
   moon.shadow.camera.near = 1; moon.shadow.camera.far = 70;
@@ -92,7 +93,7 @@
             0.3 * Math.sin(x * 0.7 - w * K * 27);
     return (n + 1.6) * mask * (0.55 + ax * 0.028);
   }
-  var segX = small ? 64 : 96, segZ = small ? 84 : 120;
+  var segX = 140, segZ = 180;
   var tileGeo = new T.PlaneGeometry(260, LEN, segX, segZ);
   tileGeo.rotateX(-Math.PI / 2);
   tileGeo.translate(0, 0, (Z_NEAR + Z_FAR) / 2);
@@ -497,7 +498,6 @@
   }
   function resize() {
     stageW = stage.clientWidth; stageH = stage.clientHeight;
-    small = stageW < 760;
     renderer.setSize(stageW, stageH, false);
     camera.aspect = stageW / stageH;
     frameTruck(prog);
@@ -588,6 +588,28 @@
     running = on;
     if (on) { clock.getDelta(); requestAnimationFrame(loop); }
   }
+
+  // ---------- offline render hook ----------
+  var TRAVEL_TOTAL = 150;
+  window.renderHeroFrame = function (t, dt) {
+    var prevTravel = travel;
+    travel = t * TRAVEL_TOTAL;
+    prog = Math.max(0, Math.min(1, t));
+    var dTravel = travel - prevTravel;
+    var speed = dTravel / dt;
+    placeWorld(travel);
+    updateDust(dt, speed);
+    for (var i = 0; i < wheels.length; i++) wheels[i].rotation.z += dTravel / WR;
+    body.position.y = 0.02 * Math.sin(travel * 1.9) + 0.012 * Math.sin(travel * 3.7 + 1);
+    body.rotation.x = 0.004 * Math.sin(travel * 1.3);
+    body.rotation.z = 0.003 * Math.sin(travel * 0.9);
+    placeCamera(prog, 0, 0);
+    frameTruck(prog);
+    renderer.render(scene, camera);
+    return true;
+  };
+  resize();
+  return;
 
   resize();
   readScroll();

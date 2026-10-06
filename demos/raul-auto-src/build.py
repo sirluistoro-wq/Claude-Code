@@ -88,7 +88,7 @@ FAQ = [
     ("What areas do you serve?", "We're in Las Vegas and see customers from across the valley, including North Las Vegas, Henderson, Paradise and Spring Valley."),
 ]
 
-HERO_SCRIPTS = '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>\n<script src="assets/hero3d.js"></script>\n'
+HERO_SCRIPTS = '<script src="assets/hero-video.js"></script>\n'
 
 TOW_SVG = '<svg viewBox="0 0 72 48" aria-hidden="true"><path d="M4 34V20h22l6-10h14v24M46 34h20V24l-8-4H46M10 34a5 5 0 1 0 10 0 5 5 0 1 0-10 0M50 34a5 5 0 1 0 10 0 5 5 0 1 0-10 0M20 34h30M26 20 40 4h8"/></svg>'
 
@@ -305,6 +305,11 @@ def home():
       </a>""" for sid, code, name, bullets, *_ in SPECIALTY)
     body = f"""<section class="hero3d" aria-label="Introduction">
   <div class="hero3d-stage">
+    <picture class="hero-poster">
+      <source media="(max-aspect-ratio: 9/10)" srcset="assets/hero-portrait.jpg">
+      <img src="assets/hero-landscape.jpg" alt="" width="1280" height="720" fetchpriority="high">
+    </picture>
+    <video class="hero-video" muted playsinline preload="none" aria-hidden="true" data-landscape="assets/hero-landscape.mp4" data-portrait="assets/hero-portrait.mp4"></video>
     <div class="hero3d-shade"></div>
     <div class="wrap hero3d-copy">
       <div class="hero3d-a">
@@ -324,13 +329,7 @@ def home():
         <div class="ctas"><a class="btn btn-solid" href="specialty.html">See specialty work</a></div>
       </div>
     </div>
-    <div class="hero3d-hud" aria-hidden="true">
-      <div class="wrap hud-bar">
-        <span class="hud-state"><span class="hud-icon"></span><span data-hud-state>Paused</span><span class="hud-mouse"></span></span>
-        <span class="hud-track"><span class="hud-fill"></span></span>
-        <span class="hud-odo">Odo <b data-hud-odo>0000.0</b> mi</span>
-      </div>
-    </div>
+    <div class="hero3d-cue" aria-hidden="true"></div>
   </div>
 </section>
 

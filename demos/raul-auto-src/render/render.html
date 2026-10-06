@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<style>html,body{margin:0;background:#0e1012}.hero3d,.hero3d-stage{position:relative;width:var(--w);height:var(--h);overflow:hidden}canvas{display:block;width:100%;height:100%}</style>
+</head><body>
+<div class="hero3d"><div class="hero3d-stage"></div></div>
+<script>
+  var q = new URLSearchParams(location.search);
+  window.HERO_PORTRAIT = q.get('portrait') === '1';
+  document.documentElement.style.setProperty('--w', q.get('w') + 'px');
+  document.documentElement.style.setProperty('--h', q.get('h') + 'px');
+</script>
+<script src="three.min.js"></script>
+<script src="truck-scene.js"></script>
+</body></html>

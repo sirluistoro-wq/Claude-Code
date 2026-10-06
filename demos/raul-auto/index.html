@@ -262,6 +262,11 @@
 <main id="main">
 <section class="hero3d" aria-label="Introduction">
   <div class="hero3d-stage">
+    <picture class="hero-poster">
+      <source media="(max-aspect-ratio: 9/10)" srcset="assets/hero-portrait.jpg">
+      <img src="assets/hero-landscape.jpg" alt="" width="1280" height="720" fetchpriority="high">
+    </picture>
+    <video class="hero-video" muted playsinline preload="none" aria-hidden="true" data-landscape="assets/hero-landscape.mp4" data-portrait="assets/hero-portrait.mp4"></video>
     <div class="hero3d-shade"></div>
     <div class="wrap hero3d-copy">
       <div class="hero3d-a">
@@ -281,13 +286,7 @@
         <div class="ctas"><a class="btn btn-solid" href="specialty.html">See specialty work</a></div>
       </div>
     </div>
-    <div class="hero3d-hud" aria-hidden="true">
-      <div class="wrap hud-bar">
-        <span class="hud-state"><span class="hud-icon"></span><span data-hud-state>Paused</span><span class="hud-mouse"></span></span>
-        <span class="hud-track"><span class="hud-fill"></span></span>
-        <span class="hud-odo">Odo <b data-hud-odo>0000.0</b> mi</span>
-      </div>
-    </div>
+    <div class="hero3d-cue" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -502,7 +501,6 @@
   </div>
 </footer>
 <script src="assets/site.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="assets/hero3d.js"></script>
+<script src="assets/hero-video.js"></script>
 </body>
 </html>
