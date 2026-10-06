@@ -90,8 +90,6 @@ FAQ = [
 
 HERO_SCRIPTS = '<script src="assets/hero-video.js"></script>\n'
 
-TOW_SVG = '<svg viewBox="0 0 72 48" aria-hidden="true"><path d="M4 34V20h22l6-10h14v24M46 34h20V24l-8-4H46M10 34a5 5 0 1 0 10 0 5 5 0 1 0-10 0M50 34a5 5 0 1 0 10 0 5 5 0 1 0-10 0M20 34h30M26 20 40 4h8"/></svg>'
-
 BUSINESS = {
     "@type": "AutoRepair",
     "@id": SITE + "/#business",
@@ -138,6 +136,9 @@ def service_ld(name, desc, page):
             "provider": {"@id": SITE + "/#business"}, "areaServed": "Las Vegas, NV", "url": SITE + "/" + page}
 
 
+ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+
+
 def head(page, title, desc, extra_ld=""):
     canonical = SITE + "/" + ("" if page == "index.html" else page)
     return f"""<!DOCTYPE html>
@@ -153,29 +154,27 @@ def head(page, title, desc, extra_ld=""):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
-<meta name="theme-color" content="#0b0c0d">
+<meta property="og:image" content="{SITE}/assets/still-front.jpg">
+<meta name="theme-color" content="#0a0a0b">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap">
 <link rel="stylesheet" href="assets/styles.css">
 {ld(BUSINESS)}
 {extra_ld}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="demo-bar">DEMO SITE BY TORO GROWTH · SHOP NAME, ADDRESS, PHONE AND HOURS ARE PLACEHOLDERS</div>
+<div class="demo-note">Demo site by Toro Growth. Shop name, address, phone and hours are placeholders.</div>
 <header class="nav">
   <div class="wrap nav-bar">
-    <a class="brand" href="index.html" aria-label="{SHOP} home">
-      <span class="brand-mark" aria-hidden="true">R</span>
-      <span class="brand-name">{SHOP}<small>LAS VEGAS · NV</small></span>
-    </a>
+    <a class="brand" href="index.html" aria-label="{SHOP} home"><b>Raul's</b><span>Automotive</span></a>
     <nav class="nav-links" id="nav-links" aria-label="Main">
 {nav_links(page)}
     </nav>
     <div class="nav-actions">
-      <a class="btn btn-solid btn-sm" href="contact.html#book">Book now</a>
+      <a class="btn btn-solid btn-sm" href="contact.html#book">Book a visit</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span></button>
     </div>
   </div>
@@ -187,6 +186,8 @@ def head(page, title, desc, extra_ld=""):
 def nav_links(page):
     out = []
     for href, label in NAV:
+        if href == "index.html":
+            continue
         cur = ' aria-current="page"' if href == page else ""
         out.append(f'      <a href="{href}"{cur}>{label}</a>')
     return "\n".join(out)
@@ -199,24 +200,25 @@ def foot(extra=""):
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <strong>{SHOP}</strong>
-        <span>Full-service auto repair in Las Vegas, NV. Everything but body work.</span>
+        <h3>{SHOP}</h3>
+        <span>Full-service auto repair in Las Vegas.<br>Everything but body work.</span>
         <span>{STREET}<br>{CITYLINE}</span>
         <a href="tel:{TEL}">{PHONE}</a>
       </div>
       <div>
-        <span class="label">Services</span>
+        <h3>Services</h3>
 {svc}
       </div>
       <div>
-        <span class="label">Shop</span>
+        <h3>The shop</h3>
         <a href="specialty.html">Specialty work</a>
         <a href="insurance-financing.html">Insurance &amp; warranty</a>
         <a href="insurance-financing.html#financing">Financing</a>
         <a href="towing.html">Towing</a>
-        <a href="contact.html#book">Book an appointment</a>
+        <a href="contact.html#book">Book a visit</a>
       </div>
     </div>
+    <div class="foot-mark" aria-hidden="true">Raul's Automotive</div>
     <div class="foot-base"><span>© <span id="year">2026</span> {SHOP}</span><span>Website by Toro Growth</span></div>
   </div>
 </footer>
@@ -226,83 +228,100 @@ def foot(extra=""):
 """
 
 
-def page_hero(crumb, label, h1, lead):
-    c = f'<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / {crumb}</nav>'
+def page_hero(h1, lead, image=None, alt=""):
+    media = ""
+    if image:
+        media = f"""
+<div class="page-media">
+  <div class="wrap"><figure class="media wide reveal"><img src="assets/{image}" alt="{alt}" loading="eager"></figure></div>
+</div>"""
     return f"""<section class="page-hero">
   <div class="wrap">
-    {c}
-    <span class="label">{label}</span>
     <h1>{h1}</h1>
-    <p>{lead}</p>
+    <p class="lead">{lead}</p>
   </div>
-</section>
+</section>{media}
 """
 
 
-def cta_band(title="Get your car in", text="Call the shop or book online. We'll confirm a time."):
-    return f"""<section class="cta-band">
-  <div class="wrap">
-    <div style="display:grid;gap:12px;min-width:0"><h2 class="sm">{title}</h2><p class="muted">{text}</p></div>
-    <div class="ctas"><a class="btn btn-solid" href="contact.html#book">Book an appointment</a><a class="btn btn-ghost" href="tel:{TEL}">Call {PHONE}</a></div>
-  </div>
-</section>
-"""
-
-
-def tow_strip():
-    return f"""<section class="section">
-  <div class="wrap">
-    <div class="tow">
-      {TOW_SVG}
-      <div>
-        <span class="label">Towing partner</span>
-        <h2>Car won't start? Los Crazies Towing</h2>
-        <p>Broken down somewhere in the valley? Our towing partner can bring your vehicle straight to the shop.</p>
-      </div>
-      <a class="btn btn-solid" href="towing.html">Get a tow</a>
+def closer(title='Bring it in.<br><span class="soft">We\'ll take it from there.</span>'):
+    return f"""<section class="closer">
+  <div class="wrap reveal">
+    <h2>{title}</h2>
+    <div class="closer-row">
+      <a class="phone-big" href="tel:{TEL}">{PHONE}</a>
+      <div class="ctas"><a class="btn btn-solid" href="contact.html#book">Book a visit {ARROW}</a><a class="btn btn-ghost" href="towing.html">Need a tow?</a></div>
     </div>
   </div>
 </section>
 """
 
 
-def faq_block(items):
+def tow_band(link="towing.html", label="Get a tow"):
+    return f"""<section class="section">
+  <div class="wrap">
+    <div class="band reveal">
+      <img src="assets/still-rear.jpg" alt="Lifted pickup driving down a desert highway at night" loading="lazy">
+      <div class="band-copy">
+        <h2>Broken down?<br>We'll get it here.</h2>
+        <p>Our towing partner, Los Crazies Towing, brings your vehicle from anywhere in the valley straight to the shop.</p>
+        <div class="ctas"><a class="btn btn-solid" href="{link}">{label} {ARROW}</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+"""
+
+
+def faq_section(items, title="Questions, answered.", intro="Can't find what you need? Call the shop and ask."):
     rows = "\n".join(f"      <details><summary>{q}</summary><p>{a}</p></details>" for q, a in items)
-    return f"""<div class="faq">
+    return f"""<section class="section" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="faq-intro">
+      <h2>{title}</h2>
+      <p>{intro}</p>
+      <a class="arrow-link" href="tel:{TEL}">{PHONE} {ARROW}</a>
+    </div>
+    <div class="faq">
 {rows}
-    </div>"""
+    </div>
+  </div>
+</section>
+"""
 
 
-def process_block():
-    return """<ol class="steps">
-      <li class="step"><span class="step-num">1</span><h3>Call or book</h3><p>Call the shop or book online. Tell us what the car is doing and pick a time.</p></li>
-      <li class="step"><span class="step-num">2</span><h3>Inspect &amp; diagnose</h3><p>We inspect the vehicle and find the actual cause, not just the symptom.</p></li>
-      <li class="step"><span class="step-num">3</span><h3>Get an estimate</h3><p>You get a clear estimate for parts and labor. If it makes sense to you, approve it.</p></li>
-      <li class="step"><span class="step-num">4</span><h3>We do the work</h3><p>We complete the repair, test drive it and let you know when it's ready to pick up.</p></li>
+def steps(items):
+    lis = "\n".join(f'      <li class="step"><span class="step-num">{i + 1}</span><h3>{t}</h3><p>{d}</p></li>' for i, (t, d) in enumerate(items))
+    return f"""<ol class="steps reveal">
+{lis}
     </ol>"""
 
 
+PROCESS = [
+    ("Call or book", "Tell us what the car is doing and pick a time that works."),
+    ("Inspect and diagnose", "We find the actual cause, not just the symptom."),
+    ("Approve the estimate", "Clear pricing for parts and labor. Nothing starts until you say yes."),
+    ("We do the work", "Repaired, test-driven, and ready when we said it would be."),
+]
+
 HOURS_BLOCK = """<div class="hours" aria-label="Hours">
-          <div data-days="1,2,3,4,5"><span>Mon – Fri</span><span>8:00 AM – 6:00 PM</span></div>
-          <div data-days="6"><span>Saturday</span><span>9:00 AM – 3:00 PM</span></div>
-          <div data-days="0"><span>Sunday</span><span>Closed</span></div>
-        </div>"""
+        <div data-days="1,2,3,4,5"><span>Monday to Friday</span><span>8:00 AM – 6:00 PM</span></div>
+        <div data-days="6"><span>Saturday</span><span>9:00 AM – 3:00 PM</span></div>
+        <div data-days="0"><span>Sunday</span><span>Closed</span></div>
+      </div>"""
 
 
 # ---------- pages ----------
 
 def home():
-    cells = "\n".join(f"""      <a class="cell" href="services.html#{sid}">
-        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">{icon}</svg>
+    rows = "\n".join(f"""      <a class="row-link" href="services.html#{sid}">
         <h3>{name}</h3>
         <p>{short}</p>
-        <span class="more">Details ›</span>
+        <span class="row-arrow">{ARROW}</span>
       </a>""" for sid, name, icon, short, *_ in SERVICES)
-    spec = "\n".join(f"""      <a class="cell" href="specialty.html#{sid}">
-        <span class="code">{code}</span>
-        <h3>{name}</h3>
-        <ul class="spec-list">{''.join(f'<li>{b}</li>' for b in bullets)}</ul>
-      </a>""" for sid, code, name, bullets, *_ in SPECIALTY)
+    spec_links = [f'<a href="specialty.html#{s[0]}">{s[2].lower()}</a>' for s in SPECIALTY]
+    statement = ("We're the shop for the bigger jobs: " + ", ".join(spec_links[:-1]) + " and " + spec_links[-1] +
+                 ". Built right, wired clean, and set up to drive the way it should.")
     body = f"""<section class="hero3d" aria-label="Introduction">
   <div class="hero3d-stage">
     <picture class="hero-poster">
@@ -313,186 +332,157 @@ def home():
     <div class="hero3d-shade"></div>
     <div class="wrap hero3d-copy">
       <div class="hero3d-a">
-        <span class="label">Full-service auto repair · Las Vegas, NV</span>
-        <h1>Bumper to bumper.<br><span class="dim">Everything but body work.</span></h1>
-        <p>Maintenance, brakes, suspension, A/C, electrical and full engine and transmission swaps. We handle insurance and warranty claims, offer financing, and can get your car towed in.</p>
+        <h1>Bumper to bumper.<br><span class="soft">Everything but body work.</span></h1>
+        <p class="lead">Full-service auto repair in Las Vegas. Maintenance, brakes, suspension, A/C, electrical, and the engine and transmission swaps other shops turn away.</p>
         <div class="ctas">
-          <a class="btn btn-solid" href="contact.html#book">Book an appointment</a>
-          <a class="btn btn-ghost" href="tel:{TEL}">Call {PHONE}</a>
+          <a class="btn btn-solid" href="contact.html#book">Book a visit {ARROW}</a>
+          <a class="btn btn-ghost" href="tel:{TEL}">{PHONE}</a>
         </div>
       </div>
       <div class="hero3d-b">
-        <span class="label">Specialty work</span>
         <h2>Built for the Mojave.</h2>
-        <p>Lift kits, engine and transmission swaps, fuel injection conversions and A/C that holds up in July. The bigger jobs most shops send away.</p>
-        <ul><li>Lift kits</li><li>Lowering kits</li><li>Engine swaps</li><li>Transmission swaps</li><li>EFI conversions</li></ul>
-        <div class="ctas"><a class="btn btn-solid" href="specialty.html">See specialty work</a></div>
+        <p class="lead">Lift kits, lowering kits, engine and transmission swaps, fuel injection conversions, and A/C that holds up in July.</p>
+        <div class="ctas"><a class="btn btn-solid" href="specialty.html">See specialty work {ARROW}</a></div>
       </div>
     </div>
     <div class="hero3d-cue" aria-hidden="true"></div>
   </div>
 </section>
 
-<section class="section glance" aria-label="Shop details">
+<section class="facts" aria-label="Shop details">
   <div class="wrap">
-    <div class="grid grid-3">
-      <div class="cell"><span class="label">Shop</span><span class="val"><span class="open-dot" aria-hidden="true"></span><span data-status style="color:inherit">Mon – Fri 8 AM – 6 PM · Sat 9 AM – 3 PM</span></span></div>
-      <div class="cell"><span class="label">Phone</span><a class="val" href="tel:{TEL}" style="text-decoration:none">{PHONE}</a></div>
-      <div class="cell"><span class="label">Location</span><span class="val">{STREET}, <span>{CITYLINE}</span></span></div>
-      <div class="cell"><span class="label">Payment</span><span class="val">Cash · Card · <span>Affirm · Sunbit · Klarna</span></span></div>
-      <div class="cell"><span class="label">Claims</span><span class="val">Insurance &amp; extended warranty</span></div>
-      <div class="cell"><span class="label">Towing</span><span class="val">Los Crazies Towing</span></div>
-    </div>
+    <div class="fact"><strong><span class="open-dot" aria-hidden="true"></span><span data-status style="color:inherit;font-size:inherit">Mon – Sat</span></strong><span>Mon – Fri 8 – 6, Sat 9 – 3</span></div>
+    <div class="fact"><strong><a href="tel:{TEL}">{PHONE}</a></strong><span>Call or text the shop</span></div>
+    <div class="fact"><strong>{STREET}</strong><span>{CITYLINE}</span></div>
+    <div class="fact"><strong>Affirm, Sunbit, Klarna</strong><span>Financing available</span></div>
   </div>
 </section>
 
 <section class="section" id="services">
   <div class="wrap">
-    <div class="section-head">
-      <span class="label">Services</span>
-      <h2>Full-service repair</h2>
+    <div class="head reveal">
+      <h2>Everything your car needs to stay on the road.</h2>
       <p>Daily drivers, work trucks and family cars. Bring it in for routine service or for the problem nobody else could find.</p>
     </div>
-    <div class="grid grid-3">
-{cells}
+    <div class="rows reveal">
+{rows}
     </div>
-    <div class="not-us">
-      <strong>We don't do body work</strong>
-      <p>We're a mechanical and electrical shop. For dents, paint or collision repair, you'll need a body shop.</p>
-    </div>
+    <p class="footnote"><strong>One thing we don't do:</strong> body work, paint or collision repair.</p>
   </div>
 </section>
 
-<section class="section alt" id="specialty">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="label">Specialty work</span>
-      <h2>Swaps, kits and conversions</h2>
-      <p>The bigger jobs most shops send away. This is the work we like doing most.</p>
-    </div>
-    <div class="grid grid-3">
-{spec}
+<section class="section" id="specialty">
+  <div class="wrap feature">
+    <figure class="media reveal"><img src="assets/still-side.jpg" alt="Lifted crew-cab pickup with off-road tires, side view" loading="lazy"></figure>
+    <div class="feature-copy reveal">
+      <h2>The jobs other shops send away.</h2>
+      <p class="statement">{statement}</p>
+      <a class="arrow-link" href="specialty.html">Explore specialty work {ARROW}</a>
     </div>
   </div>
 </section>
 
 <section class="section" id="process">
   <div class="wrap">
-    <div class="section-head">
-      <span class="label">How it works</span>
-      <h2>Straightforward repair</h2>
-      <p>No surprises. You approve the estimate before any work starts.</p>
+    <div class="head reveal">
+      <h2>Straightforward, start to finish.</h2>
+      <p>No surprises. You see the estimate and approve it before any work begins.</p>
     </div>
-    {process_block()}
+    {steps(PROCESS)}
   </div>
 </section>
 
-<section class="section alt">
-  <div class="wrap two-up">
-    <div class="panel">
-      <span class="label">Insurance &amp; warranty</span>
-      <h2 class="sm">We work with your coverage</h2>
-      <p>Have an extended warranty or an insurance claim? We work directly with warranty and insurance companies on covered repairs, so you're not stuck in the middle.</p>
-      <a class="text-link" href="insurance-financing.html">How claims work ›</a>
+<section class="section">
+  <div class="wrap panels">
+    <div class="panel reveal">
+      <h2>We work with your coverage.</h2>
+      <p>Extended warranty or insurance claim? We deal with the warranty and insurance companies directly, so you're not stuck in the middle.</p>
+      <a class="arrow-link" href="insurance-financing.html">How claims work {ARROW}</a>
     </div>
-    <div class="panel">
-      <span class="label">Financing</span>
-      <h2 class="sm">Fix it now, pay over time</h2>
-      <p>Big repair you weren't planning for? Split it into payments with one of our financing partners.</p>
-      <div class="lenders"><div class="lender">Affirm</div><div class="lender">Sunbit</div><div class="lender">Klarna</div></div>
-      <a class="text-link" href="insurance-financing.html#financing">Financing options ›</a>
+    <div class="panel reveal" id="financing">
+      <h2>Fix it now. Pay over time.</h2>
+      <div class="lenders"><span>Affirm</span><i></i><span>Sunbit</span><i></i><span>Klarna</span></div>
+      <p>Split a big repair into payments with one of our financing partners.</p>
+      <a class="arrow-link" href="insurance-financing.html#financing">Financing options {ARROW}</a>
     </div>
   </div>
 </section>
 
-{tow_strip()}
-<section class="section" id="faq">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="label">Questions</span>
-      <h2>Common questions</h2>
-    </div>
-    {faq_block(FAQ)}
-  </div>
-</section>
-
-{cta_band()}"""
+{tow_band()}
+{faq_section(FAQ)}
+{closer()}"""
     return head("index.html", f"{SHOP} | Auto Repair in Las Vegas, NV",
                 "Full-service auto repair in Las Vegas. Maintenance, oil changes, brakes, suspension, A/C, electrical, engine and transmission swaps. Insurance and warranty claims, financing and towing.",
                 faq_ld(FAQ)) + body + foot(HERO_SCRIPTS)
 
 
 def services():
-    rows = []
+    blocks = []
     for sid, name, icon, short, long, included, signs in SERVICES:
-        rows.append(f"""    <article class="detail" id="{sid}">
-      <div class="detail-title">
-        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">{icon}</svg>
+        blocks.append(f"""    <article class="detail reveal" id="{sid}">
+      <div class="detail-main">
         <h2>{name}</h2>
+        <p class="lead">{long}</p>
+        <a class="arrow-link" href="contact.html#book">Book {name.lower().replace('a/c', 'A/C')} {ARROW}</a>
       </div>
-      <div>
-        <p>{long}</p>
-        <p style="margin-top:16px"><a class="text-link" href="contact.html#book">Book {name.lower()} ›</a></p>
-      </div>
-      <div style="display:grid;gap:24px">
-        <div><h3>What's included</h3><ul class="checks">{''.join(f'<li>{i}</li>' for i in included)}</ul></div>
-        <div><h3>Signs you need it</h3><ul class="dash">{''.join(f'<li>{i}</li>' for i in signs)}</ul></div>
+      <div class="detail-side">
+        <div><h3>What's included</h3><ul class="list">{''.join(f'<li>{i}</li>' for i in included)}</ul></div>
+        <div><h3>Signs you need it</h3><ul class="list">{''.join(f'<li>{i}</li>' for i in signs)}</ul></div>
       </div>
     </article>""")
     graph = ld({"@graph": [service_ld(s[1], s[4], "services.html#" + s[0]) for s in SERVICES]})
-    body = page_hero("Services", "Services · Las Vegas, NV", 'Full-service repair.<br><span class="dim">Bumper to bumper.</span>',
-                     "Everything a car needs to stay on the road, from oil changes to electrical diagnostics. The only thing we don't do is body work.") + f"""
-<section class="section">
+    body = page_hero('Full-service repair.<br><span class="soft">Bumper to bumper.</span>',
+                     "Everything a car needs to stay on the road, from oil changes to electrical diagnostics. The only thing we don't do is body work.",
+                     "still-front.jpg", "Lifted pickup with an off-road bumper and light bar at night") + f"""
+<section>
   <div class="wrap">
-    <div class="details">
-{chr(10).join(rows)}
-    </div>
-    <div class="not-us">
-      <strong>We don't do body work</strong>
-      <p>We're a mechanical and electrical shop. For dents, paint or collision repair, you'll need a body shop.</p>
-    </div>
+{chr(10).join(blocks)}
+    <p class="footnote" style="padding-bottom:clamp(56px,8vw,110px)"><strong>One thing we don't do:</strong> body work, paint or collision repair. For dents or collision damage you'll need a body shop.</p>
   </div>
 </section>
-{cta_band()}"""
+{closer()}"""
     return head("services.html", f"Auto Repair Services in Las Vegas | {SHOP}",
                 "Maintenance, oil changes, brake jobs, suspension work, A/C repair and electrical diagnostics in Las Vegas, NV. Full-service shop, no body work.",
                 breadcrumb("services.html", "Services") + "\n" + graph) + body + foot()
 
 
 def specialty():
-    rows = []
+    blocks = []
     for sid, code, name, bullets, long, included in SPECIALTY:
-        rows.append(f"""    <article class="detail" id="{sid}">
-      <div class="detail-title">
-        <span class="label">{code}</span>
+        blocks.append(f"""    <article class="detail reveal" id="{sid}">
+      <div class="detail-main">
         <h2>{name}</h2>
+        <p class="lead">{long}</p>
+        <a class="arrow-link" href="contact.html#book">Ask about {name.lower()} {ARROW}</a>
       </div>
-      <div>
-        <p>{long}</p>
-        <p style="margin-top:16px"><a class="text-link" href="contact.html#book">Ask about {name.lower()} ›</a></p>
+      <div class="detail-side single">
+        <div><h3>What we do</h3><ul class="list">{''.join(f'<li>{i}</li>' for i in included)}</ul></div>
       </div>
-      <div><h3>What we do</h3><ul class="checks">{''.join(f'<li>{i}</li>' for i in included)}</ul></div>
     </article>""")
     graph = ld({"@graph": [service_ld(s[2], s[4], "specialty.html#" + s[0]) for s in SPECIALTY]})
-    body = page_hero("Specialty work", "Specialty work · Las Vegas, NV", 'Swaps, kits<br><span class="dim">and conversions.</span>',
-                     "Engine and transmission swaps, carburetor-to-EFI conversions, lift and lowering kits, and the electrical work that ties it all together.") + f"""
+    body = page_hero('Swaps, kits<br><span class="soft">and conversions.</span>',
+                     "Engine and transmission swaps, carburetor-to-EFI conversions, lift and lowering kits, and the electrical work that ties it all together.",
+                     "still-side.jpg", "Lifted crew-cab pickup with off-road tires, side view") + f"""
+<section>
+  <div class="wrap">
+{chr(10).join(blocks)}
+  </div>
+</section>
 <section class="section">
-  <div class="wrap">
-    <div class="details">
-{chr(10).join(rows)}
+  <div class="wrap panels">
+    <div class="panel reveal">
+      <h2>Planning a build?</h2>
+      <p>Tell us the vehicle and what you want it to do. We'll talk through parts, timing and cost before anything gets ordered.</p>
+      <a class="arrow-link" href="contact.html#book">Start the conversation {ARROW}</a>
+    </div>
+    <div class="panel reveal">
+      <h2>Spread out the cost.</h2>
+      <div class="lenders"><span>Affirm</span><i></i><span>Sunbit</span><i></i><span>Klarna</span></div>
+      <p>Bigger builds can be financed through any of our partners, subject to approval.</p>
     </div>
   </div>
 </section>
-<section class="section alt">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="label">Planning a build?</span>
-      <h2 class="sm">Start with a conversation</h2>
-      <p>Tell us the vehicle and what you want it to do. We'll talk through parts, timing and cost before anything gets ordered, and you can finance the work with Affirm, Sunbit or Klarna.</p>
-    </div>
-  </div>
-</section>
-{cta_band("Talk about your build", "Call the shop or send a request with your vehicle and what you have in mind.")}"""
+{closer('Talk about your build.<br><span class="soft">Call or stop by.</span>')}"""
     return head("specialty.html", f"Engine Swaps, Lift Kits & EFI Conversions in Las Vegas | {SHOP}",
                 "Engine swaps, transmission swaps, carburetor-to-fuel-injection conversions, lift kits, lowering kits and electrical work in Las Vegas, NV.",
                 breadcrumb("specialty.html", "Specialty work") + "\n" + graph) + body + foot()
@@ -505,80 +495,82 @@ def insurance():
         ("Sunbit", "Built for auto repair. Apply at the counter and get a decision in seconds."),
         ("Klarna", "Split the cost into smaller payments over time."),
     ]
-    cards = "\n".join(f'      <div class="lender-card"><span class="lender-name">{n}</span><p>{d}</p></div>' for n, d in lenders)
-    body = page_hero("Insurance &amp; financing", "Insurance · Warranty · Financing", 'Covered repairs.<br><span class="dim">Flexible payments.</span>',
+    lender_rows = "\n".join(f"""      <div class="row-link" style="cursor:default">
+        <h3>{n}</h3>
+        <p>{d}</p>
+        <span></span>
+      </div>""" for n, d in lenders)
+    body = page_hero('Covered repairs.<br><span class="soft">Flexible payments.</span>',
                      "We work directly with insurance and extended warranty companies, and offer financing through Affirm, Sunbit and Klarna.") + f"""
-<section class="section" id="claims">
-  <div class="wrap two-up">
-    <div class="panel">
-      <span class="label">Extended warranty</span>
-      <h2 class="sm">Warranty repairs</h2>
-      <p>Have an extended warranty or vehicle service contract? Bring us your contract info. We diagnose the problem, contact the warranty company, and handle the paperwork for covered repairs.</p>
-      <ul class="checks"><li>We call the warranty company for you</li><li>Diagnosis and documentation for the claim</li><li>You pay only your deductible and anything not covered</li></ul>
+<section class="section" id="claims" style="padding-top:0">
+  <div class="wrap panels">
+    <div class="panel reveal">
+      <h2>Warranty repairs</h2>
+      <p>Have an extended warranty or vehicle service contract? Bring your contract info. We diagnose the problem, contact the warranty company and handle the paperwork for covered repairs.</p>
+      <ul class="ticks"><li>We call the warranty company for you</li><li>Diagnosis and documentation for the claim</li><li>You pay only your deductible and anything not covered</li></ul>
     </div>
-    <div class="panel">
-      <span class="label">Insurance</span>
-      <h2 class="sm">Insurance claims</h2>
+    <div class="panel reveal">
+      <h2>Insurance claims</h2>
       <p>For mechanical repairs covered by your insurance, we work with your adjuster directly, provide the estimate and photos they need, and keep you updated.</p>
-      <ul class="checks"><li>Estimates and photos for adjusters</li><li>Direct communication with your insurer</li><li>Mechanical and electrical repairs (no body work)</li></ul>
+      <ul class="ticks"><li>Estimates and photos for adjusters</li><li>Direct communication with your insurer</li><li>Mechanical and electrical repairs (no body work)</li></ul>
     </div>
   </div>
 </section>
 
-<section class="section alt" id="financing">
+<section class="section" id="financing">
   <div class="wrap">
-    <div class="section-head">
-      <span class="label">Financing</span>
-      <h2>Fix it now, pay over time</h2>
-      <p>A transmission or engine job shouldn't have to wait for payday. Apply with one of our financing partners and split the repair into payments.</p>
+    <div class="head reveal">
+      <h2>Fix it now.<br>Pay over time.</h2>
+      <p>A transmission or engine job shouldn't have to wait for payday. Apply with one of our partners and split the repair into payments.</p>
     </div>
-    <div class="grid grid-3">
-{cards}
+    <div class="rows reveal">
+{lender_rows}
     </div>
-    <p class="fine section-foot">Financing is subject to approval. Rates and terms are set by each lender.</p>
+    <p class="fine footnote">Financing is subject to approval. Rates and terms are set by each lender.</p>
   </div>
 </section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="section-head"><span class="label">Questions</span><h2 class="sm">Claims and payment</h2></div>
-    {faq_block(items)}
-  </div>
-</section>
-{cta_band()}"""
+{faq_section(items, "Claims and payment.")}
+{closer()}"""
     return head("insurance-financing.html", f"Insurance, Warranty & Financing | {SHOP} Las Vegas",
                 "Las Vegas auto repair shop that works with insurance and extended warranty companies. Financing available with Affirm, Sunbit and Klarna.",
                 breadcrumb("insurance-financing.html", "Insurance & financing") + "\n" + faq_ld(items)) + body + foot()
 
 
 def towing():
-    body = page_hero("Towing", "Towing partner", 'Broken down?<br><span class="dim">We\'ll get it here.</span>',
-                     "If your car won't start or isn't safe to drive, our towing partner Los Crazies Towing can bring it straight to the shop.") + f"""
-<section class="section">
-  <div class="wrap">
-    <div class="tow">
-      {TOW_SVG}
-      <div>
-        <span class="label">Partner</span>
-        <h2>Los Crazies Towing</h2>
-        <p>Towing across the Las Vegas valley. Phone: <strong style="color:var(--white)">(702) 555-0199</strong> <span class="fine">(placeholder)</span></p>
-      </div>
-      <a class="btn btn-solid" href="contact.html#tow">Request a tow</a>
+    body = page_hero('Broken down?<br><span class="soft">We\'ll get it here.</span>',
+                     "If your car won't start or isn't safe to drive, our towing partner Los Crazies Towing can bring it straight to the shop.",
+                     "still-rear.jpg", "Lifted pickup driving down a desert highway at night") + f"""
+<section class="section" style="padding-top:0">
+  <div class="wrap panels">
+    <div class="panel reveal">
+      <h2>Los Crazies Towing</h2>
+      <p>Towing across the Las Vegas valley, straight to our door.</p>
+      <a class="phone-big" href="tel:+17025550199">(702) 555-0199</a>
+      <p class="fine">Placeholder number until the partner's line is confirmed.</p>
+    </div>
+    <div class="panel reveal">
+      <h2>Or call the shop</h2>
+      <p>We'll arrange the tow for you and let you know when your car arrives.</p>
+      <a class="phone-big" href="tel:{TEL}">{PHONE}</a>
+      <a class="arrow-link" href="contact.html#tow">Request a tow online {ARROW}</a>
     </div>
   </div>
 </section>
-<section class="section alt">
+<section class="section">
   <div class="wrap">
-    <div class="section-head"><span class="label">What to do</span><h2 class="sm">If you break down</h2></div>
-    <ol class="steps">
-      <li class="step"><span class="step-num">1</span><h3>Get safe</h3><p>Pull off the road if you can, turn on your hazards and stay clear of traffic.</p></li>
-      <li class="step"><span class="step-num">2</span><h3>Call for a tow</h3><p>Call Los Crazies Towing or the shop and tell them where you are.</p></li>
-      <li class="step"><span class="step-num">3</span><h3>We take it from there</h3><p>Your car comes straight to us. We let you know when it's here.</p></li>
-      <li class="step"><span class="step-num">4</span><h3>Diagnosis &amp; estimate</h3><p>We find the problem and give you an estimate before any work starts.</p></li>
-    </ol>
+    <div class="head reveal">
+      <h2>If you break down.</h2>
+      <p>Four steps from the side of the road to a clear estimate.</p>
+    </div>
+    {steps([
+        ("Get safe", "Pull off the road if you can, turn on your hazards and stay clear of traffic."),
+        ("Call for a tow", "Call Los Crazies Towing or the shop and tell them where you are."),
+        ("We take it from there", "Your car comes straight to us. We let you know when it's here."),
+        ("Diagnosis and estimate", "We find the problem and give you an estimate before any work starts."),
+    ])}
   </div>
 </section>
-{cta_band("Need a tow now?", "Call the shop and we'll get Los Crazies Towing headed your way.")}"""
+{closer('Need a tow now?<br><span class="soft">Call the shop.</span>')}"""
     return head("towing.html", f"Towing to Our Las Vegas Shop | {SHOP}",
                 "Car won't start? Our towing partner Los Crazies Towing brings your vehicle to Raul's Automotive in Las Vegas, NV.",
                 breadcrumb("towing.html", "Towing")) + body + foot()
@@ -589,42 +581,40 @@ def contact():
             "Engine / transmission swap", "Lift or lowering kit", "Fuel injection conversion",
             "Insurance / warranty claim", "Need a tow", "Not sure, need a diagnosis"]
     options = "".join(f"<option>{o}</option>" for o in opts)
-    body = page_hero("Contact", "Contact · Book an appointment", 'Get your car in.',
-                     "Call the shop or send a request and we'll confirm a time.") + f"""
-<section class="section" id="book">
+    body = page_hero('Get your car in.', "Call the shop or send a request and we'll confirm a time.") + f"""
+<section class="section" id="book" style="padding-top:0">
   <div class="wrap book" id="tow">
     <div class="book-info">
-      <span class="label">Call the shop</span>
       <a class="phone-big" href="tel:{TEL}">{PHONE}</a>
       <p><span class="open-dot" aria-hidden="true"></span><span data-status>Mon – Fri 8 AM – 6 PM · Sat 9 AM – 3 PM</span></p>
       {HOURS_BLOCK}
-      <div style="display:grid;gap:6px">
-        <span class="label">Address</span>
-        <span style="color:var(--white)">{STREET}<br>{CITYLINE}</span>
-        <a class="text-link" style="justify-self:start" href="https://www.google.com/maps/search/?api=1&amp;query=1234+Example+Ave+Las+Vegas+NV+89101">Get directions ›</a>
+      <div class="addr">
+        <strong>{STREET}<br>{CITYLINE}</strong>
+        <a class="arrow-link" href="https://www.google.com/maps/search/?api=1&amp;query=1234+Example+Ave+Las+Vegas+NV+89101">Get directions {ARROW}</a>
       </div>
     </div>
     <form id="book-form" novalidate>
+      <h2 style="font-size:clamp(1.5rem,2.4vw,2rem)">Request an appointment</h2>
       <div class="row">
         <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
       </div>
       <div class="row">
-        <div class="field"><label for="f-vehicle">Year / make / model</label><input id="f-vehicle" name="vehicle" placeholder="2015 Chevy Silverado"></div>
+        <div class="field"><label for="f-vehicle">Year, make and model</label><input id="f-vehicle" name="vehicle" placeholder="2015 Chevy Silverado"></div>
         <div class="field"><label for="f-service">Service</label><select id="f-service" name="service">{options}</select></div>
       </div>
       <div class="row">
         <div class="field"><label for="f-date">Preferred day</label><input id="f-date" name="date" type="date"></div>
-        <div class="field"><label for="f-pay">Payment</label><select id="f-pay" name="payment"><option>Pay at pickup</option><option>Insurance claim</option><option>Extended warranty</option><option>Financing (Affirm / Sunbit / Klarna)</option></select></div>
+        <div class="field"><label for="f-pay">Payment</label><select id="f-pay" name="payment"><option>Pay at pickup</option><option>Insurance claim</option><option>Extended warranty</option><option>Financing (Affirm, Sunbit, Klarna)</option></select></div>
       </div>
       <div class="field"><label for="f-notes">What's the car doing?</label><textarea id="f-notes" name="notes" placeholder="Grinding noise when braking, started last week."></textarea></div>
       <p class="form-error" id="form-error" role="alert" hidden></p>
-      <button class="btn btn-solid" type="submit">Request appointment</button>
+      <button class="btn btn-solid" type="submit">Request appointment {ARROW}</button>
       <div class="confirm" id="confirm" role="status" hidden>Demo only: on the live site, this request goes straight to the shop and you get a text to confirm your time.</div>
     </form>
   </div>
 </section>
-{tow_strip()}"""
+{tow_band("contact.html#tow", "Request a tow")}"""
     return head("contact.html", f"Book an Appointment | {SHOP} Las Vegas",
                 "Book auto repair in Las Vegas. Call (702) 555-0142 or request an appointment online. Open Monday to Saturday.",
                 breadcrumb("contact.html", "Contact")) + body + foot()

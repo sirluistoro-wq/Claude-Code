@@ -11,11 +11,12 @@
 <meta property="og:title" content="Auto Repair Services in Las Vegas | Raul's Automotive">
 <meta property="og:description" content="Maintenance, oil changes, brake jobs, suspension work, A/C repair and electrical diagnostics in Las Vegas, NV. Full-service shop, no body work.">
 <meta property="og:url" content="https://example.com/services.html">
-<meta name="theme-color" content="#0b0c0d">
+<meta property="og:image" content="https://example.com/assets/still-front.jpg">
+<meta name="theme-color" content="#0a0a0b">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap">
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
 {
@@ -267,15 +268,11 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="demo-bar">DEMO SITE BY TORO GROWTH · SHOP NAME, ADDRESS, PHONE AND HOURS ARE PLACEHOLDERS</div>
+<div class="demo-note">Demo site by Toro Growth. Shop name, address, phone and hours are placeholders.</div>
 <header class="nav">
   <div class="wrap nav-bar">
-    <a class="brand" href="index.html" aria-label="Raul's Automotive home">
-      <span class="brand-mark" aria-hidden="true">R</span>
-      <span class="brand-name">Raul's Automotive<small>LAS VEGAS · NV</small></span>
-    </a>
+    <a class="brand" href="index.html" aria-label="Raul's Automotive home"><b>Raul's</b><span>Automotive</span></a>
     <nav class="nav-links" id="nav-links" aria-label="Main">
-      <a href="index.html">Home</a>
       <a href="services.html" aria-current="page">Services</a>
       <a href="specialty.html">Specialty work</a>
       <a href="insurance-financing.html">Insurance & financing</a>
@@ -283,7 +280,7 @@
       <a href="contact.html">Contact</a>
     </nav>
     <div class="nav-actions">
-      <a class="btn btn-solid btn-sm" href="contact.html#book">Book now</a>
+      <a class="btn btn-solid btn-sm" href="contact.html#book">Book a visit</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span></button>
     </div>
   </div>
@@ -291,111 +288,92 @@
 <main id="main">
 <section class="page-hero">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / Services</nav>
-    <span class="label">Services · Las Vegas, NV</span>
-    <h1>Full-service repair.<br><span class="dim">Bumper to bumper.</span></h1>
-    <p>Everything a car needs to stay on the road, from oil changes to electrical diagnostics. The only thing we don't do is body work.</p>
+    <h1>Full-service repair.<br><span class="soft">Bumper to bumper.</span></h1>
+    <p class="lead">Everything a car needs to stay on the road, from oil changes to electrical diagnostics. The only thing we don't do is body work.</p>
   </div>
 </section>
+<div class="page-media">
+  <div class="wrap"><figure class="media wide reveal"><img src="assets/still-front.jpg" alt="Lifted pickup with an off-road bumper and light bar at night" loading="eager"></figure></div>
+</div>
 
-<section class="section">
+<section>
   <div class="wrap">
-    <div class="details">
-    <article class="detail" id="maintenance">
-      <div class="detail-title">
-        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M16 9v7l5 3"/></svg>
+    <article class="detail reveal" id="maintenance">
+      <div class="detail-main">
         <h2>General maintenance</h2>
+        <p class="lead">Keep your car on its factory maintenance schedule and catch small problems before they turn into big ones. We follow the maintenance intervals for your make and model.</p>
+        <a class="arrow-link" href="contact.html#book">Book general maintenance <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div>
-        <p>Keep your car on its factory maintenance schedule and catch small problems before they turn into big ones. We follow the maintenance intervals for your make and model.</p>
-        <p style="margin-top:16px"><a class="text-link" href="contact.html#book">Book general maintenance ›</a></p>
-      </div>
-      <div style="display:grid;gap:24px">
-        <div><h3>What's included</h3><ul class="checks"><li>Factory-scheduled service (30k / 60k / 90k miles)</li><li>Tune-ups, spark plugs and ignition</li><li>Air, cabin and fuel filters</li><li>Belts, hoses and coolant</li><li>Multi-point inspection with every visit</li></ul></div>
-        <div><h3>Signs you need it</h3><ul class="dash"><li>You're due or past due on scheduled service</li><li>Rough idle or lower gas mileage</li><li>Check engine light</li><li>Buying a used car and want it inspected</li></ul></div>
+      <div class="detail-side">
+        <div><h3>What's included</h3><ul class="list"><li>Factory-scheduled service (30k / 60k / 90k miles)</li><li>Tune-ups, spark plugs and ignition</li><li>Air, cabin and fuel filters</li><li>Belts, hoses and coolant</li><li>Multi-point inspection with every visit</li></ul></div>
+        <div><h3>Signs you need it</h3><ul class="list"><li>You're due or past due on scheduled service</li><li>Rough idle or lower gas mileage</li><li>Check engine light</li><li>Buying a used car and want it inspected</li></ul></div>
       </div>
     </article>
-    <article class="detail" id="oil-changes">
-      <div class="detail-title">
-        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c5 7 8 11 8 15a8 8 0 0 1-16 0c0-4 3-8 8-15z"/></svg>
+    <article class="detail reveal" id="oil-changes">
+      <div class="detail-main">
         <h2>Oil changes</h2>
+        <p class="lead">The right oil for your engine and a new filter, plus a quick look at fluids, tires and anything that needs attention.</p>
+        <a class="arrow-link" href="contact.html#book">Book oil changes <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div>
-        <p>The right oil for your engine and a new filter, plus a quick look at fluids, tires and anything that needs attention.</p>
-        <p style="margin-top:16px"><a class="text-link" href="contact.html#book">Book oil changes ›</a></p>
-      </div>
-      <div style="display:grid;gap:24px">
-        <div><h3>What's included</h3><ul class="checks"><li>Conventional, high-mileage and full synthetic</li><li>New oil filter</li><li>Fluid top-off</li><li>Tire pressure check</li><li>Reset of the oil-life monitor</li></ul></div>
-        <div><h3>Signs you need it</h3><ul class="dash"><li>Oil change light or sticker reminder</li><li>Dark or low oil on the dipstick</li><li>Engine sounds louder than usual</li><li>It's been more than 5,000 miles</li></ul></div>
+      <div class="detail-side">
+        <div><h3>What's included</h3><ul class="list"><li>Conventional, high-mileage and full synthetic</li><li>New oil filter</li><li>Fluid top-off</li><li>Tire pressure check</li><li>Reset of the oil-life monitor</li></ul></div>
+        <div><h3>Signs you need it</h3><ul class="list"><li>Oil change light or sticker reminder</li><li>Dark or low oil on the dipstick</li><li>Engine sounds louder than usual</li><li>It's been more than 5,000 miles</li></ul></div>
       </div>
     </article>
-    <article class="detail" id="brakes">
-      <div class="detail-title">
-        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="4"/><path d="M7 9a12 12 0 0 1 6-4"/></svg>
+    <article class="detail reveal" id="brakes">
+      <div class="detail-main">
         <h2>Brake jobs</h2>
+        <p class="lead">Brakes are the one system you can't put off. We inspect the whole system and tell you what actually needs replacing.</p>
+        <a class="arrow-link" href="contact.html#book">Book brake jobs <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div>
-        <p>Brakes are the one system you can't put off. We inspect the whole system and tell you what actually needs replacing.</p>
-        <p style="margin-top:16px"><a class="text-link" href="contact.html#book">Book brake jobs ›</a></p>
-      </div>
-      <div style="display:grid;gap:24px">
-        <div><h3>What's included</h3><ul class="checks"><li>Brake pads and shoes</li><li>Rotors and drums</li><li>Calipers and brake hoses</li><li>Brake fluid flush</li><li>ABS warning light diagnosis</li></ul></div>
-        <div><h3>Signs you need it</h3><ul class="dash"><li>Squealing or grinding when you stop</li><li>Car pulls to one side under braking</li><li>Soft or spongy pedal</li><li>Steering wheel shakes when braking</li></ul></div>
+      <div class="detail-side">
+        <div><h3>What's included</h3><ul class="list"><li>Brake pads and shoes</li><li>Rotors and drums</li><li>Calipers and brake hoses</li><li>Brake fluid flush</li><li>ABS warning light diagnosis</li></ul></div>
+        <div><h3>Signs you need it</h3><ul class="list"><li>Squealing or grinding when you stop</li><li>Car pulls to one side under braking</li><li>Soft or spongy pedal</li><li>Steering wheel shakes when braking</li></ul></div>
       </div>
     </article>
-    <article class="detail" id="suspension">
-      <div class="detail-title">
-        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3v4M16 25v4M10 7h12l-3 4h-6zM10 25h12l-3-4h-6zM13 11l6 2-6 2 6 2-6 2"/></svg>
+    <article class="detail reveal" id="suspension">
+      <div class="detail-main">
         <h2>Suspension work</h2>
+        <p class="lead">Worn suspension makes a car ride rough, wear out tires early and handle poorly. We replace the worn parts and get it riding right.</p>
+        <a class="arrow-link" href="contact.html#book">Book suspension work <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div>
-        <p>Worn suspension makes a car ride rough, wear out tires early and handle poorly. We replace the worn parts and get it riding right.</p>
-        <p style="margin-top:16px"><a class="text-link" href="contact.html#book">Book suspension work ›</a></p>
-      </div>
-      <div style="display:grid;gap:24px">
-        <div><h3>What's included</h3><ul class="checks"><li>Shocks and struts</li><li>Control arms and ball joints</li><li>Tie rods and steering components</li><li>Bushings and sway bar links</li><li>Wheel bearings</li></ul></div>
-        <div><h3>Signs you need it</h3><ul class="dash"><li>Clunking over bumps</li><li>Bouncy or floaty ride</li><li>Uneven tire wear</li><li>Car wanders or pulls on the freeway</li></ul></div>
+      <div class="detail-side">
+        <div><h3>What's included</h3><ul class="list"><li>Shocks and struts</li><li>Control arms and ball joints</li><li>Tie rods and steering components</li><li>Bushings and sway bar links</li><li>Wheel bearings</li></ul></div>
+        <div><h3>Signs you need it</h3><ul class="list"><li>Clunking over bumps</li><li>Bouncy or floaty ride</li><li>Uneven tire wear</li><li>Car wanders or pulls on the freeway</li></ul></div>
       </div>
     </article>
-    <article class="detail" id="ac-repair">
-      <div class="detail-title">
-        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3v26M5 9.5l22 13M27 9.5l-22 13M13 5l3 3 3-3M13 27l3-3 3 3"/></svg>
+    <article class="detail reveal" id="ac-repair">
+      <div class="detail-main">
         <h2>A/C repair</h2>
+        <p class="lead">In Las Vegas, a broken A/C isn't optional. We find the leak or the failed part instead of just recharging it and sending you off.</p>
+        <a class="arrow-link" href="contact.html#book">Book A/C repair <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div>
-        <p>In Las Vegas, a broken A/C isn't optional. We find the leak or the failed part instead of just recharging it and sending you off.</p>
-        <p style="margin-top:16px"><a class="text-link" href="contact.html#book">Book a/c repair ›</a></p>
-      </div>
-      <div style="display:grid;gap:24px">
-        <div><h3>What's included</h3><ul class="checks"><li>A/C performance check and leak test</li><li>Refrigerant evacuate and recharge</li><li>Compressors and clutches</li><li>Condensers, evaporators and hoses</li><li>Blend door and blower motor repair</li></ul></div>
-        <div><h3>Signs you need it</h3><ul class="dash"><li>A/C blows warm or only cool at highway speed</li><li>Weak airflow from the vents</li><li>Strange smell from the vents</li><li>Clicking or squealing when the A/C kicks on</li></ul></div>
+      <div class="detail-side">
+        <div><h3>What's included</h3><ul class="list"><li>A/C performance check and leak test</li><li>Refrigerant evacuate and recharge</li><li>Compressors and clutches</li><li>Condensers, evaporators and hoses</li><li>Blend door and blower motor repair</li></ul></div>
+        <div><h3>Signs you need it</h3><ul class="list"><li>A/C blows warm or only cool at highway speed</li><li>Weak airflow from the vents</li><li>Strange smell from the vents</li><li>Clicking or squealing when the A/C kicks on</li></ul></div>
       </div>
     </article>
-    <article class="detail" id="electrical">
-      <div class="detail-title">
-        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M18 3 8 18h8l-2 11 10-15h-8z"/></svg>
+    <article class="detail reveal" id="electrical">
+      <div class="detail-main">
         <h2>Electrical issues</h2>
+        <p class="lead">Electrical problems take patience and the right tools. We trace the fault to its source instead of throwing parts at it.</p>
+        <a class="arrow-link" href="contact.html#book">Book electrical issues <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div>
-        <p>Electrical problems take patience and the right tools. We trace the fault to its source instead of throwing parts at it.</p>
-        <p style="margin-top:16px"><a class="text-link" href="contact.html#book">Book electrical issues ›</a></p>
-      </div>
-      <div style="display:grid;gap:24px">
-        <div><h3>What's included</h3><ul class="checks"><li>Check engine light diagnosis</li><li>Batteries, starters and alternators</li><li>Parasitic battery drain testing</li><li>Wiring repair and shorts</li><li>Sensors, modules and lighting</li></ul></div>
-        <div><h3>Signs you need it</h3><ul class="dash"><li>Car won't start or cranks slowly</li><li>Battery keeps dying</li><li>Warning lights on the dash</li><li>Lights, windows or gauges acting up</li></ul></div>
+      <div class="detail-side">
+        <div><h3>What's included</h3><ul class="list"><li>Check engine light diagnosis</li><li>Batteries, starters and alternators</li><li>Parasitic battery drain testing</li><li>Wiring repair and shorts</li><li>Sensors, modules and lighting</li></ul></div>
+        <div><h3>Signs you need it</h3><ul class="list"><li>Car won't start or cranks slowly</li><li>Battery keeps dying</li><li>Warning lights on the dash</li><li>Lights, windows or gauges acting up</li></ul></div>
       </div>
     </article>
-    </div>
-    <div class="not-us">
-      <strong>We don't do body work</strong>
-      <p>We're a mechanical and electrical shop. For dents, paint or collision repair, you'll need a body shop.</p>
-    </div>
+    <p class="footnote" style="padding-bottom:clamp(56px,8vw,110px)"><strong>One thing we don't do:</strong> body work, paint or collision repair. For dents or collision damage you'll need a body shop.</p>
   </div>
 </section>
-<section class="cta-band">
-  <div class="wrap">
-    <div style="display:grid;gap:12px;min-width:0"><h2 class="sm">Get your car in</h2><p class="muted">Call the shop or book online. We'll confirm a time.</p></div>
-    <div class="ctas"><a class="btn btn-solid" href="contact.html#book">Book an appointment</a><a class="btn btn-ghost" href="tel:+17025550142">Call (702) 555-0142</a></div>
+<section class="closer">
+  <div class="wrap reveal">
+    <h2>Bring it in.<br><span class="soft">We'll take it from there.</span></h2>
+    <div class="closer-row">
+      <a class="phone-big" href="tel:+17025550142">(702) 555-0142</a>
+      <div class="ctas"><a class="btn btn-solid" href="contact.html#book">Book a visit <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-ghost" href="towing.html">Need a tow?</a></div>
+    </div>
   </div>
 </section>
 </main>
@@ -403,13 +381,13 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <strong>Raul's Automotive</strong>
-        <span>Full-service auto repair in Las Vegas, NV. Everything but body work.</span>
+        <h3>Raul's Automotive</h3>
+        <span>Full-service auto repair in Las Vegas.<br>Everything but body work.</span>
         <span>1234 Example Ave<br>Las Vegas, NV 89101</span>
         <a href="tel:+17025550142">(702) 555-0142</a>
       </div>
       <div>
-        <span class="label">Services</span>
+        <h3>Services</h3>
         <a href="services.html#maintenance">General maintenance</a>
         <a href="services.html#oil-changes">Oil changes</a>
         <a href="services.html#brakes">Brake jobs</a>
@@ -418,14 +396,15 @@
         <a href="services.html#electrical">Electrical issues</a>
       </div>
       <div>
-        <span class="label">Shop</span>
+        <h3>The shop</h3>
         <a href="specialty.html">Specialty work</a>
         <a href="insurance-financing.html">Insurance &amp; warranty</a>
         <a href="insurance-financing.html#financing">Financing</a>
         <a href="towing.html">Towing</a>
-        <a href="contact.html#book">Book an appointment</a>
+        <a href="contact.html#book">Book a visit</a>
       </div>
     </div>
+    <div class="foot-mark" aria-hidden="true">Raul's Automotive</div>
     <div class="foot-base"><span>© <span id="year">2026</span> Raul's Automotive</span><span>Website by Toro Growth</span></div>
   </div>
 </footer>

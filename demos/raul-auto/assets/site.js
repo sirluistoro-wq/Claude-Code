@@ -90,6 +90,20 @@
     });
   }
 
+  // Gentle reveal for content that starts below the fold; anything already on screen stays put
+  var reveals = document.querySelectorAll('.reveal');
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!calm && 'IntersectionObserver' in window && reveals.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.remove('pre'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pre'); io.observe(el); }
+    });
+  }
+
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();

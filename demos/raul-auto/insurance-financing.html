@@ -11,11 +11,12 @@
 <meta property="og:title" content="Insurance, Warranty & Financing | Raul's Automotive Las Vegas">
 <meta property="og:description" content="Las Vegas auto repair shop that works with insurance and extended warranty companies. Financing available with Affirm, Sunbit and Klarna.">
 <meta property="og:url" content="https://example.com/insurance-financing.html">
-<meta name="theme-color" content="#0b0c0d">
+<meta property="og:image" content="https://example.com/assets/still-front.jpg">
+<meta name="theme-color" content="#0a0a0b">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap">
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
 {
@@ -226,15 +227,11 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="demo-bar">DEMO SITE BY TORO GROWTH · SHOP NAME, ADDRESS, PHONE AND HOURS ARE PLACEHOLDERS</div>
+<div class="demo-note">Demo site by Toro Growth. Shop name, address, phone and hours are placeholders.</div>
 <header class="nav">
   <div class="wrap nav-bar">
-    <a class="brand" href="index.html" aria-label="Raul's Automotive home">
-      <span class="brand-mark" aria-hidden="true">R</span>
-      <span class="brand-name">Raul's Automotive<small>LAS VEGAS · NV</small></span>
-    </a>
+    <a class="brand" href="index.html" aria-label="Raul's Automotive home"><b>Raul's</b><span>Automotive</span></a>
     <nav class="nav-links" id="nav-links" aria-label="Main">
-      <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="specialty.html">Specialty work</a>
       <a href="insurance-financing.html" aria-current="page">Insurance & financing</a>
@@ -242,7 +239,7 @@
       <a href="contact.html">Contact</a>
     </nav>
     <div class="nav-actions">
-      <a class="btn btn-solid btn-sm" href="contact.html#book">Book now</a>
+      <a class="btn btn-solid btn-sm" href="contact.html#book">Book a visit</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span></button>
     </div>
   </div>
@@ -250,49 +247,59 @@
 <main id="main">
 <section class="page-hero">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / Insurance &amp; financing</nav>
-    <span class="label">Insurance · Warranty · Financing</span>
-    <h1>Covered repairs.<br><span class="dim">Flexible payments.</span></h1>
-    <p>We work directly with insurance and extended warranty companies, and offer financing through Affirm, Sunbit and Klarna.</p>
+    <h1>Covered repairs.<br><span class="soft">Flexible payments.</span></h1>
+    <p class="lead">We work directly with insurance and extended warranty companies, and offer financing through Affirm, Sunbit and Klarna.</p>
   </div>
 </section>
 
-<section class="section" id="claims">
-  <div class="wrap two-up">
-    <div class="panel">
-      <span class="label">Extended warranty</span>
-      <h2 class="sm">Warranty repairs</h2>
-      <p>Have an extended warranty or vehicle service contract? Bring us your contract info. We diagnose the problem, contact the warranty company, and handle the paperwork for covered repairs.</p>
-      <ul class="checks"><li>We call the warranty company for you</li><li>Diagnosis and documentation for the claim</li><li>You pay only your deductible and anything not covered</li></ul>
+<section class="section" id="claims" style="padding-top:0">
+  <div class="wrap panels">
+    <div class="panel reveal">
+      <h2>Warranty repairs</h2>
+      <p>Have an extended warranty or vehicle service contract? Bring your contract info. We diagnose the problem, contact the warranty company and handle the paperwork for covered repairs.</p>
+      <ul class="ticks"><li>We call the warranty company for you</li><li>Diagnosis and documentation for the claim</li><li>You pay only your deductible and anything not covered</li></ul>
     </div>
-    <div class="panel">
-      <span class="label">Insurance</span>
-      <h2 class="sm">Insurance claims</h2>
+    <div class="panel reveal">
+      <h2>Insurance claims</h2>
       <p>For mechanical repairs covered by your insurance, we work with your adjuster directly, provide the estimate and photos they need, and keep you updated.</p>
-      <ul class="checks"><li>Estimates and photos for adjusters</li><li>Direct communication with your insurer</li><li>Mechanical and electrical repairs (no body work)</li></ul>
+      <ul class="ticks"><li>Estimates and photos for adjusters</li><li>Direct communication with your insurer</li><li>Mechanical and electrical repairs (no body work)</li></ul>
     </div>
   </div>
 </section>
 
-<section class="section alt" id="financing">
+<section class="section" id="financing">
   <div class="wrap">
-    <div class="section-head">
-      <span class="label">Financing</span>
-      <h2>Fix it now, pay over time</h2>
-      <p>A transmission or engine job shouldn't have to wait for payday. Apply with one of our financing partners and split the repair into payments.</p>
+    <div class="head reveal">
+      <h2>Fix it now.<br>Pay over time.</h2>
+      <p>A transmission or engine job shouldn't have to wait for payday. Apply with one of our partners and split the repair into payments.</p>
     </div>
-    <div class="grid grid-3">
-      <div class="lender-card"><span class="lender-name">Affirm</span><p>Pay over time with fixed monthly payments. You see the total cost up front.</p></div>
-      <div class="lender-card"><span class="lender-name">Sunbit</span><p>Built for auto repair. Apply at the counter and get a decision in seconds.</p></div>
-      <div class="lender-card"><span class="lender-name">Klarna</span><p>Split the cost into smaller payments over time.</p></div>
+    <div class="rows reveal">
+      <div class="row-link" style="cursor:default">
+        <h3>Affirm</h3>
+        <p>Pay over time with fixed monthly payments. You see the total cost up front.</p>
+        <span></span>
+      </div>
+      <div class="row-link" style="cursor:default">
+        <h3>Sunbit</h3>
+        <p>Built for auto repair. Apply at the counter and get a decision in seconds.</p>
+        <span></span>
+      </div>
+      <div class="row-link" style="cursor:default">
+        <h3>Klarna</h3>
+        <p>Split the cost into smaller payments over time.</p>
+        <span></span>
+      </div>
     </div>
-    <p class="fine section-foot">Financing is subject to approval. Rates and terms are set by each lender.</p>
+    <p class="fine footnote">Financing is subject to approval. Rates and terms are set by each lender.</p>
   </div>
 </section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="section-head"><span class="label">Questions</span><h2 class="sm">Claims and payment</h2></div>
+<section class="section" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="faq-intro">
+      <h2>Claims and payment.</h2>
+      <p>Can't find what you need? Call the shop and ask.</p>
+      <a class="arrow-link" href="tel:+17025550142">(702) 555-0142 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
     <div class="faq">
       <details><summary>Do you work with insurance and extended warranty companies?</summary><p>Yes. We work directly with insurance companies and extended warranty companies on covered claims and repairs.</p></details>
       <details><summary>Can I finance my repair?</summary><p>Yes. We offer financing through Affirm, Sunbit and Klarna, subject to approval.</p></details>
@@ -300,10 +307,14 @@
     </div>
   </div>
 </section>
-<section class="cta-band">
-  <div class="wrap">
-    <div style="display:grid;gap:12px;min-width:0"><h2 class="sm">Get your car in</h2><p class="muted">Call the shop or book online. We'll confirm a time.</p></div>
-    <div class="ctas"><a class="btn btn-solid" href="contact.html#book">Book an appointment</a><a class="btn btn-ghost" href="tel:+17025550142">Call (702) 555-0142</a></div>
+
+<section class="closer">
+  <div class="wrap reveal">
+    <h2>Bring it in.<br><span class="soft">We'll take it from there.</span></h2>
+    <div class="closer-row">
+      <a class="phone-big" href="tel:+17025550142">(702) 555-0142</a>
+      <div class="ctas"><a class="btn btn-solid" href="contact.html#book">Book a visit <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-ghost" href="towing.html">Need a tow?</a></div>
+    </div>
   </div>
 </section>
 </main>
@@ -311,13 +322,13 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <strong>Raul's Automotive</strong>
-        <span>Full-service auto repair in Las Vegas, NV. Everything but body work.</span>
+        <h3>Raul's Automotive</h3>
+        <span>Full-service auto repair in Las Vegas.<br>Everything but body work.</span>
         <span>1234 Example Ave<br>Las Vegas, NV 89101</span>
         <a href="tel:+17025550142">(702) 555-0142</a>
       </div>
       <div>
-        <span class="label">Services</span>
+        <h3>Services</h3>
         <a href="services.html#maintenance">General maintenance</a>
         <a href="services.html#oil-changes">Oil changes</a>
         <a href="services.html#brakes">Brake jobs</a>
@@ -326,14 +337,15 @@
         <a href="services.html#electrical">Electrical issues</a>
       </div>
       <div>
-        <span class="label">Shop</span>
+        <h3>The shop</h3>
         <a href="specialty.html">Specialty work</a>
         <a href="insurance-financing.html">Insurance &amp; warranty</a>
         <a href="insurance-financing.html#financing">Financing</a>
         <a href="towing.html">Towing</a>
-        <a href="contact.html#book">Book an appointment</a>
+        <a href="contact.html#book">Book a visit</a>
       </div>
     </div>
+    <div class="foot-mark" aria-hidden="true">Raul's Automotive</div>
     <div class="foot-base"><span>© <span id="year">2026</span> Raul's Automotive</span><span>Website by Toro Growth</span></div>
   </div>
 </footer>
