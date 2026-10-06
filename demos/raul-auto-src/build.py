@@ -324,7 +324,13 @@ def home():
         <div class="ctas"><a class="btn btn-solid" href="specialty.html">See specialty work</a></div>
       </div>
     </div>
-    <div class="hero3d-hint">Scroll</div>
+    <div class="hero3d-hud" aria-hidden="true">
+      <div class="wrap hud-bar">
+        <span class="hud-state"><span class="hud-icon"></span><span data-hud-state>Paused</span><span class="hud-mouse"></span></span>
+        <span class="hud-track"><span class="hud-fill"></span></span>
+        <span class="hud-odo">Odo <b data-hud-odo>0000.0</b> mi</span>
+      </div>
+    </div>
   </div>
 </section>
 
