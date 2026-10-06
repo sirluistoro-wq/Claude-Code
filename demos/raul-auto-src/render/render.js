@@ -11,6 +11,8 @@ const OUT = path.resolve(process.argv[3]);
 const FRAMES = 144;          // 6 s at 24 fps
 const DT = 6 / FRAMES;
 const WARMUP = 36;           // frames simulated before the clip so dust is already flying
+// night grade: a touch more contrast and less glare from the sand
+const GRADE = 'eq=contrast=1.14:brightness=-0.035:gamma=0.9:saturation=0.7,vignette=PI/5';
 
 const VARIANTS = [
   { name: 'landscape', w: 1920, h: 1080, outW: 1280, outH: 720, portrait: 0 },
@@ -40,11 +42,11 @@ const VARIANTS = [
     const mp4 = path.join(OUT, `hero-${v.name}.mp4`);
     // every frame is a keyframe so the browser can jump to any frame instantly while scrubbing
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-framerate', '24', '-i', path.join(tmp, '%04d.png'),
-      '-vf', `scale=${v.outW}:${v.outH}:flags=lanczos,vignette=PI/5`,
+      '-vf', `scale=${v.outW}:${v.outH}:flags=lanczos,${GRADE}`,
       '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-pix_fmt', 'yuv420p', '-g', '1', '-keyint_min', '1',
       '-tune', 'film', '-movflags', '+faststart', '-an', mp4]);
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', path.join(tmp, '0000.png'),
-      '-vf', `scale=${v.outW}:${v.outH}:flags=lanczos,vignette=PI/5`, '-q:v', '4', path.join(OUT, `hero-${v.name}.jpg`)]);
+      '-vf', `scale=${v.outW}:${v.outH}:flags=lanczos,${GRADE}`, '-q:v', '4', path.join(OUT, `hero-${v.name}.jpg`)]);
     fs.rmSync(tmp, { recursive: true, force: true });
     console.log('wrote', mp4, (fs.statSync(mp4).size / 1e6).toFixed(1) + ' MB');
   }
