@@ -261,7 +261,7 @@ def tow_band(link="towing.html", label="Get a tow"):
     return f"""<section class="section">
   <div class="wrap">
     <div class="band reveal">
-      <img src="assets/still-rear.jpg" alt="Lifted pickup driving down a desert highway at night" loading="lazy">
+      <img src="assets/still-rear.jpg" alt="Red sports car driving down a desert highway at night" loading="lazy">
       <div class="band-copy">
         <h2>Broken down?<br>We'll get it here.</h2>
         <p>Our towing partner, Los Crazies Towing, brings your vehicle from anywhere in the valley straight to the shop.</p>
@@ -340,8 +340,8 @@ def home():
         </div>
       </div>
       <div class="hero3d-b">
-        <h2>Built for the Mojave.</h2>
-        <p class="lead">Lift kits, lowering kits, engine and transmission swaps, fuel injection conversions, and A/C that holds up in July.</p>
+        <h2>Built to be driven.</h2>
+        <p class="lead">Engine and transmission swaps, lowering and lift kits, fuel injection conversions, and A/C that holds up through a Las Vegas July.</p>
         <div class="ctas"><a class="btn btn-solid" href="specialty.html">See specialty work {ARROW}</a></div>
       </div>
     </div>
@@ -373,7 +373,7 @@ def home():
 
 <section class="section" id="specialty">
   <div class="wrap feature">
-    <figure class="media reveal"><img src="assets/still-side.jpg" alt="Lifted crew-cab pickup with off-road tires, side view" loading="lazy"></figure>
+    <figure class="media reveal"><img src="assets/still-front.jpg" alt="Red sports car on a desert highway at night, front three-quarter view" loading="lazy"></figure>
     <div class="feature-copy reveal">
       <h2>The jobs other shops send away.</h2>
       <p class="statement">{statement}</p>
@@ -433,7 +433,7 @@ def services():
     graph = ld({"@graph": [service_ld(s[1], s[4], "services.html#" + s[0]) for s in SERVICES]})
     body = page_hero('Full-service repair.<br><span class="soft">Bumper to bumper.</span>',
                      "Everything a car needs to stay on the road, from oil changes to electrical diagnostics. The only thing we don't do is body work.",
-                     "still-front.jpg", "Lifted pickup with an off-road bumper and light bar at night") + f"""
+                     "still-wheel.jpg", "Close-up of a ten-spoke wheel and brake disc on a red sports car") + f"""
 <section>
   <div class="wrap">
 {chr(10).join(blocks)}
@@ -462,7 +462,7 @@ def specialty():
     graph = ld({"@graph": [service_ld(s[2], s[4], "specialty.html#" + s[0]) for s in SPECIALTY]})
     body = page_hero('Swaps, kits<br><span class="soft">and conversions.</span>',
                      "Engine and transmission swaps, carburetor-to-EFI conversions, lift and lowering kits, and the electrical work that ties it all together.",
-                     "still-side.jpg", "Lifted crew-cab pickup with off-road tires, side view") + f"""
+                     "still-side.jpg", "Red sports car in profile on a desert highway") + f"""
 <section>
   <div class="wrap">
 {chr(10).join(blocks)}
@@ -501,8 +501,9 @@ def insurance():
         <span></span>
       </div>""" for n, d in lenders)
     body = page_hero('Covered repairs.<br><span class="soft">Flexible payments.</span>',
-                     "We work directly with insurance and extended warranty companies, and offer financing through Affirm, Sunbit and Klarna.") + f"""
-<section class="section" id="claims" style="padding-top:0">
+                     "We work directly with insurance and extended warranty companies, and offer financing through Affirm, Sunbit and Klarna.",
+                     "still-lights.jpg", "LED headlight detail on a red sports car at night") + f"""
+<section class="section" id="claims">
   <div class="wrap panels">
     <div class="panel reveal">
       <h2>Warranty repairs</h2>
@@ -539,7 +540,7 @@ def insurance():
 def towing():
     body = page_hero('Broken down?<br><span class="soft">We\'ll get it here.</span>',
                      "If your car won't start or isn't safe to drive, our towing partner Los Crazies Towing can bring it straight to the shop.",
-                     "still-rear.jpg", "Lifted pickup driving down a desert highway at night") + f"""
+                     "still-aerial.jpg", "Aerial view of a red sports car on an empty desert highway") + f"""
 <section class="section" style="padding-top:0">
   <div class="wrap panels">
     <div class="panel reveal">

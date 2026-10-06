@@ -1,4 +1,4 @@
-// Renders the hero video frames from truck-scene.js and encodes them with ffmpeg.
+// Renders the hero videos and the section stills from car-scene.js and encodes them with ffmpeg.
 // Usage: node render.js <path/to/three.min.js r128> <out assets dir>
 // Needs Playwright (Chromium) and ffmpeg on PATH.
 const { chromium } = require('playwright');
@@ -12,7 +12,7 @@ const FRAMES = 144;          // 6 s at 24 fps
 const DT = 6 / FRAMES;
 const WARMUP = 36;           // frames simulated before the clip so dust is already flying
 // night grade: a touch more contrast and less glare from the sand
-const GRADE = 'eq=contrast=1.14:brightness=-0.035:gamma=0.9:saturation=0.7,vignette=PI/5';
+const GRADE = 'eq=contrast=1.14:brightness=-0.04:gamma=0.9:saturation=1.05,vignette=PI/5';
 
 const VARIANTS = [
   { name: 'landscape', w: 1920, h: 1080, outW: 1280, outH: 720, portrait: 0 },
@@ -45,10 +45,26 @@ const VARIANTS = [
       '-vf', `scale=${v.outW}:${v.outH}:flags=lanczos,${GRADE}`,
       '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-pix_fmt', 'yuv420p', '-g', '1', '-keyint_min', '1',
       '-tune', 'film', '-movflags', '+faststart', '-an', mp4]);
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', mp4, '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '36', '-g', '1',
+      '-row-mt', '1', '-deadline', 'good', '-cpu-used', '2', '-an', mp4.replace(/\.mp4$/, '.webm')]);
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', path.join(tmp, '0000.png'),
       '-vf', `scale=${v.outW}:${v.outH}:flags=lanczos,${GRADE}`, '-q:v', '4', path.join(OUT, `hero-${v.name}.jpg`)]);
     fs.rmSync(tmp, { recursive: true, force: true });
     console.log('wrote', mp4, (fs.statSync(mp4).size / 1e6).toFixed(1) + ' MB');
+  }
+  // section stills, same scene and grade
+  const STILLS = ['front', 'side', 'rear', 'wheel', 'aerial', 'lights'];
+  const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
+  await page.route('**/three.min.js', r => r.fulfill({ body: fs.readFileSync(THREE_JS), contentType: 'application/javascript' }));
+  await page.goto('file://' + path.join(__dirname, 'render.html') + '?w=1920&h=1080&portrait=0');
+  await page.waitForFunction(() => typeof window.renderStill === 'function');
+  for (const name of STILLS) {
+    const data = await page.evaluate(n => { window.renderStill(n); return document.querySelector('canvas').toDataURL('image/png'); }, name);
+    const png = path.join(require('os').tmpdir(), `still-${name}.png`);
+    fs.writeFileSync(png, Buffer.from(data.split(',')[1], 'base64'));
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', png, '-vf', `scale=1600:-2:flags=lanczos,${GRADE}`, '-q:v', '3', path.join(OUT, `still-${name}.jpg`)]);
+    fs.rmSync(png);
+    console.log('wrote still', name);
   }
   await browser.close();
 })();
