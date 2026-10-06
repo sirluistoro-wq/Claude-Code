@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap">
 <link rel="stylesheet" href="assets/styles.css">
+<script>try{if(!localStorage.getItem("ra-visited")||location.hash==="#intro")document.documentElement.classList.add("first-visit")}catch(e){}</script>
 <script type="application/ld+json">
 {
   "@type": "AutoRepair",
@@ -238,6 +239,13 @@
 </script>
 </head>
 <body>
+<div class="loader" id="loader" role="status" aria-label="Loading">
+  <div class="loader-mark">
+    <span class="brand"><b>Raul's</b><span>Automotive</span></span>
+    <div class="loader-track"><div class="loader-fill"></div></div>
+  </div>
+  <div class="loader-foot"><span>Full-service auto repair<br>Las Vegas, Nevada</span><span class="loader-count" data-count>000</span></div>
+</div>
 <a class="skip" href="#main">Skip to content</a>
 <div class="demo-note">Demo site by Toro Growth. Shop name, address, phone and hours are placeholders.</div>
 <header class="nav">
@@ -451,6 +459,7 @@
   </div>
 </footer>
 <script src="assets/site.js"></script>
+<script src="assets/loader.js"></script>
 <script src="assets/hero-video.js"></script>
 </body>
 </html>

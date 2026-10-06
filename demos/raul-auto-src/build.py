@@ -88,7 +88,19 @@ FAQ = [
     ("What areas do you serve?", "We're in Las Vegas and see customers from across the valley, including North Las Vegas, Henderson, Paradise and Spring Valley."),
 ]
 
-HERO_SCRIPTS = '<script src="assets/hero-video.js"></script>\n'
+HERO_SCRIPTS = '<script src="assets/loader.js"></script>\n<script src="assets/hero-video.js"></script>\n'
+
+# first-visit flag is set before the first paint so returning visitors never see a flash of the loader;
+# adding #intro to the URL replays it (handy for demos)
+FIRST_VISIT = '<script>try{if(!localStorage.getItem("ra-visited")||location.hash==="#intro")document.documentElement.classList.add("first-visit")}catch(e){}</script>\n'
+LOADER = '''<div class="loader" id="loader" role="status" aria-label="Loading">
+  <div class="loader-mark">
+    <span class="brand"><b>Raul's</b><span>Automotive</span></span>
+    <div class="loader-track"><div class="loader-fill"></div></div>
+  </div>
+  <div class="loader-foot"><span>Full-service auto repair<br>Las Vegas, Nevada</span><span class="loader-count" data-count>000</span></div>
+</div>
+'''
 
 BUSINESS = {
     "@type": "AutoRepair",
@@ -139,7 +151,7 @@ def service_ld(name, desc, page):
 ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
 
-def head(page, title, desc, extra_ld=""):
+def head(page, title, desc, extra_ld="", early=""):
     canonical = SITE + "/" + ("" if page == "index.html" else page)
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -161,11 +173,11 @@ def head(page, title, desc, extra_ld=""):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap">
 <link rel="stylesheet" href="assets/styles.css">
-{ld(BUSINESS)}
+{early}{ld(BUSINESS)}
 {extra_ld}
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+{LOADER if page == "index.html" else ""}<a class="skip" href="#main">Skip to content</a>
 <div class="demo-note">Demo site by Toro Growth. Shop name, address, phone and hours are placeholders.</div>
 <header class="nav">
   <div class="wrap nav-bar">
@@ -413,7 +425,7 @@ def home():
 {closer()}"""
     return head("index.html", f"{SHOP} | Auto Repair in Las Vegas, NV",
                 "Full-service auto repair in Las Vegas. Maintenance, oil changes, brakes, suspension, A/C, electrical, engine and transmission swaps. Insurance and warranty claims, financing and towing.",
-                faq_ld(FAQ)) + body + foot(HERO_SCRIPTS)
+                faq_ld(FAQ), FIRST_VISIT) + body + foot(HERO_SCRIPTS)
 
 
 def services():

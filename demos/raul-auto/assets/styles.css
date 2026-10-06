@@ -293,3 +293,19 @@ form .btn { justify-self: start; }
 /* reveal on scroll: only for content below the fold at load (see site.js) */
 .reveal.pre { opacity: 0; transform: translateY(24px); }
 .reveal { transition: opacity .9s var(--ease), transform .9s var(--ease); }
+
+/* ---------- first-visit loading screen (home) ---------- */
+.loader { display: none; }
+.first-visit { overflow: hidden; }
+.first-visit .loader { display: grid; position: fixed; inset: 0; z-index: 100; background: var(--bg); grid-template-rows: 1fr auto; padding: max(28px, env(safe-area-inset-top, 0px)) var(--gutter) max(28px, env(safe-area-inset-bottom, 0px)); transition: transform 1s cubic-bezier(.76, 0, .24, 1), opacity .4s ease; }
+.loader-mark { align-self: center; justify-self: center; display: grid; justify-items: center; gap: 28px; }
+.loader-mark .brand { font-size: clamp(1.6rem, 4vw, 2.6rem); }
+.loader-mark .brand b { font-size: 1em; }
+.loader-mark .brand span { font-size: 0.5em; }
+.loader-track { width: min(280px, 60vw); height: 1px; background: var(--line-strong); overflow: hidden; }
+.loader-fill { height: 100%; background: #c8202b; transform: scaleX(0); transform-origin: left; }
+.loader-foot { display: flex; justify-content: space-between; align-items: end; gap: 16px; color: var(--muted); font-size: 0.88rem; }
+.loader-count { font-stretch: var(--wide); font-weight: 600; font-size: clamp(3rem, 9vw, 7rem); line-height: 0.8; letter-spacing: -0.05em; color: var(--text); font-variant-numeric: tabular-nums; }
+.loader.is-leaving { transform: translateY(-100%); }
+.loader.is-leaving .loader-mark, .loader.is-leaving .loader-foot { opacity: 0; transition: opacity .3s ease; }
+@media (prefers-reduced-motion: reduce) { .loader.is-leaving { transform: none; opacity: 0; } }

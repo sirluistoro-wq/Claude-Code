@@ -44,6 +44,10 @@
     if (!ticking) { ticking = true; requestAnimationFrame(tick); }
   }
 
+  function progress(f) {
+    window.dispatchEvent(new CustomEvent('hero:progress', { detail: Math.min(1, f) }));
+  }
+
   function load() {
     var src = video.getAttribute(portraitQuery.matches ? 'data-portrait' : 'data-landscape');
     // MP4 (H.264) everywhere it plays; WebM (VP9) for browsers built without H.264
@@ -53,7 +57,19 @@
     // download the whole clip first so every frame is available instantly while scrubbing
     fetch(src).then(function (r) {
       if (!r.ok) throw new Error(r.status);
-      return r.blob();
+      // read the stream so the loading screen can show real progress
+      var total = +r.headers.get('content-length') || 0;
+      if (!r.body || !r.body.getReader || !total) return r.blob();
+      var reader = r.body.getReader(), got = 0, parts = [];
+      return (function pump() {
+        return reader.read().then(function (res) {
+          if (res.done) return new Blob(parts, { type: r.headers.get('content-type') || 'video/mp4' });
+          parts.push(res.value);
+          got += res.value.length;
+          progress(got / total);
+          return pump();
+        });
+      })();
     }).then(function (blob) {
       if (video.dataset.url) URL.revokeObjectURL(video.dataset.url);
       video.dataset.url = URL.createObjectURL(blob);
@@ -72,6 +88,7 @@
     else video.pause();
   });
   video.addEventListener('loadeddata', function () {
+    window.dispatchEvent(new CustomEvent('hero:ready'));
     ready = true;
     shown = -1;
     wrap.classList.add('video-ready');
