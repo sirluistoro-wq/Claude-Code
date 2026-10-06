@@ -261,7 +261,7 @@ def tow_band(link="towing.html", label="Get a tow"):
     return f"""<section class="section">
   <div class="wrap">
     <div class="band reveal">
-      <img src="assets/still-rear.jpg" alt="Red sports car driving down a desert highway at night" loading="lazy">
+      <img src="assets/still-rear.jpg" alt="Red sports car driving down a desert highway at sunset" loading="lazy">
       <div class="band-copy">
         <h2>Broken down?<br>We'll get it here.</h2>
         <p>Our towing partner, Los Crazies Towing, brings your vehicle from anywhere in the valley straight to the shop.</p>
@@ -373,7 +373,7 @@ def home():
 
 <section class="section" id="specialty">
   <div class="wrap feature">
-    <figure class="media reveal"><img src="assets/still-front.jpg" alt="Red sports car on a desert highway at night, front three-quarter view" loading="lazy"></figure>
+    <figure class="media reveal"><img src="assets/still-front.jpg" alt="Red sports car on a desert highway at sunset, front three-quarter view" loading="lazy"></figure>
     <div class="feature-copy reveal">
       <h2>The jobs other shops send away.</h2>
       <p class="statement">{statement}</p>
@@ -433,7 +433,7 @@ def services():
     graph = ld({"@graph": [service_ld(s[1], s[4], "services.html#" + s[0]) for s in SERVICES]})
     body = page_hero('Full-service repair.<br><span class="soft">Bumper to bumper.</span>',
                      "Everything a car needs to stay on the road, from oil changes to electrical diagnostics. The only thing we don't do is body work.",
-                     "still-wheel.jpg", "Close-up of a ten-spoke wheel and brake disc on a red sports car") + f"""
+                     "still-wheel.jpg", "Close-up of a ten-spoke wheel and yellow brake caliper on a red sports car") + f"""
 <section>
   <div class="wrap">
 {chr(10).join(blocks)}
@@ -502,7 +502,7 @@ def insurance():
       </div>""" for n, d in lenders)
     body = page_hero('Covered repairs.<br><span class="soft">Flexible payments.</span>',
                      "We work directly with insurance and extended warranty companies, and offer financing through Affirm, Sunbit and Klarna.",
-                     "still-lights.jpg", "LED headlight detail on a red sports car at night") + f"""
+                     "still-lights.jpg", "LED headlight detail on a red sports car at dusk") + f"""
 <section class="section" id="claims">
   <div class="wrap panels">
     <div class="panel reveal">
