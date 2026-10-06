@@ -1,0 +1,35 @@
+# Raul's Automotive
+
+> Full-service, bumper-to-bumper auto repair shop in Las Vegas, NV. We do everything except body work. We work with insurance and extended warranty companies, offer financing through Affirm, Sunbit and Klarna, and partner with Los Crazies Towing.
+
+- Address: 1234 Example Ave, Las Vegas, NV 89101
+- Phone: (702) 555-0142
+- Hours: Mon–Fri 8 AM–6 PM, Sat 9 AM–3 PM, Sun closed
+- Serves: Las Vegas, North Las Vegas, Henderson, Paradise, Spring Valley
+- Does NOT do: body work, paint or collision repair
+
+## Services
+- [General maintenance](https://example.com/services.html#maintenance): Factory-scheduled service, tune-ups, filters, belts, hoses, fluids and multi-point inspections.
+- [Oil changes](https://example.com/services.html#oil-changes): Conventional, high-mileage and full synthetic oil, with a new filter and a quick check of fluids and tires.
+- [Brake jobs](https://example.com/services.html#brakes): Pads, rotors, calipers, lines and brake fluid flushes. If it squeals, grinds or pulls, we'll find out why.
+- [Suspension work](https://example.com/services.html#suspension): Shocks, struts, control arms, ball joints, tie rods and bushings. Your car should ride smooth and track straight.
+- [A/C repair](https://example.com/services.html#ac-repair): Leak checks, recharges, compressors, condensers and blend doors. Built for Las Vegas summers.
+- [Electrical issues](https://example.com/services.html#electrical): No-starts, parasitic drains, wiring faults, check engine lights, sensors and modules, traced to the source.
+
+## Specialty work
+- [Engine swaps](https://example.com/specialty.html#engine-swaps): Whether you're replacing a blown engine with the same motor or dropping in something with more power, we handle the swap from start to finish.
+- [Transmission swaps](https://example.com/specialty.html#transmission-swaps): Slipping, hard shifts or a transmission that won't move the car. We replace it with a rebuilt or new unit, or convert to a different transmission.
+- [Fuel injection conversions](https://example.com/specialty.html#fuel-injection): Converting a carbureted engine to electronic fuel injection makes it start easier, idle smoother, run cleaner and handle the heat better.
+- [Lift kits](https://example.com/specialty.html#lift-kits): From a simple leveling kit to a full suspension lift, we install it correctly so it rides well and stays safe on the road.
+- [Lowering kits](https://example.com/specialty.html#lowering-kits): Lowering springs, coilovers or a full drop kit, set up so the car still drives well and doesn't wear out tires.
+- [Electrical diagnostics](https://example.com/specialty.html#electrical-diagnostics): The hard electrical jobs: wiring for engine swaps, intermittent faults that come and go, and accessories wired in cleanly.
+
+## Payment and claims
+- [Insurance and extended warranty](https://example.com/insurance-financing.html): We work directly with insurers and warranty companies on covered repairs.
+- [Financing](https://example.com/insurance-financing.html#financing): Affirm, Sunbit and Klarna, subject to approval.
+
+## Towing
+- [Los Crazies Towing](https://example.com/towing.html): Towing partner that brings broken-down vehicles to the shop.
+
+## Booking
+- [Book an appointment](https://example.com/contact.html#book)
