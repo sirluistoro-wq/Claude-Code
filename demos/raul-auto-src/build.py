@@ -240,12 +240,12 @@ def foot(extra=""):
 """
 
 
-def page_hero(h1, lead, image=None, alt=""):
+def page_hero(h1, lead, image=None, alt="", focus="50% 50%"):
     media = ""
     if image:
         media = f"""
 <div class="page-media">
-  <div class="wrap"><figure class="media wide reveal"><img src="assets/{image}" alt="{alt}" loading="eager"></figure></div>
+  <div class="wrap"><figure class="media wide reveal"><img src="assets/{image}" alt="{alt}" loading="eager" style="object-position:{focus}"></figure></div>
 </div>"""
     return f"""<section class="page-hero">
   <div class="wrap">
@@ -474,7 +474,7 @@ def specialty():
     graph = ld({"@graph": [service_ld(s[2], s[4], "specialty.html#" + s[0]) for s in SPECIALTY]})
     body = page_hero('Swaps, kits<br><span class="soft">and conversions.</span>',
                      "Engine and transmission swaps, carburetor-to-EFI conversions, lift and lowering kits, and the electrical work that ties it all together.",
-                     "still-side.jpg", "Red sports car in profile on a desert highway") + f"""
+                     "photo-custom-cadillac.jpg", "Lowered black classic Cadillac convertible with flame paint and the hood up", "50% 90%") + f"""
 <section>
   <div class="wrap">
 {chr(10).join(blocks)}
@@ -552,7 +552,7 @@ def insurance():
 def towing():
     body = page_hero('Broken down?<br><span class="soft">We\'ll get it here.</span>',
                      "If your car won't start or isn't safe to drive, our towing partner Los Crazies Towing can bring it straight to the shop.",
-                     "photo-shop-bay.jpg", "Purple sports car with the hood up on a two-post lift in the shop") + f"""
+                     "photo-shop-bay.jpg", "Purple sports car with the hood up on a two-post lift in the shop", "60% 60%") + f"""
 <section class="section" style="padding-top:0">
   <div class="wrap panels">
     <div class="panel reveal">
