@@ -87,7 +87,7 @@
       io.unobserve(en.target);
     });
   }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
-  $$('[data-reveal], .photo:not(.hero__main):not(.hero__side)').forEach((el) => {
+  $$('[data-reveal], .photo:not(.hero__video)').forEach((el) => {
     if (el.closest('.preview')) return;
     io.observe(el);
   });
@@ -143,32 +143,78 @@
     form.reset();
   });
 
-  /* ── Scroll-linked: nav + gentle photo parallax ── */
+  /* ── Video slots: any <figure class="photo" data-video="..."> becomes a scroll-scrubbed clip ── */
+  const clips = [];
+  $$('.photo[data-video]').forEach((fig) => {
+    const v = document.createElement('video');
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.preload = 'auto'; v.tabIndex = -1;
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+    v.addEventListener('loadeddata', () => { fig.classList.add('is-loaded', 'has-video'); }, { once: true });
+    v.addEventListener('error', () => v.remove(), { once: true });
+    v.src = fig.dataset.video;
+    $('.photo__in', fig).appendChild(v);
+    clips.push({ fig, v, hero: fig.classList.contains('hero__video') });
+  });
+
+  /* ── Scroll-linked: nav, hero stage, photo motion and clip scrubbing ── */
   const nav = $('#nav');
-  const plx = $$('[data-parallax]');
-  let lastY = scrollY, hidden = false, vh = innerHeight, dirty = true;
+  const hero = $('#hero'), stage = $('.hero__stage');
+  const photos = $$('.photo').filter((f) => !f.closest('.preview') && !f.classList.contains('hero__video'));
+  let lastY = scrollY, hidden = false, vh = innerHeight, dirty = true, heroP = 0, scrubbing = false;
+  const progress = (r) => clamp((vh - r.top) / (vh + r.height));
 
   function effects() {
     const y = scrollY;
-    nav.classList.toggle('is-solid', y > 40);
+    const heroSpan = Math.max(1, hero.offsetHeight - vh);
+    heroP = clamp(y / heroSpan);
+    stage.style.setProperty('--p', heroP.toFixed(4));
+    const onHero = heroP < .3;
+    nav.classList.toggle('on-hero', onHero);
+    nav.classList.toggle('is-solid', !onHero && y > 40);
     const dy = y - lastY;
     if (Math.abs(dy) > 4) {
-      const hide = dy > 0 && y > 500 && !menu.classList.contains('is-open');
+      const hide = dy > 0 && y > 500 && !onHero && !menu.classList.contains('is-open');
       if (hide !== hidden) { hidden = hide; nav.classList.toggle('is-hidden', hidden); }
       lastY = y;
     }
-    if (!reduced) plx.forEach((fig) => {
+    if (!reduced) photos.forEach((fig) => {
       const r = fig.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      const off = (r.top + r.height / 2 - vh / 2) * parseFloat(fig.dataset.parallax) * -1;
-      $('.photo__in', fig).style.translate = `0 ${Math.round(off * 10) / 10}px`;
+      if (r.bottom < -120 || r.top > vh + 120) return;
+      const inner = $('.photo__in', fig);
+      const p = progress(r);
+      // slow zoom-out as the photo travels up the screen
+      inner.style.scale = (1.16 - .16 * clamp(p * 1.7)).toFixed(4);
+      if (fig.dataset.parallax) {
+        const off = (r.top + r.height / 2 - vh / 2) * parseFloat(fig.dataset.parallax) * -1;
+        inner.style.translate = `0 ${Math.round(off * 10) / 10}px`;
+      }
     });
   }
+
+  function scrub() {
+    if (reduced) return;
+    clips.forEach((c) => {
+      const v = c.v;
+      if (!v.duration || !isFinite(v.duration) || v.readyState < 2) return;
+      let p;
+      if (c.hero) p = heroP;
+      else {
+        const r = c.fig.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) return;
+        p = progress(r);
+      }
+      const target = clamp(p) * (v.duration - .05);
+      const diff = target - v.currentTime;
+      if (Math.abs(diff) > .025) v.currentTime = v.currentTime + diff * .2;
+    });
+  }
+
   addEventListener('scroll', () => { dirty = true; }, { passive: true });
   addEventListener('resize', () => { vh = innerHeight; dirty = true; });
   (function frame() {
     stepSmooth();
     if (dirty) { dirty = false; effects(); }
+    scrub();
     requestAnimationFrame(frame);
   })();
 
@@ -181,7 +227,7 @@
     document.body.classList.remove('is-locked');
     setTimeout(() => {
       document.body.classList.add('is-ready');
-      $$('.hero__main, .hero__side').forEach((f, i) => setTimeout(() => f.classList.add('in'), 150 + i * 350));
+      $('.hero__video').classList.add('in');
     }, 650);
     setTimeout(() => { loader.style.display = 'none'; }, 1400);
   }

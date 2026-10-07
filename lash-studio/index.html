@@ -45,46 +45,42 @@
 
   <main id="top">
 
-    <!-- Hero -->
+    <!-- Hero: full-bleed horizontal video, scrubbed by scroll -->
     <section class="hero" id="hero">
-      <div class="hero__inner wrap">
-        <div class="hero__text">
+      <div class="hero__stage">
+        <figure class="photo hero__video" data-tone="d" data-video="assets/video/hero.mp4">
+          <div class="photo__in"><span class="hero__shade"></span></div>
+          <figcaption>Video: horizontal clip (16:9) of a lash artist at work, 8 to 15 seconds, no audio. Save as assets/video/hero.mp4</figcaption>
+        </figure>
+
+        <div class="hero__copy wrap">
           <h1 class="display">
             <span class="line"><span>Lashes that</span></span>
             <span class="line"><span>look like yours,</span></span>
             <span class="line"><span>just better.</span></span>
           </h1>
-          <p class="hero__lede" data-hero="1">Classic, hybrid and volume lash extensions, applied by hand in a quiet private studio. Not sure what you want? Start with a consultation.</p>
-          <div class="hero__cta" data-hero="2">
-            <a href="#book" class="btn btn--solid"><span class="btn__roll" data-text="Book an appointment"><em>Book an appointment</em></span></a>
-            <a href="#services" class="link">See services and prices</a>
+          <div class="hero__row" data-hero="1">
+            <p class="hero__lede">Classic, hybrid and volume lash extensions, applied by hand in a quiet private studio. Not sure what you want? Start with a consultation.</p>
+            <div class="hero__cta">
+              <a href="#book" class="btn btn--solid"><span class="btn__roll" data-text="Book an appointment"><em>Book an appointment</em></span></a>
+              <a href="#services" class="link">See services and prices</a>
+            </div>
           </div>
         </div>
-
-        <div class="hero__photos">
-          <figure class="photo hero__main" data-tone="a" data-parallax="0.05">
-            <div class="photo__in"><img src="assets/photos/hero-main.jpg" alt="Close-up of a finished lash set, eyes closed" /></div>
-            <figcaption>Photo: close-up of a finished set, eyes closed, soft window light (portrait 4:5)</figcaption>
-          </figure>
-          <figure class="photo hero__side" data-tone="c" data-parallax="-0.07">
-            <div class="photo__in"><img src="assets/photos/hero-side.jpg" alt="Lash artist placing an extension with tweezers" /></div>
-            <figcaption>Photo: hands and tweezers placing a lash (landscape 4:3)</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="hero__info wrap" data-hero="2">
-        <span>128 Marlowe Street, Suite 4</span>
-        <span>Tuesday to Saturday, 10 am to 7 pm</span>
-        <span>(555) 014 2290</span>
       </div>
     </section>
 
+    <div class="hero__info wrap">
+      <span>128 Marlowe Street, Suite 4</span>
+      <span>Tuesday to Saturday, 10 am to 7 pm</span>
+      <span>(555) 014 2290</span>
+    </div>
+
     <!-- About -->
     <section class="about wrap">
-      <figure class="photo about__photo" data-tone="e" data-parallax="0.04">
+      <figure class="photo about__photo" data-tone="e" data-parallax="0.04" data-video="assets/video/about.mp4">
         <div class="photo__in"><img src="assets/photos/about.jpg" alt="Inside the Verelle studio" loading="lazy" /></div>
-        <figcaption>Photo: the studio or the lash artist at work (portrait 3:4)</figcaption>
+        <figcaption>Photo or short video: the studio or the lash artist at work (portrait 3:4)</figcaption>
       </figure>
       <div class="about__text">
         <h2 class="h2" data-reveal>A small studio, on purpose.</h2>
@@ -191,11 +187,11 @@
         <div class="gallery__cols">
           <div class="gcol gcol--a">
             <figure class="photo" data-tone="a" data-parallax="0.04"><div class="photo__in"><img src="assets/photos/gallery-1.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (portrait 4:5)</figcaption></figure>
-            <figure class="photo photo--wide" data-tone="c"><div class="photo__in"><img src="assets/photos/gallery-2.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (landscape 4:3)</figcaption></figure>
+            <figure class="photo photo--wide" data-tone="c" data-video="assets/video/gallery-2.mp4"><div class="photo__in"><img src="assets/photos/gallery-2.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo or short video: finished set (landscape 4:3)</figcaption></figure>
           </div>
           <div class="gcol gcol--b">
             <figure class="photo photo--sq" data-tone="b" data-parallax="-0.05"><div class="photo__in"><img src="assets/photos/gallery-3.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (square)</figcaption></figure>
-            <figure class="photo photo--tall" data-tone="d"><div class="photo__in"><img src="assets/photos/gallery-4.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (portrait 3:4)</figcaption></figure>
+            <figure class="photo photo--tall" data-tone="d" data-video="assets/video/gallery-4.mp4"><div class="photo__in"><img src="assets/photos/gallery-4.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo or short video: finished set (portrait 3:4)</figcaption></figure>
           </div>
           <div class="gcol gcol--c">
             <figure class="photo photo--tall" data-tone="e" data-parallax="0.06"><div class="photo__in"><img src="assets/photos/gallery-5.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (portrait 3:4)</figcaption></figure>
@@ -208,9 +204,9 @@
     <!-- What to expect -->
     <section class="expect">
       <div class="wrap expect__grid">
-        <figure class="photo expect__photo" data-tone="c" data-parallax="0.04">
+        <figure class="photo expect__photo" data-tone="c" data-parallax="0.04" data-video="assets/video/expect.mp4">
           <div class="photo__in"><img src="assets/photos/expect.jpg" alt="A client resting during an appointment" loading="lazy" /></div>
-          <figcaption>Photo: a client resting during a set, face partly visible (portrait 4:5)</figcaption>
+          <figcaption>Photo or short video: a client resting during a set (portrait 4:5)</figcaption>
         </figure>
 
         <div class="expect__text">

@@ -3,6 +3,26 @@
 Static, dependency-free website: `index.html`, `styles.css`, `main.js` and self-hosted fonts in `assets/fonts`.
 Open `index.html` in a browser, or serve the folder with any static host.
 
+## Video (scrubs with scroll)
+The hero is a pinned, full-bleed horizontal video. As you scroll it plays forward, shrinks into the page and the headline fades out.
+Any other photo slot can do the same: give its `<figure class="photo">` a `data-video="assets/video/name.mp4"` attribute
+(already added to the About, What to expect and two Gallery slots). If the file is missing the slot falls back to its photo.
+
+| File | Clip |
+| --- | --- |
+| `assets/video/hero.mp4` | Horizontal 16:9 clip of a lash artist at work, 8 to 15 seconds, no audio |
+| `assets/video/about.mp4` | Studio or artist at work, portrait 3:4, 5 to 10 seconds |
+| `assets/video/expect.mp4` | Client resting during a set, portrait 4:5, 5 to 10 seconds |
+| `assets/video/gallery-2.mp4`, `gallery-4.mp4` | Finished set close-ups, 5 to 10 seconds |
+
+Scrubbing is smoothest when every frame is a keyframe. Export with:
+
+```
+ffmpeg -i input.mp4 -vf scale=1920:-2 -an -c:v libx264 -g 1 -crf 24 -movflags +faststart assets/video/hero.mp4
+```
+
+Keep each file under about 15 MB. The host must support range requests (every normal host does).
+
 ## Photos
 Every `<figure class="photo">` is a photo slot. Add the image to `assets/photos/` with the file name already
 used in `index.html` and it appears automatically. Until then the slot shows a soft colour block and a note
