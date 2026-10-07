@@ -37,7 +37,7 @@ describing the photo it needs.
 | `look-natural.jpg`, `look-doll.jpg`, `look-cat.jpg`, `look-squirrel.jpg` | Both eyes open, one per lash map (landscape 4:3) |
 | `gallery-1.jpg` to `gallery-6.jpg` | Recent sets. All six are included |
 | `expect.jpg` | Lash artist placing a set (included, portrait 4:5) |
-| `book.jpg` | Studio entrance or treatment room (portrait 4:5) |
+| `book.jpg` | The studio interior (included, portrait 4:5) |
 
 Use real photos of real work, 2000 px on the long edge, JPG or WebP under 300 KB.
 
