@@ -36,7 +36,7 @@ describing the photo it needs.
 | `service-classic.jpg`, `service-hybrid.jpg`, `service-volume.jpg`, `service-mega.jpg`, `service-lift.jpg` | One photo per service (included, portrait 4:5). Shown when hovering a row on desktop, and as a thumbnail on phones |
 | `look-natural.jpg`, `look-doll.jpg`, `look-cat.jpg`, `look-squirrel.jpg` | Both eyes open, one per lash map (landscape 4:3) |
 | `gallery-1.jpg` to `gallery-6.jpg` | Recent sets. All six are included |
-| `expect.jpg` | Client resting during a set (portrait 4:5) |
+| `expect.jpg` | Lash artist placing a set (included, portrait 4:5) |
 | `book.jpg` | Studio entrance or treatment room (portrait 4:5) |
 
 Use real photos of real work, 2000 px on the long edge, JPG or WebP under 300 KB.
