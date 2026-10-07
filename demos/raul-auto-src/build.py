@@ -445,7 +445,7 @@ def services():
     graph = ld({"@graph": [service_ld(s[1], s[4], "services.html#" + s[0]) for s in SERVICES]})
     body = page_hero('Full-service repair.<br><span class="soft">Bumper to bumper.</span>',
                      "Everything a car needs to stay on the road, from oil changes to electrical diagnostics. The only thing we don't do is body work.",
-                     "still-wheel.jpg", "Close-up of a ten-spoke wheel and yellow brake caliper on a red sports car") + f"""
+                     "photo-undercarriage.jpg", "Underside of a car on a lift showing the wheel, suspension and exhaust", "50% 40%") + f"""
 <section>
   <div class="wrap">
 {chr(10).join(blocks)}
