@@ -13,7 +13,7 @@ Any other photo slot can do the same: give its `<figure class="photo">` a `data-
 | `assets/video/hero.mp4` (+ `hero.webm`) | Horizontal 16:9 clip of a lash artist at work (included) |
 | `assets/video/about.mp4` (+ `about.webm`) | Portrait of the owner (included) |
 | `assets/video/expect.mp4` | Client resting during a set, portrait 4:5, 5 to 10 seconds |
-| `assets/video/look-doll.mp4`, `look-cat.mp4` (+ `.webm`) | Included. Add `look-natural.mp4` and `look-squirrel.mp4` and a `data-video` attribute on those two figures |
+| `assets/video/look-doll.mp4`, `look-cat.mp4` (+ `.webm`) | Doll, Cat eye and Natural are included. Add `look-squirrel.mp4` and a `data-video="assets/video/look-squirrel.mp4"` attribute on its figure |
 | `assets/video/gallery-2.mp4`, `gallery-4.mp4` | Finished set close-ups, 5 to 10 seconds |
 
 Scrubbing is smoothest when every frame is a keyframe. Export with:
