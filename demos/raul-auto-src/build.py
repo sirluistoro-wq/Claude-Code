@@ -385,7 +385,7 @@ def home():
 
 <section class="section" id="specialty">
   <div class="wrap feature">
-    <figure class="media reveal"><img src="assets/still-front.jpg" alt="Red sports car on a desert highway at sunset, front three-quarter view" loading="lazy"></figure>
+    <figure class="media reveal"><img src="assets/photo-engine-bay.jpg" alt="Mechanic working in the engine bay of a car with the hood open" loading="lazy" style="object-position:60% 50%"></figure>
     <div class="feature-copy reveal">
       <h2>The jobs other shops send away.</h2>
       <p class="statement">{statement}</p>
