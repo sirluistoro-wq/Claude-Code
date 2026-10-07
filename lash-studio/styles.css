@@ -161,7 +161,7 @@ p { color: var(--muted); }
 }
 .hero__video .photo__in { top: 0; height: 100%; scale: calc(1.18 - var(--p) * .18); }
 .hero__video .photo__in video { object-position: center; }
-.hero__shade { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(20, 15, 12, .72), rgba(20, 15, 12, .12) 55%, rgba(20, 15, 12, .4)); }
+.hero__shade { position: absolute; inset: 0; z-index: 2; opacity: calc(1 - var(--p) * 1.15); background: linear-gradient(to top, rgba(20, 15, 12, .72), rgba(20, 15, 12, .12) 55%, rgba(20, 15, 12, .4)); }
 .hero__video figcaption { top: calc(var(--nav-h) + 1rem); bottom: auto; left: auto; right: var(--px); max-width: 22rem; text-align: right; z-index: 3; }
 .hero__copy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding-bottom: clamp(32px, 6vh, 72px); color: var(--bg); opacity: calc(1 - var(--p) * 1.7); translate: 0 calc(var(--p) * -70px); pointer-events: none; }
 .hero__copy a { pointer-events: auto; }

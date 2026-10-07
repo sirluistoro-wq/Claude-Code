@@ -150,7 +150,12 @@
     v.muted = true; v.defaultMuted = true; v.playsInline = true; v.preload = 'auto'; v.tabIndex = -1;
     v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
     v.addEventListener('loadeddata', () => { fig.classList.add('is-loaded', 'has-video'); }, { once: true });
-    v.addEventListener('error', () => v.remove(), { once: true });
+    // try the .mp4 first, then a .webm with the same name, then give up and keep the photo
+    let triedWebm = false;
+    v.addEventListener('error', () => {
+      if (!triedWebm && /\.mp4$/.test(fig.dataset.video)) { triedWebm = true; v.src = fig.dataset.video.replace(/\.mp4$/, '.webm'); }
+      else v.remove();
+    });
     v.src = fig.dataset.video;
     $('.photo__in', fig).appendChild(v);
     clips.push({ fig, v, hero: fig.classList.contains('hero__video') });
