@@ -273,7 +273,7 @@ def tow_band(link="towing.html", label="Get a tow"):
     return f"""<section class="section">
   <div class="wrap">
     <div class="band reveal">
-      <img src="assets/still-rear.jpg" alt="Red sports car driving down a desert highway at sunset" loading="lazy">
+      <img src="assets/photo-shop-bay.jpg" alt="Purple sports car with the hood up on a two-post lift in the shop" loading="lazy" style="object-position:62% 55%">
       <div class="band-copy">
         <h2>Broken down?<br>We'll get it here.</h2>
         <p>Our towing partner, Los Crazies Towing, brings your vehicle from anywhere in the valley straight to the shop.</p>
@@ -552,7 +552,7 @@ def insurance():
 def towing():
     body = page_hero('Broken down?<br><span class="soft">We\'ll get it here.</span>',
                      "If your car won't start or isn't safe to drive, our towing partner Los Crazies Towing can bring it straight to the shop.",
-                     "still-aerial.jpg", "Aerial view of a red sports car on an empty desert highway") + f"""
+                     "photo-shop-bay.jpg", "Purple sports car with the hood up on a two-post lift in the shop") + f"""
 <section class="section" style="padding-top:0">
   <div class="wrap panels">
     <div class="panel reveal">
