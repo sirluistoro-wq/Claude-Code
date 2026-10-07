@@ -7,6 +7,13 @@
 @font-face{font-family:'Jost';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/Jost-normal-300.ttf) format('truetype');}
 @font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/Jost-normal-400.ttf) format('truetype');}
 @font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/Jost-normal-500.ttf) format('truetype');}
+@font-face{font-family:'Libre Caslon Display';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/LibreCaslonDisplay-400.ttf) format('truetype');}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/HankenGrotesk-300.ttf) format('truetype');}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/HankenGrotesk-400.ttf) format('truetype');}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/HankenGrotesk-500.ttf) format('truetype');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/Outfit-300.ttf) format('truetype');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/Outfit-400.ttf) format('truetype');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/Outfit-500.ttf) format('truetype');}
 
 /* ───────────────────────────────────────────────────────────
    Verelle Lash Studio
@@ -29,6 +36,19 @@
   --px: clamp(20px, 4.4vw, 72px);
   --nav-h: 80px;
 }
+
+/* ── Typography options (temporary switcher, see .typesw) ── */
+html[data-type="b"] { --serif: 'Libre Caslon Display', 'Bodoni Moda', Georgia, serif; --sans: 'Hanken Grotesk', 'Jost', 'Helvetica Neue', Arial, sans-serif; }
+html[data-type="c"] { --serif: 'Outfit', 'Jost', 'Helvetica Neue', Arial, sans-serif; --sans: 'Outfit', 'Jost', 'Helvetica Neue', Arial, sans-serif; }
+html[data-type="c"] :is(.display, .h2, .nav__logo, .panel__name, .panel__vname, .look h3, .steps h3, .rev p, .acc__q span, .sign, .loader__name, .menu a, .panel__meta dd, .panel__no, .steps span, .about__text .sign) { font-weight: 300; }
+html[data-type="c"] :is(.display, .h2) { letter-spacing: -.04em; }
+html[data-type="b"] body { font-weight: 300; }
+html[data-type="b"] :is(.display, .h2) { letter-spacing: -.012em; }
+
+.typesw { position: fixed; left: 12px; bottom: 12px; z-index: 80; display: flex; align-items: center; gap: 4px; padding: 5px 6px 5px 12px; background: rgba(30, 24, 21, .92); color: #F4F0EA; border-radius: 999px; font-family: 'Jost', system-ui, sans-serif; font-size: 12px; letter-spacing: .04em; box-shadow: 0 6px 24px rgba(0, 0, 0, .25); }
+.typesw span { opacity: .7; margin-right: 4px; }
+.typesw button { width: 28px; height: 28px; border-radius: 50%; font-size: 12px; color: inherit; transition: background .3s, color .3s; }
+.typesw button[aria-pressed="true"] { background: #F4F0EA; color: #1E1815; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
