@@ -35,7 +35,7 @@ describing the photo it needs.
 | `about.jpg` | The studio, or the lash artist at work (portrait 3:4) |
 | `service-classic.jpg`, `service-hybrid.jpg`, `service-volume.jpg`, `service-mega.jpg`, `service-lift.jpg` | One photo per service (included, portrait 4:5). Shown when hovering a row on desktop, and as a thumbnail on phones |
 | `look-natural.jpg`, `look-doll.jpg`, `look-cat.jpg`, `look-squirrel.jpg` | Both eyes open, one per lash map (landscape 4:3) |
-| `gallery-1.jpg` to `gallery-6.jpg` | Recent sets. 1 to 5 are included, `gallery-6.jpg` (square) is still empty |
+| `gallery-1.jpg` to `gallery-6.jpg` | Recent sets. All six are included |
 | `expect.jpg` | Client resting during a set (portrait 4:5) |
 | `book.jpg` | Studio entrance or treatment room (portrait 4:5) |
 
