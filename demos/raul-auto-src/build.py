@@ -514,7 +514,7 @@ def insurance():
       </div>""" for n, d in lenders)
     body = page_hero('Covered repairs.<br><span class="soft">Flexible payments.</span>',
                      "We work directly with insurance and extended warranty companies, and offer financing through Affirm, Sunbit and Klarna.",
-                     "still-lights.jpg", "LED headlight detail on a red sports car at dusk") + f"""
+                     "photo-financing.jpg", "Cash, a calculator and a car key fob laid out on a table", "50% 55%") + f"""
 <section class="section" id="claims">
   <div class="wrap panels">
     <div class="panel reveal">
