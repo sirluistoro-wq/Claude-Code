@@ -1,5 +1,7 @@
 // Renders the hero videos and the section stills from car-scene.js and encodes them with ffmpeg.
-// Usage: node render.js <path/to/three.min.js r128> <out assets dir>
+// Usage: node render.js <path/to/three.min.js r128> <out assets dir> [--videos]
+// The live hero uses stock footage (see README in this folder); pass --videos only to
+// re-render the 3D hero clips over it. Without it, only the section stills are rendered.
 // Needs Playwright (Chromium) and ffmpeg on PATH.
 const { chromium } = require('playwright');
 const fs = require('fs');
@@ -21,7 +23,7 @@ const VARIANTS = [
 
 (async () => {
   const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
-  for (const v of VARIANTS) {
+  for (const v of (process.argv.includes('--videos') ? VARIANTS : [])) {
     const tmp = fs.mkdtempSync(path.join(require('os').tmpdir(), 'hero-' + v.name + '-'));
     const page = await browser.newPage({ viewport: { width: v.w, height: v.h } });
     await page.route('**/three.min.js', r => r.fulfill({ body: fs.readFileSync(THREE_JS), contentType: 'application/javascript' }));
