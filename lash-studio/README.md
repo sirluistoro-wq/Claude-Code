@@ -55,3 +55,7 @@ Use real photos of real work, 2000 px on the long edge, JPG or WebP under 300 KB
 ## Design notes
 - Services are expanding photo panels (hover on desktop, tap on phones, arrow keys / Tab for keyboards). Each panel has a "Book" button that preselects the service in the form.
 - "What to expect" is a timeline: the step nearest the middle of the screen fills in and a line grows as you scroll.
+
+## Brand
+- Typeface: Outfit (self-hosted in `assets/fonts`), light weight for headlines.
+- Logo: a closed eye with a fan of lashes plus the lowercase wordmark "verelle". The mark is inline SVG (search `logo__mark` in `index.html`), so it takes the text colour. It is used in the header, the intro screen, the footer and the browser tab icon. To use the client's own logo, replace the `<svg class="logo__mark">` and the `logo__word` text.

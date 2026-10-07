@@ -219,22 +219,6 @@
     requestAnimationFrame(frame);
   })();
 
-  /* ── Typography options (temporary): A, B or C, remembered between visits ── */
-  (function typeSwitcher() {
-    const box = $('#typesw'); if (!box) return;
-    const apply = (t) => {
-      root.dataset.type = t;
-      $$('button', box).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.t === t)));
-      try { localStorage.setItem('verelle-type', t); } catch (e) {}
-      dirty = true;
-    };
-    let t = 'a';
-    try { t = localStorage.getItem('verelle-type') || t; } catch (e) {}
-    const q = new URLSearchParams(location.search).get('type'); if (q) t = q;
-    $$('button', box).forEach((b) => b.addEventListener('click', () => apply(b.dataset.t)));
-    apply(['a', 'b', 'c'].includes(t) ? t : 'a');
-  })();
-
   /* ── Intro ── */
   const loader = $('#loader');
   let started = false;
