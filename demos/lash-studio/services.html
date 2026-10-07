@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Services & Pricing · Velour</title>
+<meta name="description" content="Lash extension sets, fills, lash lifts and brow lamination at Velour Lash Studio, with prices, timing and booking policy." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/site.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='17' fill='%231D1520'/%3E%3Cpath d='M6 20 Q17 10 28 20' fill='none' stroke='%23F5EDEF' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M11 16.5 L9 12 M14.5 14.6 L13.6 10 M17 14 L17 9.5 M19.5 14.6 L20.4 10 M23 16.5 L25 12' stroke='%23F5EDEF' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="services">
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Velour Lash Studio home"><svg viewBox="0 0 34 20" aria-hidden="true"><path d="M2 14 Q17 2 32 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 9.6 L5 4 M12.5 7.4 L11 1.5 M17 6.8 L17 1 M21.5 7.4 L23 1.5 M26 9.6 L29 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span>Velour</span></a>
+    <ul class="nav-links"><li><a href="services.html" aria-current="page">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="about.html">About</a></li><li><a href="aftercare.html">Aftercare</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <div class="nav-right">
+      <a class="btn sm" href="book.html">Book now <span class="arrow" aria-hidden="true">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <a class="big" href="index.html">Home<small>01</small></a><a class="big" href="services.html" aria-current="page">Services<small>02</small></a><a class="big" href="gallery.html">Gallery<small>03</small></a><a class="big" href="about.html">About<small>04</small></a><a class="big" href="aftercare.html">Aftercare<small>05</small></a><a class="big" href="contact.html">Contact<small>06</small></a><a class="big" href="book.html">Book<small>07</small></a>
+  <div class="drawer-foot"><span>Tue–Fri 10–7 · Sat 9–4</span><a class="btn" href="book.html">Book your set <span class="arrow" aria-hidden="true">→</span></a></div>
+</div>
+
+<main>
+
+<header class="page-head">
+  <div class="wrap">
+    <div>
+      <p class="crumbs"><a href="index.html">Home</a> / Services</p>
+      <p class="eyebrow" style="margin-top:28px">Services &amp; pricing</p>
+      <h1><span class="line"><span>Every set,</span></span><span class="line"><span><em class="it">priced</em> plainly.</span></span></h1>
+    </div>
+    <p class="lede">Every price includes a consultation and a custom lash map. No surprise upcharges for length or curl.</p>
+  </div>
+</header>
+<section class="block">
+  <div class="wrap">
+    <div class="tabs chips" id="svcTabs" role="group" aria-label="Filter services">
+      <button type="button" class="chip" data-g="all" aria-pressed="true">All services</button>
+      <button type="button" class="chip" data-g="sets" aria-pressed="false">Full sets</button>
+      <button type="button" class="chip" data-g="fills" aria-pressed="false">Fills</button>
+      <button type="button" class="chip" data-g="natural" aria-pressed="false">Lifts &amp; brows</button>
+    </div>
+    <div class="svc-list" id="svcList"></div>
+  </div>
+</section>
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><div><p class="eyebrow">Extras</p><h2>Add-ons</h2></div><p>Add these to any appointment when you book, or ask on the day.</p></div>
+    <div class="addons rv" id="addons"></div>
+  </div>
+</section>
+<section class="block booking">
+  <div class="wrap">
+    <div class="sec-head rv"><div><p class="eyebrow">Before you book</p><h2>Booking policy</h2></div><p>Short version: give 48 hours' notice, arrive with clean eyes, and book fills before you drop under 40%.</p></div>
+    <div class="policy">
+      <div class="rv"><span class="eyebrow">Deposit</span><h3>$25 holds your spot</h3><p>Taken when you book and taken off your total on the day.</p></div>
+      <div class="rv"><span class="eyebrow">Changes</span><h3>48 hours' notice</h3><p>Change or cancel free up to 48 hours before. Later than that, the deposit covers the reserved time.</p></div>
+      <div class="rv"><span class="eyebrow">Fills</span><h3>40% rule</h3><p>Fills need at least 40% of your set remaining. Under that, a new full set is booked instead.</p></div>
+    </div>
+  </div>
+</section>
+<section class="cta">
+  <div class="wrap rv">
+    <p class="eyebrow">Your next set</p>
+    <h2 style="margin-top:20px">Ready when <em class="it">you</em> are.</h2>
+    <p>Openings this week go fast. Grab a time now and come in with nothing to do but lie back.</p>
+    <a class="btn" href="book.html">Book your appointment <span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Velour Lash Studio home"><svg viewBox="0 0 34 20" aria-hidden="true"><path d="M2 14 Q17 2 32 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 9.6 L5 4 M12.5 7.4 L11 1.5 M17 6.8 L17 1 M21.5 7.4 L23 1.5 M26 9.6 L29 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span style="color:var(--ink)">Velour</span></a>
+    <div class="cols">
+      <div><h4>Visit</h4><p>Tue–Fri · 10am–7pm<br />Sat · 9am–4pm<br />Private suite, by appointment</p></div>
+      <div><h4>Explore</h4><p><a href="services.html">Services &amp; pricing</a><br /><a href="gallery.html">Lash map gallery</a><br /><a href="aftercare.html">Aftercare &amp; FAQ</a></p></div>
+      <div><h4>Studio</h4><p><a href="about.html">About Mara</a><br /><a href="contact.html">Contact</a><br /><a href="book.html">Book online</a></p></div>
+      <div><h4>Follow</h4><p>@velourlash</p></div>
+    </div>
+    <p class="credit">Concept website designed &amp; built from scratch by TORO GROWTH. Velour, Mara, contact details and all reviews are placeholders for demonstration.</p>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar">
+  <small>Next opening<br /><span data-next-open>This week</span></small>
+  <a class="btn" href="book.html">Book now <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>
