@@ -33,7 +33,7 @@ describing the photo it needs.
 | `hero-main.jpg` | Finished set, close-up, eyes closed, soft window light (portrait 4:5) |
 | `hero-side.jpg` | Hands and tweezers placing a lash (landscape 4:3) |
 | `about.jpg` | The studio, or the lash artist at work (portrait 3:4) |
-| `service-classic.jpg`, `service-hybrid.jpg`, `service-volume.jpg`, `service-mega.jpg`, `service-lift.jpg` | One finished set per service (portrait 4:5), shown when hovering a service row |
+| `service-classic.jpg`, `service-hybrid.jpg`, `service-volume.jpg`, `service-mega.jpg`, `service-lift.jpg` | One photo per service (included, portrait 4:5). Shown when hovering a row on desktop, and as a thumbnail on phones |
 | `look-natural.jpg`, `look-doll.jpg`, `look-cat.jpg`, `look-squirrel.jpg` | Eye open, side angle, one per lash map (portrait 3:4) |
 | `gallery-1.jpg` to `gallery-6.jpg` | Recent sets, mixed portrait, square and landscape |
 | `expect.jpg` | Client resting during a set (portrait 4:5) |
