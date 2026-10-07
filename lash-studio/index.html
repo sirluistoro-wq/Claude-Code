@@ -98,50 +98,77 @@
           <p data-reveal>Prices are starting prices and depend on your natural lashes. Your first visit includes a short consultation at no charge.</p>
         </header>
 
-        <ul class="menu-list" id="menuList">
-          <li class="row" data-i="0">
-            <img class="row__thumb" src="assets/photos/service-classic.jpg" alt="" loading="lazy" onerror="this.remove()">
-            <h3>Classic</h3>
-            <p>One extension on each natural lash. Soft, neat and natural, like wearing mascara without the mascara.</p>
-            <span class="row__time">2 hours</span><span class="row__price">$140</span>
-          </li>
-          <li class="row" data-i="1">
-            <img class="row__thumb" src="assets/photos/service-hybrid.jpg" alt="" loading="lazy" onerror="this.remove()">
-            <h3>Hybrid</h3>
-            <p>A mix of classic lashes and handmade fans for a little more texture and fullness.</p>
-            <span class="row__time">2 h 15 min</span><span class="row__price">$165</span>
-          </li>
-          <li class="row" data-i="2">
-            <img class="row__thumb" src="assets/photos/service-volume.jpg" alt="" loading="lazy" onerror="this.remove()">
-            <h3>Volume</h3>
-            <p>Lightweight fans on every lash for a full, soft and fluffy look.</p>
-            <span class="row__time">2 h 30 min</span><span class="row__price">$185</span>
-          </li>
-          <li class="row" data-i="3">
-            <img class="row__thumb" src="assets/photos/service-mega.jpg" alt="" loading="lazy" onerror="this.remove()">
-            <h3>Mega volume</h3>
-            <p>The fullest, darkest set we do. Best if you want your lashes to be noticed.</p>
-            <span class="row__time">3 hours</span><span class="row__price">$210</span>
-          </li>
-          <li class="row" data-i="4">
-            <img class="row__thumb" src="assets/photos/service-lift.jpg" alt="" loading="lazy" onerror="this.remove()">
-            <h3>Lash lift &amp; tint</h3>
-            <p>Your own lashes, curled and darkened. No extensions and no fills, and it lasts about six weeks.</p>
-            <span class="row__time">1 h 15 min</span><span class="row__price">$95</span>
-          </li>
-        </ul>
+        <div class="panels" id="panels" data-stagger>
+          <article class="panel is-active" style="--i:0;--bg:#DCCFC0" tabindex="0" role="button" aria-expanded="true" aria-label="Classic, from $140" data-service="Classic">
+            <img class="panel__img" src="assets/photos/service-classic.jpg" alt="" loading="lazy" onerror="this.remove()">
+            <span class="panel__shade"></span>
+            <span class="panel__no">01</span>
+            <span class="panel__vname">Classic</span>
+            <span class="panel__tag">$140</span>
+            <div class="panel__inner">
+              <h3 class="panel__name">Classic</h3>
+              <p>One extension on each natural lash. Soft, neat and natural, like wearing mascara without the mascara.</p>
+              <dl class="panel__meta"><div><dt>Time</dt><dd>2 hours</dd></div><div><dt>From</dt><dd>$140</dd></div></dl>
+              <a href="#book" class="panel__cta">Book Classic<svg viewBox="0 0 24 8" aria-hidden="true"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></a>
+            </div>
+          </article>
+          <article class="panel" style="--i:1;--bg:#E0CDBE" tabindex="0" role="button" aria-expanded="false" aria-label="Hybrid, from $165" data-service="Hybrid">
+            <img class="panel__img" src="assets/photos/service-hybrid.jpg" alt="" loading="lazy" onerror="this.remove()">
+            <span class="panel__shade"></span>
+            <span class="panel__no">02</span>
+            <span class="panel__vname">Hybrid</span>
+            <span class="panel__tag">$165</span>
+            <div class="panel__inner">
+              <h3 class="panel__name">Hybrid</h3>
+              <p>A mix of classic lashes and handmade fans for a little more texture and fullness.</p>
+              <dl class="panel__meta"><div><dt>Time</dt><dd>2 h 15 min</dd></div><div><dt>From</dt><dd>$165</dd></div></dl>
+              <a href="#book" class="panel__cta">Book Hybrid<svg viewBox="0 0 24 8" aria-hidden="true"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></a>
+            </div>
+          </article>
+          <article class="panel" style="--i:2;--bg:#CDBCAB" tabindex="0" role="button" aria-expanded="false" aria-label="Volume, from $185" data-service="Volume">
+            <img class="panel__img" src="assets/photos/service-volume.jpg" alt="" loading="lazy" onerror="this.remove()">
+            <span class="panel__shade"></span>
+            <span class="panel__no">03</span>
+            <span class="panel__vname">Volume</span>
+            <span class="panel__tag">$185</span>
+            <div class="panel__inner">
+              <h3 class="panel__name">Volume</h3>
+              <p>Lightweight fans on every lash for a full, soft and fluffy look.</p>
+              <dl class="panel__meta"><div><dt>Time</dt><dd>2 h 30 min</dd></div><div><dt>From</dt><dd>$185</dd></div></dl>
+              <a href="#book" class="panel__cta">Book Volume<svg viewBox="0 0 24 8" aria-hidden="true"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></a>
+            </div>
+          </article>
+          <article class="panel" style="--i:3;--bg:#4A3C34" tabindex="0" role="button" aria-expanded="false" aria-label="Mega volume, from $210" data-service="Mega volume">
+            <img class="panel__img" src="assets/photos/service-mega.jpg" alt="" loading="lazy" onerror="this.remove()">
+            <span class="panel__shade"></span>
+            <span class="panel__no">04</span>
+            <span class="panel__vname">Mega volume</span>
+            <span class="panel__tag">$210</span>
+            <div class="panel__inner">
+              <h3 class="panel__name">Mega volume</h3>
+              <p>The fullest, darkest set we do. Best if you want your lashes to be noticed.</p>
+              <dl class="panel__meta"><div><dt>Time</dt><dd>3 hours</dd></div><div><dt>From</dt><dd>$210</dd></div></dl>
+              <a href="#book" class="panel__cta">Book Mega volume<svg viewBox="0 0 24 8" aria-hidden="true"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></a>
+            </div>
+          </article>
+          <article class="panel" style="--i:4;--bg:#E9E1D6" tabindex="0" role="button" aria-expanded="false" aria-label="Lash lift & tint, from $95" data-service="Lash lift & tint">
+            <img class="panel__img" src="assets/photos/service-lift.jpg" alt="" loading="lazy" onerror="this.remove()">
+            <span class="panel__shade"></span>
+            <span class="panel__no">05</span>
+            <span class="panel__vname">Lash lift &amp; tint</span>
+            <span class="panel__tag">$95</span>
+            <div class="panel__inner">
+              <h3 class="panel__name">Lash lift &amp; tint</h3>
+              <p>Your own lashes, curled and darkened. No extensions and no fills, and it lasts about six weeks.</p>
+              <dl class="panel__meta"><div><dt>Time</dt><dd>1 h 15 min</dd></div><div><dt>From</dt><dd>$95</dd></div></dl>
+              <a href="#book" class="panel__cta">Book Lash lift & tint<svg viewBox="0 0 24 8" aria-hidden="true"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></a>
+            </div>
+          </article>
+        </div>
 
         <p class="services__note" data-reveal>Fills from $75. Removal from $40. A deposit holds your appointment and is taken off your total.</p>
       </div>
 
-      <!-- Follows the cursor on desktop -->
-      <div class="preview" id="preview" aria-hidden="true">
-        <figure class="photo" data-tone="a"><div class="photo__in"><img src="assets/photos/service-classic.jpg" alt="" /></div><figcaption>Photo: Classic set</figcaption></figure>
-        <figure class="photo" data-tone="b"><div class="photo__in"><img src="assets/photos/service-hybrid.jpg" alt="" /></div><figcaption>Photo: Hybrid set</figcaption></figure>
-        <figure class="photo" data-tone="c"><div class="photo__in"><img src="assets/photos/service-volume.jpg" alt="" /></div><figcaption>Photo: Volume set</figcaption></figure>
-        <figure class="photo" data-tone="d"><div class="photo__in"><img src="assets/photos/service-mega.jpg" alt="" /></div><figcaption>Photo: Mega volume set</figcaption></figure>
-        <figure class="photo" data-tone="e"><div class="photo__in"><img src="assets/photos/service-lift.jpg" alt="" /></div><figcaption>Photo: Lash lift</figcaption></figure>
-      </div>
     </section>
 
     <!-- Looks -->
@@ -217,10 +244,10 @@
         <div class="expect__text">
           <h2 class="h2" data-reveal>What to expect</h2>
           <ol class="steps">
-            <li data-reveal><span>1</span><div><h3>Consultation</h3><p>We look at your natural lashes, talk through the look you want and decide on length, curl and fullness.</p></div></li>
-            <li data-reveal><span>2</span><div><h3>Prep</h3><p>Your lashes are cleansed, under-eye pads go on and your natural lashes are separated so each one can be treated alone.</p></div></li>
-            <li data-reveal><span>3</span><div><h3>Application</h3><p>Lie back and close your eyes. Most people nap. Each extension is attached to a single natural lash.</p></div></li>
-            <li data-reveal><span>4</span><div><h3>Aftercare</h3><p>Keep them dry for 24 hours, brush daily and book a fill every two to three weeks. We send you a one-page guide.</p></div></li>
+            <li><span>01</span><div><h3>Consultation</h3><p>We look at your natural lashes, talk through the look you want and decide on length, curl and fullness.</p></div></li>
+            <li><span>02</span><div><h3>Prep</h3><p>Your lashes are cleansed, under-eye pads go on and your natural lashes are separated so each one can be treated alone.</p></div></li>
+            <li><span>03</span><div><h3>Application</h3><p>Lie back and close your eyes. Most people nap. Each extension is attached to a single natural lash.</p></div></li>
+            <li><span>04</span><div><h3>Aftercare</h3><p>Keep them dry for 24 hours, brush daily and book a fill every two to three weeks. We send you a one-page guide.</p></div></li>
           </ol>
         </div>
       </div>

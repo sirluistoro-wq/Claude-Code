@@ -51,3 +51,7 @@ Use real photos of real work, 2000 px on the long edge, JPG or WebP under 300 KB
 - Two columns from 741 px up, one column below; phones held sideways keep two columns.
 - On very large screens everything scales up (root font size) instead of leaving small text in a huge window.
 - Phones load lighter video files (`hero-m`, `about-m`, `look-natural-m`) when they exist.
+
+## Design notes
+- Services are expanding photo panels (hover on desktop, tap on phones, arrow keys / Tab for keyboards). Each panel has a "Book" button that preselects the service in the form.
+- "What to expect" is a timeline: the step nearest the middle of the screen fills in and a line grows as you scroll.

@@ -87,41 +87,26 @@
       io.unobserve(en.target);
     });
   }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
-  $$('[data-reveal], .photo:not(.hero__video)').forEach((el) => {
-    if (el.closest('.preview')) return;
-    io.observe(el);
-  });
+  $$('[data-reveal], [data-stagger], .photo:not(.hero__video)').forEach((el) => io.observe(el));
 
-  /* ── Services: photo follows the cursor ── */
-  const list = $('#menuList'), preview = $('#preview');
-  if (finePointer && !reduced) {
-    const items = $$('.photo', preview);
-    const rows = $$('.row', list);
-    let mx = 0, my = 0, px = 0, py = 0, active = false;
-    const w = () => preview.offsetWidth, h = () => preview.offsetHeight;
-    list.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
-    rows.forEach((row, i) => {
-      row.addEventListener('mouseenter', (e) => {
-        if (!active) { px = mx = e.clientX; py = my = e.clientY; }
-        active = true;
-        list.classList.add('is-hovering');
-        rows.forEach((r) => r.classList.toggle('is-on', r === row));
-        items.forEach((it, k) => it.classList.toggle('is-on', k === i));
-        preview.classList.add('is-on');
-      });
-    });
-    list.addEventListener('mouseleave', () => {
-      active = false;
-      list.classList.remove('is-hovering');
-      rows.forEach((r) => r.classList.remove('is-on'));
-      preview.classList.remove('is-on');
-    });
-    (function follow() {
-      px = lerp(px, mx, .14); py = lerp(py, my, .14);
-      preview.style.transform = `translate3d(${px + 28}px, ${py - h() / 2}px, 0) rotate(${clamp((mx - px) * .05, -6, 6)}deg)`;
-      requestAnimationFrame(follow);
-    })();
+  /* ── Services: expanding photo panels ── */
+  const panels = $$('.panel');
+  const hoverPointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  function openPanel(p) {
+    panels.forEach((x) => { const on = x === p; x.classList.toggle('is-active', on); x.setAttribute('aria-expanded', String(on)); });
   }
+  panels.forEach((p) => {
+    p.addEventListener('click', () => openPanel(p));
+    // keyboard focus opens a panel; a tap or click does it on `click`, so the layout never shifts under a finger
+    p.addEventListener('focus', () => { if (p.matches(':focus-visible')) openPanel(p); });
+    p.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPanel(p); } });
+    if (hoverPointer) p.addEventListener('mouseenter', () => { if (innerWidth > 900) openPanel(p); });
+    // "Book ..." jumps to the form with the service already chosen
+    $('.panel__cta', p).addEventListener('click', () => {
+      const sel = $('#form').elements.service;
+      [...sel.options].forEach((o) => { if (o.text === p.dataset.service) sel.value = o.value || o.text; });
+    });
+  });
 
   /* ── FAQ accordion ── */
   const qs = $$('.acc__q');
@@ -165,9 +150,11 @@
   /* ── Scroll-linked: nav, hero stage, photo motion and clip scrubbing ── */
   const nav = $('#nav');
   const hero = $('#hero'), stage = $('.hero__stage');
-  const photos = $$('.photo').filter((f) => !f.closest('.preview') && !f.classList.contains('hero__video'));
+  const photos = $$('.photo').filter((f) => !f.classList.contains('hero__video'));
   let lastY = scrollY, hidden = false, vh = innerHeight, dirty = true, heroP = 0, scrubbing = false;
   const progress = (r) => clamp((vh - r.top) / (vh + r.height));
+
+  const stepsEl = $('.steps'), stepItems = $$('.steps li');
 
   function effects() {
     const y = scrollY;
@@ -182,6 +169,14 @@
       const hide = dy > 0 && y > 500 && !onHero && !menu.classList.contains('is-open');
       if (hide !== hidden) { hidden = hide; nav.classList.toggle('is-hidden', hidden); }
       lastY = y;
+    }
+    // timeline: the step nearest the middle of the screen lights up and the line fills
+    const sr = stepsEl.getBoundingClientRect();
+    if (sr.top < vh && sr.bottom > 0) {
+      stepsEl.style.setProperty('--sp', clamp((vh * .55 - sr.top) / sr.height).toFixed(3));
+      let best = 0, bestD = Infinity;
+      stepItems.forEach((li, i) => { const r = li.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - vh * .5); if (d < bestD) { bestD = d; best = i; } });
+      stepItems.forEach((li, i) => li.classList.toggle('is-current', i === best));
     }
     if (!reduced) photos.forEach((fig) => {
       const r = fig.getBoundingClientRect();
