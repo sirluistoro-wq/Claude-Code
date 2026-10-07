@@ -32,6 +32,9 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+@media (min-width: 1800px) { html { font-size: 18px; } }
+@media (min-width: 2300px) { html { font-size: 22px; } }
+@media (min-width: 3000px) { html { font-size: 28px; } }
 body {
   background: var(--bg); color: var(--ink);
   font-family: var(--sans); font-weight: 300; font-size: 1.0625rem; line-height: 1.7;
@@ -45,7 +48,7 @@ ul, ol { list-style: none; }
 ::selection { background: var(--ink); color: var(--bg); }
 :focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
 
-.wrap { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: var(--px); }
+.wrap { width: 100%; max-width: 90rem; margin-inline: auto; padding-inline: var(--px); }
 
 /* ── Type ── */
 .display, .h2, .nav__logo, .row h3, .look h3, .steps h3, .rev p, .acc__q span, .sign {
@@ -306,19 +309,32 @@ p { color: var(--muted); }
   .nav__links { display: none; }
   .nav__burger { display: block; }
   .hero { height: 220vh; }
-  .about, .expect__grid, .book__grid, .faq__grid { grid-template-columns: 1fr; }
-  .about__text { padding-top: 0; }
-  .about__photo { max-width: 460px; }
+  .faq__grid { grid-template-columns: 1fr; }
+  .about__text { padding-top: clamp(0px, 4vw, 40px); }
   .services__head, .looks__head { grid-template-columns: 1fr; }
   .look:nth-child(even) { margin-top: 3rem; }
   .gallery__cols { grid-template-columns: 1fr 1fr; }
   .gcol--c { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; margin-top: 0; }
-  .expect__photo { position: relative; top: auto; max-width: 460px; }
   .faq__head { position: static; }
-  .book__photo { max-width: 460px; }
   .rev--1, .rev--2, .rev--3 { grid-column: 1 / -1; margin-top: 0; }
   .foot__grid { grid-template-columns: 1fr 1fr; }
   .preview { display: none; }
+}
+@media (max-width: 740px) {
+  .about, .expect__grid, .book__grid { grid-template-columns: 1fr; }
+  .about__text { padding-top: 0; }
+  .about__photo, .book__photo, .expect__photo { max-width: 460px; }
+  .expect__photo { position: relative; top: auto; }
+}
+/* Phones held sideways: keep two columns instead of one giant photo */
+@media (max-width: 740px) and (orientation: landscape) and (max-height: 560px) {
+  .about, .expect__grid, .book__grid { grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+  .about__photo, .book__photo, .expect__photo { max-width: none; }
+  .expect__photo { position: sticky; top: calc(var(--nav-h) + 12px); }
+  .about, .looks, .services, .expect, .book, .faq, .reviews { padding-block: 56px; }
+  .faq__grid { grid-template-columns: 1fr 2fr; gap: 1.6rem; }
+  .faq__head { position: static; }
+  .foot__grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px) {
   :root { --nav-h: 68px; }
@@ -339,6 +355,39 @@ p { color: var(--muted); }
   .hero__copy .display { font-size: clamp(2.7rem, 12vw, 4rem); }
   .hero__video figcaption { display: none; }
   .foot__grid { grid-template-columns: 1fr; }
+}
+
+/* Short screens (phones held sideways, small laptop windows): keep the hero text clear of the nav */
+@media (max-height: 560px) {
+  :root { --nav-h: 60px; }
+  .hero__copy .display { font-size: min(11vh, 7vw); margin-bottom: .8rem; }
+  .hero__copy { padding-bottom: 1.2rem; }
+  .hero__lede { display: none; }
+  .hero__row { justify-content: flex-start; }
+  .nav__logo { font-size: 1.6rem; }
+  .menu a { font-size: clamp(1.6rem, 9vh, 2.4rem); }
+}
+@media (max-height: 560px) and (max-width: 1000px) { .menu { flex-flow: row wrap; align-content: center; gap: .2rem 2rem; } }
+/* Very narrow phones */
+@media (max-width: 360px) {
+  .hero__copy .display { font-size: clamp(2.3rem, 11vw, 4rem); }
+  .nav__logo { font-size: 1.6rem; }
+  .h2 { font-size: 2rem; }
+  .row h3 { font-size: 1.35rem; }
+  .row { grid-template-columns: 68px 1fr auto; }
+  .row__thumb { width: 68px; }
+  .btn { padding-inline: 1.4rem; }
+}
+/* Phones and tablets without a mouse: no hover-only affordances, comfortable tap targets */
+@media (hover: none) {
+  .acc__q { padding-block: 1.3rem; }
+  .nav__link, .link { padding-block: 8px; }
+}
+/* Respect notches and rounded corners */
+@supports (padding: max(0px)) {
+  .nav { padding-left: max(var(--px), env(safe-area-inset-left)); padding-right: max(var(--px), env(safe-area-inset-right)); }
+  .wrap { padding-left: max(var(--px), env(safe-area-inset-left)); padding-right: max(var(--px), env(safe-area-inset-right)); }
+  .foot__bot { padding-bottom: max(1.8rem, env(safe-area-inset-bottom)); }
 }
 
 @media (prefers-reduced-motion: reduce) {

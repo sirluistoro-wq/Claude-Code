@@ -45,3 +45,9 @@ Use real photos of real work, 2000 px on the long edge, JPG or WebP under 300 KB
 - Name, copy, prices, address: search `Verelle` and edit the text in `index.html`.
 - Colours and fonts: variables at the top of `styles.css`.
 - Booking form: front-end only. Connect the `#form` submit handler in `main.js` to the client's booking tool.
+
+## Responsive notes
+- Tested from 320 px phones to 2560 px monitors, portrait and landscape, with no horizontal scroll.
+- Two columns from 741 px up, one column below; phones held sideways keep two columns.
+- On very large screens everything scales up (root font size) instead of leaving small text in a huge window.
+- Phones load lighter video files (`hero-m`, `about-m`, `look-natural-m`) when they exist.
