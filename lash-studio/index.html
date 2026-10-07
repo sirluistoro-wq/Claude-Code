@@ -3,369 +3,335 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Verelle — Lash Atelier</title>
-  <meta name="description" content="Verelle is a private lash atelier. Bespoke lash extensions, lifts and tints, designed around your eyes and applied by hand. By appointment only." />
-  <meta name="theme-color" content="#F3EEE6" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231D1714'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='38' text-anchor='middle' fill='%23F3EEE6'%3EV%3C/text%3E%3C/svg%3E" />
+  <title>Verelle Lash Studio</title>
+  <meta name="description" content="Verelle is a private lash studio offering classic, hybrid and volume lash extensions, lifts and tints, applied by hand. Book online." />
+  <meta name="theme-color" content="#F4F0EA" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231E1815'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' text-anchor='middle' fill='%23F4F0EA'%3EV%3C/text%3E%3C/svg%3E" />
   <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!--
-    PHOTO SLOTS
-    Every `.ph` block below is a photo slot. Right now each one shows an illustrated plate.
-    To use a real photograph, drop an <img> inside the block, for example:
-      <figure class="ph ph--arch" data-plate="doll" data-tone="ink"><img src="assets/photos/set-01.jpg" alt="Volume set, close-up"></figure>
-    The illustration is skipped automatically when an <img> is present.
+    PHOTOS
+    Every <figure class="photo"> is a photo slot. Put the image in assets/photos/ using the
+    file name already written in its <img src="...">. Until the file exists the slot shows a
+    soft colour block with a note describing the photo that belongs there.
   -->
 
-  <!-- Intro -->
   <div class="loader" id="loader" aria-hidden="true">
-    <svg class="loader__mark" viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
-      <path class="draw" d="M6 40 C 30 8, 90 8, 114 40" />
-      <path class="draw" d="M6 40 C 34 62, 86 62, 114 40" />
-      <path class="draw d2" d="M24 24 L16 8 M40 17 L35 1 M60 14 L60 -2 M80 17 L85 1 M96 24 L104 8" />
-    </svg>
     <div class="loader__name"><span>V</span><span>e</span><span>r</span><span>e</span><span>l</span><span>l</span><span>e</span></div>
   </div>
 
-  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
-
-  <!-- Header -->
   <header class="nav" id="nav">
-    <nav class="nav__side" aria-label="Primary">
+    <a href="#top" class="nav__logo" aria-label="Verelle Lash Studio, back to top">Verelle</a>
+    <nav class="nav__links" aria-label="Primary">
       <a href="#services" class="nav__link">Services</a>
-      <a href="#styles" class="nav__link">Styles</a>
-      <a href="#work" class="nav__link">Work</a>
-      <a href="#ritual" class="nav__link">The Ritual</a>
+      <a href="#looks" class="nav__link">Looks</a>
+      <a href="#gallery" class="nav__link">Gallery</a>
+      <a href="#faq" class="nav__link">FAQ</a>
+      <a href="#book" class="btn btn--sm"><span class="btn__roll" data-text="Book now"><em>Book now</em></span></a>
     </nav>
-    <a href="#top" class="nav__logo" aria-label="Verelle, back to top">Verelle</a>
-    <div class="nav__side nav__side--end">
-      <a href="#faq" class="nav__link">Questions</a>
-      <a href="#reserve" class="btn btn--sm" data-magnetic><span class="btn__roll" data-text="Reserve"><em>Reserve</em></span></a>
-    </div>
     <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
   </header>
 
   <div class="menu" id="menu">
     <a href="#services">Services</a>
-    <a href="#styles">Styles</a>
-    <a href="#work">Work</a>
-    <a href="#ritual">The Ritual</a>
-    <a href="#faq">Questions</a>
-    <a href="#reserve" class="menu__cta">Reserve</a>
+    <a href="#looks">Looks</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#faq">FAQ</a>
+    <a href="#book">Book now</a>
   </div>
 
   <main id="top">
 
     <!-- Hero -->
     <section class="hero" id="hero">
-      <div class="hero__grid wrap">
-        <div class="hero__copy">
-          <p class="eyebrow" data-hero="1">Lash Atelier &nbsp;/&nbsp; By appointment</p>
+      <div class="hero__inner wrap">
+        <div class="hero__text">
           <h1 class="display">
-            <span class="line"><span>Lashes,</span></span>
-            <span class="line"><span>composed with</span></span>
-            <span class="line"><span><i>intention.</i></span></span>
+            <span class="line"><span>Lashes that</span></span>
+            <span class="line"><span>look like yours,</span></span>
+            <span class="line"><span>just better.</span></span>
           </h1>
-          <p class="hero__lede" data-hero="2">A private studio for bespoke lash extensions, lifts and tints. Every set is mapped to your eye and applied entirely by hand, one lash at a time.</p>
-          <div class="hero__cta" data-hero="3">
-            <a href="#reserve" class="btn btn--solid" data-magnetic><span class="btn__roll" data-text="Reserve your appointment"><em>Reserve your appointment</em></span></a>
-            <a href="#services" class="link-arrow">View services <svg viewBox="0 0 24 8" aria-hidden="true"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor" stroke-width="1"/></svg></a>
+          <p class="hero__lede" data-hero="1">Classic, hybrid and volume lash extensions, applied by hand in a quiet private studio. Not sure what you want? Start with a consultation.</p>
+          <div class="hero__cta" data-hero="2">
+            <a href="#book" class="btn btn--solid"><span class="btn__roll" data-text="Book an appointment"><em>Book an appointment</em></span></a>
+            <a href="#services" class="link">See services and prices</a>
           </div>
         </div>
 
-        <div class="hero__art">
-          <figure class="ph ph--arch hero__main" data-plate="doll" data-tone="ink" data-parallax="-0.06">
-            <figcaption>Plate I &mdash; Doll</figcaption>
+        <div class="hero__photos">
+          <figure class="photo hero__main" data-tone="a" data-parallax="0.05">
+            <div class="photo__in"><img src="assets/photos/hero-main.jpg" alt="Close-up of a finished lash set, eyes closed" /></div>
+            <figcaption>Photo: close-up of a finished set, eyes closed, soft window light (portrait 4:5)</figcaption>
           </figure>
-          <figure class="ph ph--arch hero__side" data-plate="natural" data-tone="blush" data-parallax="0.09">
-            <figcaption>Plate II &mdash; Natural</figcaption>
+          <figure class="photo hero__side" data-tone="c" data-parallax="-0.07">
+            <div class="photo__in"><img src="assets/photos/hero-side.jpg" alt="Lash artist placing an extension with tweezers" /></div>
+            <figcaption>Photo: hands and tweezers placing a lash (landscape 4:3)</figcaption>
           </figure>
-          <div class="seal" aria-hidden="true">
-            <svg viewBox="0 0 200 200">
-              <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" /></defs>
-              <text><textPath href="#circ" startOffset="0" textLength="486" lengthAdjust="spacing">Bespoke · Made by hand · Lash Atelier · One at a time · </textPath></text>
-            </svg>
-            <b>V</b>
-          </div>
         </div>
       </div>
 
-      <div class="hero__foot wrap" data-hero="3">
-        <span class="meta">Private studio &mdash; Downtown</span>
-        <span class="scroll-cue"><i></i>Scroll</span>
-        <span class="meta">Tue &ndash; Sat &nbsp;·&nbsp; 10 &ndash; 7</span>
+      <div class="hero__info wrap" data-hero="2">
+        <span>128 Marlowe Street, Suite 4</span>
+        <span>Tuesday to Saturday, 10 am to 7 pm</span>
+        <span>(555) 014 2290</span>
       </div>
     </section>
 
-    <!-- Marquee -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <div class="marquee__group">
-          <span>Classic</span><i></i><span>Hybrid</span><i></i><span>Volume</span><i></i><span>Mega Volume</span><i></i><span>Lash Lift</span><i></i><span>Tint</span><i></i>
-        </div>
-        <div class="marquee__group">
-          <span>Classic</span><i></i><span>Hybrid</span><i></i><span>Volume</span><i></i><span>Mega Volume</span><i></i><span>Lash Lift</span><i></i><span>Tint</span><i></i>
-        </div>
+    <!-- About -->
+    <section class="about wrap">
+      <figure class="photo about__photo" data-tone="e" data-parallax="0.04">
+        <div class="photo__in"><img src="assets/photos/about.jpg" alt="Inside the Verelle studio" loading="lazy" /></div>
+        <figcaption>Photo: the studio or the lash artist at work (portrait 3:4)</figcaption>
+      </figure>
+      <div class="about__text">
+        <h2 class="h2" data-reveal>A small studio, on purpose.</h2>
+        <p class="lead" data-reveal>Verelle is a one-room studio. There is one chair and one lash artist, and we never double book, so you always see the same person and never feel rushed.</p>
+        <p data-reveal>Before we start, we talk about the look you want, how you wear your makeup and how much upkeep you are up for. Then we choose the length and curl that suit your eyes, and every lash is placed by hand.</p>
+        <p class="sign" data-reveal>Maria Alvarez<br><span>Lash artist and owner</span></p>
       </div>
-    </div>
-
-    <!-- Statement -->
-    <section class="statement wrap">
-      <p class="eyebrow" data-reveal>The philosophy</p>
-      <p class="statement__text" id="statement">The most beautiful lashes are the ones no one can quite place. We design each set around your eye shape, your lifestyle and your face, never more than you need, never less than you deserve.</p>
-      <dl class="stats">
-        <div data-reveal style="--d:.0s"><dt data-count="1800" data-suffix="+">0</dt><dd>Sets applied</dd></div>
-        <div data-reveal style="--d:.1s"><dt data-count="6" data-suffix="">0</dt><dd>Years of craft</dd></div>
-        <div data-reveal style="--d:.2s"><dt data-count="4.9" data-dec="1" data-suffix="">0</dt><dd>Client rating</dd></div>
-      </dl>
     </section>
 
-    <!-- Services (stacking cards) -->
+    <!-- Services -->
     <section class="services" id="services">
       <div class="wrap">
-        <header class="sec-head">
-          <p class="eyebrow" data-reveal>Services</p>
-          <h2 class="h2" data-reveal>Five ways to <i>open</i> the eye.</h2>
+        <header class="services__head">
+          <h2 class="h2" data-reveal>Services</h2>
+          <p data-reveal>Prices are starting prices and depend on your natural lashes. Your first visit includes a short consultation at no charge.</p>
         </header>
 
-        <div class="stack" id="stack">
-          <article class="card" data-tone="paper">
-            <div class="card__body">
-              <span class="card__no">01</span>
-              <h3 class="card__title">Classic</h3>
-              <p class="card__text">One extension, one natural lash. A soft, defined and effortless result, the quiet choice for those who want a polished everyday eye.</p>
-              <ul class="card__meta"><li><small>Duration</small>2 h</li><li><small>Fill</small>3 wks</li><li><small>From</small>$140</li></ul>
-            </div>
-            <div class="card__art"><svg class="fan" data-fan="1" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="card__cap">1 : 1</span></div>
-          </article>
+        <ul class="menu-list" id="menuList">
+          <li class="row" data-i="0">
+            <h3>Classic</h3>
+            <p>One extension on each natural lash. Soft, neat and natural, like wearing mascara without the mascara.</p>
+            <span class="row__time">2 hours</span><span class="row__price">$140</span>
+          </li>
+          <li class="row" data-i="1">
+            <h3>Hybrid</h3>
+            <p>A mix of classic lashes and handmade fans for a little more texture and fullness.</p>
+            <span class="row__time">2 h 15 min</span><span class="row__price">$165</span>
+          </li>
+          <li class="row" data-i="2">
+            <h3>Volume</h3>
+            <p>Lightweight fans on every lash for a full, soft and fluffy look.</p>
+            <span class="row__time">2 h 30 min</span><span class="row__price">$185</span>
+          </li>
+          <li class="row" data-i="3">
+            <h3>Mega volume</h3>
+            <p>The fullest, darkest set we do. Best if you want your lashes to be noticed.</p>
+            <span class="row__time">3 hours</span><span class="row__price">$210</span>
+          </li>
+          <li class="row" data-i="4">
+            <h3>Lash lift &amp; tint</h3>
+            <p>Your own lashes, curled and darkened. No extensions and no fills, and it lasts about six weeks.</p>
+            <span class="row__time">1 h 15 min</span><span class="row__price">$95</span>
+          </li>
+        </ul>
 
-          <article class="card" data-tone="blush">
-            <div class="card__body">
-              <span class="card__no">02</span>
-              <h3 class="card__title">Hybrid</h3>
-              <p class="card__text">A hand-blended mix of classic lashes and delicate fans. Texture and dimension with a softly wispy finish.</p>
-              <ul class="card__meta"><li><small>Duration</small>2 h 15</li><li><small>Fill</small>3 wks</li><li><small>From</small>$165</li></ul>
-            </div>
-            <div class="card__art"><svg class="fan" data-fan="3" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="card__cap">1 : 3</span></div>
-          </article>
+        <p class="services__note" data-reveal>Fills from $75. Removal from $40. A deposit holds your appointment and is taken off your total.</p>
+      </div>
 
-          <article class="card" data-tone="sand">
-            <div class="card__body">
-              <span class="card__no">03</span>
-              <h3 class="card__title">Volume</h3>
-              <p class="card__text">Handmade fans of ultra-fine filaments for a fuller, silkier lash line, weightless on the eye and rich in depth.</p>
-              <ul class="card__meta"><li><small>Duration</small>2 h 30</li><li><small>Fill</small>3 wks</li><li><small>From</small>$185</li></ul>
-            </div>
-            <div class="card__art"><svg class="fan" data-fan="5" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="card__cap">1 : 5</span></div>
-          </article>
-
-          <article class="card" data-tone="cocoa">
-            <div class="card__body">
-              <span class="card__no">04</span>
-              <h3 class="card__title">Mega Volume</h3>
-              <p class="card__text">Our most dramatic expression. Dense, sculpted fans for an intense, velvety line with presence, made to be noticed.</p>
-              <ul class="card__meta"><li><small>Duration</small>3 h</li><li><small>Fill</small>2&ndash;3 wks</li><li><small>From</small>$210</li></ul>
-            </div>
-            <div class="card__art"><svg class="fan" data-fan="9" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="card__cap">1 : 9</span></div>
-          </article>
-
-          <article class="card" data-tone="ivory">
-            <div class="card__body">
-              <span class="card__no">05</span>
-              <h3 class="card__title">Lift &amp; Tint</h3>
-              <p class="card__text">Your own lashes, lifted, curled and deepened in colour. No extensions, no upkeep, just a quietly wide-awake eye for weeks.</p>
-              <ul class="card__meta"><li><small>Duration</small>1 h 15</li><li><small>Lasts</small>6 wks</li><li><small>From</small>$95</li></ul>
-            </div>
-            <div class="card__art"><svg class="fan" data-fan="lift" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="card__cap">Natural</span></div>
-          </article>
-        </div>
-
-        <p class="services__note" data-reveal>Fills from $75 &nbsp;·&nbsp; Removal from $40 &nbsp;·&nbsp; First visit includes a complimentary eye-mapping consultation.</p>
+      <!-- Follows the cursor on desktop -->
+      <div class="preview" id="preview" aria-hidden="true">
+        <figure class="photo" data-tone="a"><div class="photo__in"><img src="assets/photos/service-classic.jpg" alt="" /></div><figcaption>Photo: Classic set</figcaption></figure>
+        <figure class="photo" data-tone="b"><div class="photo__in"><img src="assets/photos/service-hybrid.jpg" alt="" /></div><figcaption>Photo: Hybrid set</figcaption></figure>
+        <figure class="photo" data-tone="c"><div class="photo__in"><img src="assets/photos/service-volume.jpg" alt="" /></div><figcaption>Photo: Volume set</figcaption></figure>
+        <figure class="photo" data-tone="d"><div class="photo__in"><img src="assets/photos/service-mega.jpg" alt="" /></div><figcaption>Photo: Mega volume set</figcaption></figure>
+        <figure class="photo" data-tone="e"><div class="photo__in"><img src="assets/photos/service-lift.jpg" alt="" /></div><figcaption>Photo: Lash lift</figcaption></figure>
       </div>
     </section>
 
-    <!-- Style finder -->
-    <section class="styles" id="styles">
-      <div class="wrap styles__grid">
-        <div class="styles__copy">
-          <p class="eyebrow" data-reveal>Find your shape</p>
-          <h2 class="h2" data-reveal>Every eye has its <i>own</i> line.</h2>
-          <p class="styles__lede" data-reveal>The placement and length of each lash changes the whole expression of the face. Explore four signature maps. We refine them to your exact eye in consultation.</p>
-
-          <div class="tabs" role="tablist" aria-label="Lash styles" data-reveal>
-            <button role="tab" aria-selected="true" data-style="natural"><span>I</span>Natural</button>
-            <button role="tab" aria-selected="false" data-style="doll"><span>II</span>Doll</button>
-            <button role="tab" aria-selected="false" data-style="cat"><span>III</span>Cat Eye</button>
-            <button role="tab" aria-selected="false" data-style="squirrel"><span>IV</span>Squirrel</button>
-          </div>
-
-          <div class="style-info" aria-live="polite">
-            <h3 id="styleName">Natural</h3>
-            <p id="styleDesc">Even, balanced length from corner to corner. An eye that looks rested and open, as if you were simply born with it.</p>
-            <p class="style-info__pair"><small>Pairs with</small><span id="stylePair">Classic &nbsp;·&nbsp; Hybrid</span></p>
-          </div>
-        </div>
-
-        <div class="styles__art" data-reveal="left">
-          <div class="eye-stage" id="eyeStage"></div>
-          <div class="eye-zones" aria-hidden="true"><span>Inner corner</span><span>Centre</span><span>Outer corner</span></div>
-          <span class="eye-cap">Fig. <b id="eyeFig">I</b> &mdash; Lash map</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Work -->
-    <section class="work" id="work">
+    <!-- Looks -->
+    <section class="looks" id="looks">
       <div class="wrap">
-        <header class="sec-head sec-head--row">
-          <div>
-            <p class="eyebrow" data-reveal>Selected work</p>
-            <h2 class="h2" data-reveal>The <i>studio</i> edit.</h2>
-          </div>
-          <div class="work__ctrl" data-reveal>
-            <button id="prev" aria-label="Previous"><svg viewBox="0 0 24 8"><path d="M24 4H2M6 1L2 4l4 3" fill="none" stroke="currentColor"/></svg></button>
-            <button id="next" aria-label="Next"><svg viewBox="0 0 24 8"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></button>
-          </div>
+        <header class="looks__head">
+          <h2 class="h2" data-reveal>Pick a look</h2>
+          <p data-reveal>The same lashes can look very different depending on where the length goes. These are the four maps we use most, and we adjust each one to your eye shape.</p>
         </header>
-      </div>
 
-      <div class="rail" id="rail" data-cursor="Drag">
-        <div class="rail__track" id="railTrack">
-          <figure class="slide"><div class="ph ph--arch" data-plate="natural" data-tone="paper"></div><figcaption><b>01</b> Classic &mdash; Natural</figcaption></figure>
-          <figure class="slide slide--low"><div class="ph ph--rect" data-plate="cat" data-tone="ink"></div><figcaption><b>02</b> Hybrid &mdash; Cat eye</figcaption></figure>
-          <figure class="slide"><div class="ph ph--arch" data-plate="doll" data-tone="blush"></div><figcaption><b>03</b> Volume &mdash; Doll</figcaption></figure>
-          <figure class="slide slide--low"><div class="ph ph--rect" data-plate="squirrel" data-tone="bronze"></div><figcaption><b>04</b> Mega &mdash; Squirrel</figcaption></figure>
-          <figure class="slide"><div class="ph ph--arch" data-plate="cat" data-tone="sand"></div><figcaption><b>05</b> Volume &mdash; Cat eye</figcaption></figure>
-          <figure class="slide slide--low"><div class="ph ph--rect" data-plate="natural" data-tone="cocoa"></div><figcaption><b>06</b> Lift &mdash; Natural</figcaption></figure>
+        <div class="looks__grid">
+          <article class="look" data-reveal>
+            <figure class="photo" data-tone="b"><div class="photo__in"><img src="assets/photos/look-natural.jpg" alt="Natural lash map" loading="lazy" /></div><figcaption>Photo: Natural map, eye open, side angle (portrait 3:4)</figcaption></figure>
+            <h3>Natural</h3>
+            <p>Even length across the eye. It looks like your own lashes on a good day.</p>
+            <small>Works well with classic or hybrid</small>
+          </article>
+          <article class="look" data-reveal style="--d:.08s">
+            <figure class="photo" data-tone="a"><div class="photo__in"><img src="assets/photos/look-doll.jpg" alt="Doll lash map" loading="lazy" /></div><figcaption>Photo: Doll map, eye open (portrait 3:4)</figcaption></figure>
+            <h3>Doll</h3>
+            <p>Longest in the middle, so the eye looks rounder and more open.</p>
+            <small>Works well with volume or hybrid</small>
+          </article>
+          <article class="look" data-reveal style="--d:.16s">
+            <figure class="photo" data-tone="c"><div class="photo__in"><img src="assets/photos/look-cat.jpg" alt="Cat eye lash map" loading="lazy" /></div><figcaption>Photo: Cat eye map, eye open (portrait 3:4)</figcaption></figure>
+            <h3>Cat eye</h3>
+            <p>Shorter at the inner corner and longer toward the outer edge, for a lifted, elongated shape.</p>
+            <small>Works well with hybrid or mega volume</small>
+          </article>
+          <article class="look" data-reveal style="--d:.24s">
+            <figure class="photo" data-tone="e"><div class="photo__in"><img src="assets/photos/look-squirrel.jpg" alt="Squirrel lash map" loading="lazy" /></div><figcaption>Photo: Squirrel map, eye open (portrait 3:4)</figcaption></figure>
+            <h3>Squirrel</h3>
+            <p>Longer toward the outer middle with a slightly wispy finish.</p>
+            <small>Works well with volume or hybrid</small>
+          </article>
         </div>
-      </div>
-      <div class="wrap"><div class="rail__bar"><i id="railBar"></i></div></div>
-    </section>
-
-    <!-- Ritual -->
-    <section class="ritual" id="ritual">
-      <div class="wrap ritual__grid">
-        <div class="ritual__head">
-          <p class="eyebrow" data-reveal>The Ritual</p>
-          <h2 class="h2" data-reveal>An hour (or three) <i>entirely</i> yours.</h2>
-          <p class="ritual__lede" data-reveal>Unhurried, quiet and considered. From the moment you arrive, the details are ours to look after.</p>
-        </div>
-
-        <ol class="steps" id="steps">
-          <span class="steps__line"><i id="stepsFill"></i></span>
-          <li data-reveal><span class="steps__no">i.</span><div><h3>Consultation</h3><p>We study your eye shape, lash health and lifestyle, then agree on the length, curl and density that suit you.</p></div></li>
-          <li data-reveal><span class="steps__no">ii.</span><div><h3>Mapping</h3><p>Your lash line is mapped by hand so every extension sits exactly where it should: no guesswork, no excess weight.</p></div></li>
-          <li data-reveal><span class="steps__no">iii.</span><div><h3>Application</h3><p>Rest back, close your eyes. Each extension is isolated, placed and sealed individually with medical-grade, low-fume adhesive.</p></div></li>
-          <li data-reveal><span class="steps__no">iv.</span><div><h3>Aftercare</h3><p>You leave with a simple routine and a fill schedule, and our door stays open for questions at any time.</p></div></li>
-        </ol>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="voices">
-      <div class="wrap voices__inner">
-        <p class="eyebrow eyebrow--light" data-reveal>Kind words</p>
-        <div class="quotes" id="quotes">
-          <blockquote class="quote is-on"><p>I have been to many studios. Verelle is the first where I walked out and nobody could tell what I had done. They just said I looked rested.</p><footer>Daniela R. <span>&mdash; Hybrid, 2 years</span></footer></blockquote>
-          <blockquote class="quote"><p>It feels like a private salon in someone's beautiful home. Calm, unhurried, and the set lasts. My fills are always effortless.</p><footer>Camille T. <span>&mdash; Volume, 14 months</span></footer></blockquote>
-          <blockquote class="quote"><p>She mapped my eyes before touching a single lash. I have never felt so well looked after, or so unmistakably myself.</p><footer>Isabel M. <span>&mdash; Lift &amp; Tint, 1 year</span></footer></blockquote>
-        </div>
-        <div class="voices__ctrl">
-          <span class="count"><b id="qNow">01</b> / 03</span>
-          <div class="dots" id="qDots"><i class="on"></i><i></i><i></i></div>
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+      <div class="wrap">
+        <header class="gallery__head">
+          <h2 class="h2" data-reveal>Recent sets</h2>
+          <a href="#" class="link" data-reveal>Follow @verelle.studio on Instagram</a>
+        </header>
+
+        <div class="gallery__cols">
+          <div class="gcol gcol--a">
+            <figure class="photo" data-tone="a" data-parallax="0.04"><div class="photo__in"><img src="assets/photos/gallery-1.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (portrait 4:5)</figcaption></figure>
+            <figure class="photo photo--wide" data-tone="c"><div class="photo__in"><img src="assets/photos/gallery-2.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (landscape 4:3)</figcaption></figure>
+          </div>
+          <div class="gcol gcol--b">
+            <figure class="photo photo--sq" data-tone="b" data-parallax="-0.05"><div class="photo__in"><img src="assets/photos/gallery-3.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (square)</figcaption></figure>
+            <figure class="photo photo--tall" data-tone="d"><div class="photo__in"><img src="assets/photos/gallery-4.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (portrait 3:4)</figcaption></figure>
+          </div>
+          <div class="gcol gcol--c">
+            <figure class="photo photo--tall" data-tone="e" data-parallax="0.06"><div class="photo__in"><img src="assets/photos/gallery-5.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (portrait 3:4)</figcaption></figure>
+            <figure class="photo photo--sq" data-tone="a"><div class="photo__in"><img src="assets/photos/gallery-6.jpg" alt="Recent lash set" loading="lazy" /></div><figcaption>Photo: finished set (square)</figcaption></figure>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- What to expect -->
+    <section class="expect">
+      <div class="wrap expect__grid">
+        <figure class="photo expect__photo" data-tone="c" data-parallax="0.04">
+          <div class="photo__in"><img src="assets/photos/expect.jpg" alt="A client resting during an appointment" loading="lazy" /></div>
+          <figcaption>Photo: a client resting during a set, face partly visible (portrait 4:5)</figcaption>
+        </figure>
+
+        <div class="expect__text">
+          <h2 class="h2" data-reveal>What to expect</h2>
+          <ol class="steps">
+            <li data-reveal><span>1</span><div><h3>Consultation</h3><p>We look at your natural lashes, talk through the look you want and decide on length, curl and fullness.</p></div></li>
+            <li data-reveal><span>2</span><div><h3>Prep</h3><p>Your lashes are cleansed, under-eye pads go on and your natural lashes are separated so each one can be treated alone.</p></div></li>
+            <li data-reveal><span>3</span><div><h3>Application</h3><p>Lie back and close your eyes. Most people nap. Each extension is attached to a single natural lash.</p></div></li>
+            <li data-reveal><span>4</span><div><h3>Aftercare</h3><p>Keep them dry for 24 hours, brush daily and book a fill every two to three weeks. We send you a one-page guide.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews wrap">
+      <h2 class="h2" data-reveal>What clients say</h2>
+      <blockquote class="rev rev--1" data-reveal>
+        <p>I have had lashes done at a lot of places. This is the first time nobody could tell. They just said I looked well rested.</p>
+        <footer>Daniela R.</footer>
+      </blockquote>
+      <blockquote class="rev rev--2" data-reveal>
+        <p>Quiet, clean, and it is always the same person. My set still looks good at week three.</p>
+        <footer>Camille T.</footer>
+      </blockquote>
+      <blockquote class="rev rev--3" data-reveal>
+        <p>She asked what I actually wanted before touching a single lash. That sounds basic, but it really is not.</p>
+        <footer>Isabel M.</footer>
+      </blockquote>
     </section>
 
     <!-- FAQ -->
     <section class="faq" id="faq">
       <div class="wrap faq__grid">
         <header class="faq__head">
-          <p class="eyebrow" data-reveal>Questions</p>
-          <h2 class="h2" data-reveal>Before you <i>arrive.</i></h2>
-          <p class="faq__lede" data-reveal>Something not answered here? Write to us and we will reply within a day.</p>
+          <h2 class="h2" data-reveal>Questions</h2>
+          <p data-reveal>Something not answered here? Write to hello@verelle.studio and we will reply within a day.</p>
         </header>
 
         <div class="acc" id="acc">
           <div class="acc__item" data-reveal>
             <button class="acc__q" aria-expanded="false"><span>How long do lash extensions last?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>Extensions shed naturally along with your own lash cycle. Most clients refresh every two to three weeks and enjoy a full, even set throughout.</p></div></div>
+            <div class="acc__a"><div><p>Extensions fall out naturally with your own lash cycle. Most clients come back every two to three weeks for a fill to keep the set full and even.</p></div></div>
           </div>
           <div class="acc__item" data-reveal>
             <button class="acc__q" aria-expanded="false"><span>Will extensions damage my natural lashes?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>Not when they are applied correctly. We select a weight your natural lash can carry, isolate each one carefully and never overload. Healthy lashes are the foundation of every set.</p></div></div>
+            <div class="acc__a"><div><p>Not when they are applied properly. We choose a weight your natural lash can carry and never attach more than one extension to a lash. Healthy lashes come first.</p></div></div>
           </div>
           <div class="acc__item" data-reveal>
             <button class="acc__q" aria-expanded="false"><span>Which style is right for me?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>That is what the consultation is for. We look at your eye shape, lash density and daily routine, then recommend a map and a technique. You will always approve it before we begin.</p></div></div>
+            <div class="acc__a"><div><p>That is what the consultation is for. We look at your eye shape and lash density, ask how you live, and recommend a look. You approve it before we begin.</p></div></div>
           </div>
           <div class="acc__item" data-reveal>
-            <button class="acc__q" aria-expanded="false"><span>Can I wear makeup, swim or exercise?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>Yes to all. We ask that you keep lashes dry for the first 24 hours while the adhesive fully cures. After that, live normally, and use oil-free products around the eyes.</p></div></div>
+            <button class="acc__q" aria-expanded="false"><span>Can I wear makeup, swim or work out?</span><i class="acc__icon"></i></button>
+            <div class="acc__a"><div><p>Yes to all three. Keep your lashes dry for the first 24 hours while the adhesive cures. After that, live normally and use oil-free products around your eyes.</p></div></div>
           </div>
           <div class="acc__item" data-reveal>
             <button class="acc__q" aria-expanded="false"><span>What is your cancellation policy?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>We kindly ask for 24 hours&rsquo; notice to reschedule or cancel. A deposit secures your appointment and is applied in full to your service.</p></div></div>
+            <div class="acc__a"><div><p>Please give us 24 hours&rsquo; notice to move or cancel. Your deposit holds your appointment and is taken off the price of your service.</p></div></div>
           </div>
           <div class="acc__item" data-reveal>
-            <button class="acc__q" aria-expanded="false"><span>Do you remove lashes applied elsewhere?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>Of course. We offer gentle professional removal, and can transition you into a Verelle set in the same appointment.</p></div></div>
+            <button class="acc__q" aria-expanded="false"><span>Do you remove lashes done elsewhere?</span><i class="acc__icon"></i></button>
+            <div class="acc__a"><div><p>Yes. We remove them gently, and can put on a new set in the same appointment.</p></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Reserve -->
-    <section class="reserve" id="reserve">
-      <div class="wrap reserve__grid">
-        <div class="reserve__copy">
-          <p class="eyebrow eyebrow--light" data-reveal>Reserve</p>
-          <h2 class="display display--md" data-reveal>Your chair <i>awaits.</i></h2>
-          <p class="reserve__lede" data-reveal>Tell us a little about what you have in mind and we will confirm your appointment personally. Appointments are limited and by request only.</p>
+    <!-- Book -->
+    <section class="book" id="book">
+      <div class="wrap book__grid">
+        <figure class="photo book__photo" data-tone="b" data-parallax="0.04">
+          <div class="photo__in"><img src="assets/photos/book.jpg" alt="Verelle studio entrance" loading="lazy" /></div>
+          <figcaption>Photo: the studio entrance or treatment room (portrait 4:5)</figcaption>
+        </figure>
 
-          <ul class="info" data-reveal>
-            <li><small>Studio</small>128 Marlowe Street, Suite 4<br>Downtown</li>
-            <li><small>Hours</small>Tue &ndash; Sat, 10 am &ndash; 7 pm</li>
-            <li><small>Contact</small>hello@verelle.studio<br>(555) 014&nbsp;2290</li>
-          </ul>
+        <div class="book__text">
+          <h2 class="h2" data-reveal>Book an appointment</h2>
+          <p class="book__lede" data-reveal>Send a request and we will confirm by email within a day.</p>
+
+          <form class="form" id="form" novalidate data-reveal>
+            <label class="field"><span>Name</span><input type="text" name="name" required autocomplete="name" /></label>
+            <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email" /></label>
+            <div class="field-row">
+              <label class="field"><span>Service</span>
+                <select name="service">
+                  <option>Classic</option><option>Hybrid</option><option>Volume</option><option>Mega volume</option><option>Lash lift &amp; tint</option><option>Not sure yet</option>
+                </select>
+              </label>
+              <label class="field"><span>Preferred date</span><input type="date" name="date" /></label>
+            </div>
+            <label class="field"><span>Anything we should know?</span><textarea name="note" rows="3"></textarea></label>
+            <button type="submit" class="btn btn--solid"><span class="btn__roll" data-text="Send request"><em>Send request</em></span></button>
+            <p class="form__ok" id="formOk" role="status"></p>
+          </form>
         </div>
-
-        <form class="form" id="form" novalidate data-reveal="left">
-          <label class="field"><span>Full name</span><input type="text" name="name" required autocomplete="name" placeholder="Your name" /></label>
-          <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email" placeholder="you@email.com" /></label>
-          <div class="field-row">
-            <label class="field"><span>Service</span>
-              <select name="service">
-                <option>Classic</option><option>Hybrid</option><option>Volume</option><option>Mega Volume</option><option>Lift &amp; Tint</option><option>Not sure yet</option>
-              </select>
-            </label>
-            <label class="field"><span>Preferred date</span><input type="date" name="date" /></label>
-          </div>
-          <label class="field"><span>Anything we should know?</span><textarea name="note" rows="3" placeholder="Allergies, inspiration, the occasion…"></textarea></label>
-          <button type="submit" class="btn btn--light" data-magnetic><span class="btn__roll" data-text="Request appointment"><em>Request appointment</em></span></button>
-          <p class="form__ok" id="formOk" role="status"></p>
-        </form>
       </div>
     </section>
   </main>
 
   <footer class="foot">
-    <div class="wrap foot__top">
-      <p>Lash Atelier<br>Bespoke extensions, lifts &amp; tints.</p>
-      <nav aria-label="Footer">
-        <a href="#services">Services</a>
-        <a href="#styles">Styles</a>
-        <a href="#work">Work</a>
-        <a href="#faq">Questions</a>
-        <a href="#reserve">Reserve</a>
-      </nav>
-      <p><a href="#" class="foot__ig">Instagram</a><br><a href="#" class="foot__ig">TikTok</a></p>
+    <div class="wrap foot__grid">
+      <div class="foot__brand">
+        <a href="#top" class="nav__logo">Verelle</a>
+        <p>Lash extensions, lifts and tints.</p>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <p>128 Marlowe Street, Suite 4<br>Downtown</p>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p>Tuesday to Saturday<br>10 am to 7 pm</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>hello@verelle.studio<br>(555) 014 2290</p>
+        <p class="foot__social"><a href="#">Instagram</a> &nbsp; <a href="#">TikTok</a></p>
+      </div>
     </div>
-    <div class="foot__mark" aria-hidden="true">Verelle</div>
-    <div class="wrap foot__bot"><span>&copy; 2026 Verelle Lash Atelier</span><a href="#top">Back to top &uarr;</a><span>Privacy &nbsp;·&nbsp; Terms</span></div>
+    <div class="wrap foot__bot"><span>&copy; 2026 Verelle Lash Studio</span><span>Privacy &nbsp; Terms</span></div>
   </footer>
 
   <script src="main.js"></script>
