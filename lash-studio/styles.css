@@ -214,14 +214,12 @@ p { color: var(--muted); }
 
 /* ── Looks ── */
 .looks { padding-block: clamp(80px, 11vw, 170px) clamp(60px, 8vw, 120px); }
-.looks__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 32px); align-items: start; }
-.look .photo { aspect-ratio: 3 / 4; margin-bottom: 1.2rem; }
-.look:nth-child(2) { margin-top: clamp(24px, 6vw, 96px); }
-.look:nth-child(3) { margin-top: clamp(8px, 2.4vw, 40px); }
-.look:nth-child(4) { margin-top: clamp(40px, 9vw, 140px); }
-.look h3 { font-size: 1.6rem; line-height: 1.2; margin-bottom: .4rem; }
-.look p { font-size: .98rem; line-height: 1.6; }
-.look small { display: block; margin-top: .7rem; font-size: .85rem; color: var(--taupe); }
+.looks__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 5vw, 72px) clamp(20px, 3vw, 48px); align-items: start; }
+.look .photo { aspect-ratio: 4 / 3; margin-bottom: 1.2rem; }
+.look:nth-child(even) { margin-top: clamp(40px, 8vw, 130px); }
+.look h3 { font-size: 1.7rem; line-height: 1.2; margin-bottom: .4rem; }
+.look p { font-size: 1rem; line-height: 1.6; max-width: 28rem; }
+.look small { display: block; margin-top: .7rem; font-size: .88rem; color: var(--taupe); }
 
 /* ── Gallery ── */
 .gallery { padding-block: clamp(60px, 8vw, 120px) clamp(80px, 10vw, 150px); }
@@ -312,8 +310,6 @@ p { color: var(--muted); }
   .about__text { padding-top: 0; }
   .about__photo { max-width: 460px; }
   .services__head, .looks__head { grid-template-columns: 1fr; }
-  .looks__grid { grid-template-columns: 1fr 1fr; row-gap: 2.4rem; }
-  .look:nth-child(n) { margin-top: 0; }
   .look:nth-child(even) { margin-top: 3rem; }
   .gallery__cols { grid-template-columns: 1fr 1fr; }
   .gcol--c { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; margin-top: 0; }
@@ -333,7 +329,8 @@ p { color: var(--muted); }
   .row__price { grid-column: 3; grid-row: 1; }
   .row p { grid-column: 2 / -1; grid-row: 2; }
   .row__time { grid-column: 2; grid-row: 3; }
-  .looks__grid { gap: 1.2rem; }
+  .looks__grid { grid-template-columns: 1fr; gap: 2.4rem; }
+  .look:nth-child(even) { margin-top: 0; }
   .field-row { grid-template-columns: 1fr; }
   .acc__a p { padding-right: 0; }
   .gallery__cols { gap: 12px; }

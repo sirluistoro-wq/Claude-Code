@@ -13,6 +13,7 @@ Any other photo slot can do the same: give its `<figure class="photo">` a `data-
 | `assets/video/hero.mp4` (+ `hero.webm`) | Horizontal 16:9 clip of a lash artist at work (included) |
 | `assets/video/about.mp4` (+ `about.webm`) | Portrait of the owner (included) |
 | `assets/video/expect.mp4` | Client resting during a set, portrait 4:5, 5 to 10 seconds |
+| `assets/video/look-doll.mp4`, `look-cat.mp4` (+ `.webm`) | Included. Add `look-natural.mp4` and `look-squirrel.mp4` and a `data-video` attribute on those two figures |
 | `assets/video/gallery-2.mp4`, `gallery-4.mp4` | Finished set close-ups, 5 to 10 seconds |
 
 Scrubbing is smoothest when every frame is a keyframe. Export with:
@@ -34,7 +35,7 @@ describing the photo it needs.
 | `hero-side.jpg` | Hands and tweezers placing a lash (landscape 4:3) |
 | `about.jpg` | The studio, or the lash artist at work (portrait 3:4) |
 | `service-classic.jpg`, `service-hybrid.jpg`, `service-volume.jpg`, `service-mega.jpg`, `service-lift.jpg` | One photo per service (included, portrait 4:5). Shown when hovering a row on desktop, and as a thumbnail on phones |
-| `look-natural.jpg`, `look-doll.jpg`, `look-cat.jpg`, `look-squirrel.jpg` | Eye open, side angle, one per lash map (portrait 3:4) |
+| `look-natural.jpg`, `look-doll.jpg`, `look-cat.jpg`, `look-squirrel.jpg` | Both eyes open, one per lash map (landscape 4:3) |
 | `gallery-1.jpg` to `gallery-6.jpg` | Recent sets, mixed portrait, square and landscape |
 | `expect.jpg` | Client resting during a set (portrait 4:5) |
 | `book.jpg` | Studio entrance or treatment room (portrait 4:5) |
