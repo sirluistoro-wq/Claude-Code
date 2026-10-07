@@ -178,6 +178,7 @@ p { color: var(--muted); }
 .nav.on-hero .btn--sm::before { background: var(--bg); }
 .nav.on-hero .btn--sm:hover { color: var(--ink); }
 
+.about__photo .photo__in video { object-position: 50% 18%; }
 /* video inside any photo slot */
 .photo__in video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .9s var(--e); }
 .photo.has-video .photo__in video { opacity: 1; }

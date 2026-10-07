@@ -11,7 +11,7 @@ Any other photo slot can do the same: give its `<figure class="photo">` a `data-
 | File | Clip |
 | --- | --- |
 | `assets/video/hero.mp4` (+ `hero.webm`) | Horizontal 16:9 clip of a lash artist at work (included) |
-| `assets/video/about.mp4` | Studio or artist at work, portrait 3:4, 5 to 10 seconds |
+| `assets/video/about.mp4` (+ `about.webm`) | Portrait of the owner (included) |
 | `assets/video/expect.mp4` | Client resting during a set, portrait 4:5, 5 to 10 seconds |
 | `assets/video/gallery-2.mp4`, `gallery-4.mp4` | Finished set close-ups, 5 to 10 seconds |
 
