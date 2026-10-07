@@ -309,3 +309,30 @@ form .btn { justify-self: start; }
 .loader.is-leaving { transform: translateY(-100%); }
 .loader.is-leaving .loader-mark, .loader.is-leaving .loader-foot { opacity: 0; transition: opacity .3s ease; }
 @media (prefers-reduced-motion: reduce) { .loader.is-leaving { transform: none; opacity: 0; } }
+
+/* ---------- phones ---------- */
+html { -webkit-tap-highlight-color: transparent; }
+.arrow-link { min-height: 44px; }
+.brand { padding-block: 8px; }
+.fact strong a { display: inline-block; padding-block: 10px; margin-block: -10px; }
+.callbar { display: none; }
+@media (max-width: 760px) {
+  /* thumb-reach call / book bar */
+  .callbar { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(10, 10, 11, 0.86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .35s var(--ease); }
+  .callbar.show { transform: none; }
+  .callbar .btn { padding: 13px 18px; min-height: 48px; }
+  .callbar .btn svg { width: 16px; height: 16px; }
+  .callbar .btn-ghost svg { fill: currentColor; stroke: none; }
+  .site-footer { padding-bottom: 76px; }
+  .demo-note { font-size: 0.72rem; padding: 6px 12px; }
+  /* towing band: photo on top, copy below, so the photo stays visible */
+  .band { display: block; min-height: 0; background: var(--surface); border: 1px solid var(--line); }
+  .band img { position: relative; height: 240px; }
+  .band::after { display: none; }
+  .band-copy { padding: 26px 22px 28px; }
+  .section { padding-block: clamp(64px, 16vw, 96px); }
+  .closer { padding-block: 80px 96px; }
+  .detail { padding-block: 44px; }
+}

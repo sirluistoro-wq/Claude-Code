@@ -104,6 +104,18 @@
     });
   }
 
+  // phone call / book bar: on the home page it waits until the hero has been scrolled past
+  var callbar = document.getElementById('callbar');
+  if (callbar) {
+    var hero = document.querySelector('.hero3d');
+    var update = function () {
+      var past = hero ? window.scrollY > hero.offsetTop + hero.offsetHeight - window.innerHeight * 0.9 : window.scrollY > 120;
+      callbar.classList.toggle('show', past);
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();

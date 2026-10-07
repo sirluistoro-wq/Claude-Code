@@ -166,7 +166,11 @@ def head(page, title, desc, extra_ld="", early=""):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{SITE}/assets/still-front.jpg">
+<meta property="og:image" content="{SITE}/assets/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{SITE}/assets/share.jpg">
 <meta name="theme-color" content="#0a0a0b">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -234,7 +238,7 @@ def foot(extra=""):
     <div class="foot-base"><span>© <span id="year">2026</span> {SHOP}</span><span>Website by Toro Growth</span></div>
   </div>
 </footer>
-<script src="assets/site.js"></script>
+{CALL_BAR}<script src="assets/site.js"></script>
 {extra}</body>
 </html>
 """
@@ -633,13 +637,33 @@ def contact():
                 breadcrumb("contact.html", "Contact")) + body + foot()
 
 
+# phones get the 900px copies of the photos (made with ffmpeg alongside the originals)
+PHOTO_WIDTHS = {"photo-engine-bay": 1600, "photo-shop-bay": 1800, "photo-custom-cadillac": 1800,
+                "photo-financing": 1500, "photo-undercarriage": 1800}
+
+
+def responsive(html):
+    for name, w in PHOTO_WIDTHS.items():
+        html = html.replace(f'src="assets/{name}.jpg"',
+                            f'src="assets/{name}.jpg" srcset="assets/{name}-900.jpg 900w, assets/{name}.jpg {w}w" '
+                            f'sizes="(max-width: 760px) 100vw, (max-width: 1240px) 60vw, 1100px"')
+    return html
+
+
+# sticky call / book bar for phones
+CALL_BAR = f'''<div class="callbar" id="callbar">
+  <a class="btn btn-ghost" href="tel:{TEL}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1z"/></svg>Call</a>
+  <a class="btn btn-solid" href="contact.html#book">Book a visit {ARROW}</a>
+</div>
+'''
+
 PAGES = {"index.html": home, "services.html": services, "specialty.html": specialty,
          "insurance-financing.html": insurance, "towing.html": towing, "contact.html": contact}
 
 os.makedirs(os.path.join(OUT, "assets"), exist_ok=True)
 for name, fn in PAGES.items():
     with open(os.path.join(OUT, name), "w") as f:
-        f.write(fn())
+        f.write(responsive(fn()))
 
 with open(os.path.join(OUT, "sitemap.xml"), "w") as f:
     urls = "\n".join(f"  <url><loc>{SITE}/{'' if p == 'index.html' else p}</loc></url>" for p in PAGES)
