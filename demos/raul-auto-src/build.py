@@ -344,7 +344,7 @@ def home():
       <source media="(max-aspect-ratio: 9/10)" srcset="assets/hero-portrait.jpg">
       <img src="assets/hero-landscape.jpg" alt="" width="1280" height="720" fetchpriority="high">
     </picture>
-    <video class="hero-video" muted playsinline preload="none" aria-hidden="true" data-landscape="assets/hero-landscape.mp4" data-portrait="assets/hero-portrait.mp4"></video>
+    <video class="hero-video" muted playsinline preload="metadata" aria-hidden="true" data-landscape="assets/hero-landscape.mp4" data-portrait="assets/hero-portrait.mp4"></video>
     <div class="hero3d-shade"></div>
     <div class="wrap hero3d-copy">
       <div class="hero3d-a">

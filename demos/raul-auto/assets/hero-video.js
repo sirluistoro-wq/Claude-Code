@@ -73,26 +73,52 @@
     }).then(function (blob) {
       if (video.dataset.url) URL.revokeObjectURL(video.dataset.url);
       video.dataset.url = URL.createObjectURL(blob);
-      video.src = video.dataset.url;
+      setSource(video.dataset.url, src);
     }).catch(function () {
-      video.src = src; // fall back to streaming the file directly
+      setSource(src, null); // fall back to streaming the file directly
     });
   }
 
-  video.muted = true;
-  video.addEventListener('loadedmetadata', function () {
-    duration = Math.max(0, video.duration - 0.05);
-    // some mobile browsers only paint a seeked frame after the video has played once
-    var p = video.play();
-    if (p && p.then) p.then(function () { video.pause(); }).catch(function () {});
-    else video.pause();
-  });
-  video.addEventListener('loadeddata', function () {
-    window.dispatchEvent(new CustomEvent('hero:ready'));
+  // Safari (iPhone and Mac) honours preload="none" strictly and never loads the clip,
+  // so switch preloading on and ask for a load explicitly whenever the source changes.
+  var fallbackSrc = null, nudge = 0;
+  function setSource(url, fallback) {
+    fallbackSrc = fallback;
+    video.preload = 'auto';
+    video.src = url;
+    video.load();
+  }
+
+  var announced = false;
+  function markReady() {
+    if (ready) return;
     ready = true;
     shown = -1;
     wrap.classList.add('video-ready');
+    if (!announced) { announced = true; window.dispatchEvent(new CustomEvent('hero:ready')); }
     kick();
+  }
+
+  video.muted = true;
+  video.setAttribute('muted', '');
+  video.addEventListener('loadedmetadata', function () {
+    duration = Math.max(0, video.duration - 0.05);
+    // iPhones only paint a seeked frame after the video has played once (muted autoplay is allowed);
+    // in Low Power Mode play() is refused, so a tiny seek forces the first frame instead
+    var p = video.play();
+    if (p && p.then) p.then(function () { video.pause(); }).catch(function () {});
+    else video.pause();
+    clearTimeout(nudge);
+    nudge = setTimeout(function () { if (!ready) video.currentTime = 0.001; }, 600);
+  });
+  // whichever arrives first means a frame is ready to show
+  ['loadeddata', 'canplay', 'seeked'].forEach(function (ev) {
+    video.addEventListener(ev, function () { if (video.readyState >= 2) markReady(); });
+  });
+  video.addEventListener('error', function () {
+    if (fallbackSrc) { setSource(fallbackSrc, null); return; }
+    // give up quietly: the poster stays and the loading screen is released
+    if (!announced) { announced = true; window.dispatchEvent(new CustomEvent('hero:ready')); }
   });
 
   if (reduceMotion) return; // keep the still poster frame
