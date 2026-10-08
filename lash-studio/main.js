@@ -108,13 +108,56 @@
     });
   });
 
-  /* ── FAQ accordion ── */
-  const qs = $$('.acc__q');
-  qs.forEach((q) => q.addEventListener('click', () => {
-    const open = q.getAttribute('aria-expanded') === 'true';
-    qs.forEach((x) => x.setAttribute('aria-expanded', 'false'));
-    q.setAttribute('aria-expanded', String(!open));
-  }));
+  /* ── Reviews: swipe deck ── */
+  (function deck() {
+    const el = $('#deck'); if (!el) return;
+    const cards = $$('.rcard', el), n = cards.length, now = $('#rNow');
+    let cur = 0, timer = 0, busy = false;
+    const place = () => cards.forEach((c, i) => {
+      const pos = (i - cur + n) % n;
+      c.style.setProperty('--pos', Math.min(pos, 3));
+      if (pos > 2) c.setAttribute('data-hidden', ''); else c.removeAttribute('data-hidden');
+    });
+    function go(dir) {
+      if (busy) return; busy = true;
+      if (dir > 0) {
+        const out = cards[cur]; out.classList.add('is-leaving');
+        cur = (cur + 1) % n; place();
+        setTimeout(() => { out.classList.remove('is-leaving'); busy = false; }, 900);
+      } else {
+        cur = (cur - 1 + n) % n;
+        const back = cards[cur]; back.classList.add('is-leaving'); place();
+        requestAnimationFrame(() => requestAnimationFrame(() => back.classList.remove('is-leaving')));
+        setTimeout(() => { busy = false; }, 900);
+      }
+      now.textContent = String(cur + 1).padStart(2, '0');
+    }
+    const auto = () => { clearInterval(timer); if (!reduced) timer = setInterval(() => go(1), 7000); };
+    $('#rNext').addEventListener('click', () => { go(1); auto(); });
+    $('#rPrev').addEventListener('click', () => { go(-1); auto(); });
+    let sx = null;
+    el.addEventListener('pointerdown', (e) => { sx = e.clientX; });
+    addEventListener('pointerup', (e) => { if (sx === null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 50) { go(dx < 0 ? 1 : -1); auto(); } });
+    el.addEventListener('mouseenter', () => clearInterval(timer));
+    el.addEventListener('mouseleave', auto);
+    place(); auto();
+  })();
+
+  /* ── FAQ: choose a question, its answer opens beside it (under it on phones) ── */
+  (function faq() {
+    const items = $$('.qa');
+    const open = (it, force) => items.forEach((x) => {
+      const on = x === it && (force || !x.classList.contains('is-on') || innerWidth > 1000);
+      x.classList.toggle('is-on', on);
+      $('.qa__q', x).setAttribute('aria-expanded', String(on));
+    });
+    items.forEach((it) => {
+      const q = $('.qa__q', it);
+      q.addEventListener('click', () => open(it));
+      q.addEventListener('mouseenter', () => { if (matchMedia('(hover: hover) and (min-width: 1001px)').matches) open(it, true); });
+      q.addEventListener('focus', () => { if (q.matches(':focus-visible') && innerWidth > 1000) open(it, true); });
+    });
+  })();
 
   /* ── Booking form (front-end demo only) ── */
   const form = $('#form'), ok = $('#formOk');

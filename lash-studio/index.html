@@ -254,54 +254,88 @@
     </section>
 
     <!-- Reviews -->
-    <section class="reviews wrap">
-      <h2 class="h2" data-reveal>What clients say</h2>
-      <blockquote class="rev rev--1" data-reveal>
-        <p>I have had lashes done at a lot of places. This is the first time nobody could tell. They just said I looked well rested.</p>
-        <footer>Daniela R.</footer>
-      </blockquote>
-      <blockquote class="rev rev--2" data-reveal>
-        <p>Quiet, clean, and it is always the same person. My set still looks good at week three.</p>
-        <footer>Camille T.</footer>
-      </blockquote>
-      <blockquote class="rev rev--3" data-reveal>
-        <p>She asked what I actually wanted before touching a single lash. That sounds basic, but it really is not.</p>
-        <footer>Isabel M.</footer>
-      </blockquote>
+    <section class="reviews" id="reviews">
+      <div class="wrap reviews__grid">
+        <div class="reviews__head">
+          <h2 class="h2" data-reveal>What clients say</h2>
+          <div class="score" data-reveal>
+            <b class="score__n">4.9</b>
+            <div><div class="score__stars" aria-hidden="true">★★★★★</div><small>Average from 312 reviews</small></div>
+          </div>
+          <div class="deck__ctrl" data-reveal>
+            <button type="button" id="rPrev" aria-label="Previous review"><svg viewBox="0 0 24 8"><path d="M24 4H2M6 1L2 4l4 3" fill="none" stroke="currentColor"/></svg></button>
+            <button type="button" id="rNext" aria-label="Next review"><svg viewBox="0 0 24 8"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></button>
+            <span class="deck__count"><b id="rNow">01</b> / 06</span>
+          </div>
+        </div>
+        <div class="deck" id="deck" data-reveal="left" aria-roledescription="carousel" aria-label="Client reviews">
+          <figure class="rcard" data-i="0">
+            <div class="rcard__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>I have had lashes done at a lot of places. This is the first time nobody could tell. They just said I looked well rested.</blockquote>
+            <figcaption><span class="rcard__av" aria-hidden="true">D</span><span><b>Daniela R.</b><small>Hybrid, 2 years</small></span></figcaption>
+          </figure>
+          <figure class="rcard" data-i="1">
+            <div class="rcard__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>Quiet, clean, and it is always the same person. My set still looks good at week three.</blockquote>
+            <figcaption><span class="rcard__av" aria-hidden="true">C</span><span><b>Camille T.</b><small>Volume, 14 months</small></span></figcaption>
+          </figure>
+          <figure class="rcard" data-i="2">
+            <div class="rcard__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>She asked what I actually wanted before touching a single lash. That sounds basic, but it really is not.</blockquote>
+            <figcaption><span class="rcard__av" aria-hidden="true">I</span><span><b>Isabel M.</b><small>Lash lift &amp; tint, 1 year</small></span></figcaption>
+          </figure>
+          <figure class="rcard" data-i="3">
+            <div class="rcard__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>I fall asleep every time. I wake up with lashes I would never have dared to pick myself, and they suit me.</blockquote>
+            <figcaption><span class="rcard__av" aria-hidden="true">M</span><span><b>Marisol V.</b><small>Mega volume, 8 months</small></span></figcaption>
+          </figure>
+          <figure class="rcard" data-i="4">
+            <div class="rcard__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>The consultation alone was worth it. She explained why my eye shape needed a different map than the one I had been wearing.</blockquote>
+            <figcaption><span class="rcard__av" aria-hidden="true">A</span><span><b>Aisha K.</b><small>Classic, 1 year</small></span></figcaption>
+          </figure>
+          <figure class="rcard" data-i="5">
+            <div class="rcard__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>Booked for a wedding and ended up staying. Fills are quick, the studio is calm, and I never feel rushed.</blockquote>
+            <figcaption><span class="rcard__av" aria-hidden="true">L</span><span><b>Lucía P.</b><small>Hybrid, 18 months</small></span></figcaption>
+          </figure>
+        </div>
+      </div>
     </section>
 
     <!-- FAQ -->
     <section class="faq" id="faq">
-      <div class="wrap faq__grid">
+      <div class="wrap">
         <header class="faq__head">
           <h2 class="h2" data-reveal>Questions</h2>
           <p data-reveal>Something not answered here? Write to hello@verelle.studio and we will reply within a day.</p>
         </header>
-
-        <div class="acc" id="acc">
-          <div class="acc__item" data-reveal>
-            <button class="acc__q" aria-expanded="false"><span>How long do lash extensions last?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>Extensions fall out naturally with your own lash cycle. Most clients come back every two to three weeks for a fill to keep the set full and even.</p></div></div>
-          </div>
-          <div class="acc__item" data-reveal>
-            <button class="acc__q" aria-expanded="false"><span>Will extensions damage my natural lashes?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>Not when they are applied properly. We choose a weight your natural lash can carry and never attach more than one extension to a lash. Healthy lashes come first.</p></div></div>
-          </div>
-          <div class="acc__item" data-reveal>
-            <button class="acc__q" aria-expanded="false"><span>Which style is right for me?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>That is what the consultation is for. We look at your eye shape and lash density, ask how you live, and recommend a look. You approve it before we begin.</p></div></div>
-          </div>
-          <div class="acc__item" data-reveal>
-            <button class="acc__q" aria-expanded="false"><span>Can I wear makeup, swim or work out?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>Yes to all three. Keep your lashes dry for the first 24 hours while the adhesive cures. After that, live normally and use oil-free products around your eyes.</p></div></div>
-          </div>
-          <div class="acc__item" data-reveal>
-            <button class="acc__q" aria-expanded="false"><span>What is your cancellation policy?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>Please give us 24 hours&rsquo; notice to move or cancel. Your deposit holds your appointment and is taken off the price of your service.</p></div></div>
-          </div>
-          <div class="acc__item" data-reveal>
-            <button class="acc__q" aria-expanded="false"><span>Do you remove lashes done elsewhere?</span><i class="acc__icon"></i></button>
-            <div class="acc__a"><div><p>Yes. We remove them gently, and can put on a new set in the same appointment.</p></div></div>
+        <div class="faqbox" id="faqbox" data-reveal>
+          <div class="qa-list" style="--n:6">
+            <div class="qa is-on" style="--r:1">
+              <button type="button" class="qa__q" aria-expanded="true"><i>01</i><span>How long do lash extensions last?</span><b class="qa__arrow" aria-hidden="true"><svg viewBox="0 0 24 8"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></b></button>
+              <div class="qa__a"><div class="qa__ai"><span class="qa__no" aria-hidden="true">01</span><p>Extensions fall out naturally with your own lash cycle. Most clients come back every two to three weeks for a fill to keep the set full and even.</p></div></div>
+            </div>
+            <div class="qa" style="--r:2">
+              <button type="button" class="qa__q" aria-expanded="false"><i>02</i><span>Will extensions damage my natural lashes?</span><b class="qa__arrow" aria-hidden="true"><svg viewBox="0 0 24 8"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></b></button>
+              <div class="qa__a"><div class="qa__ai"><span class="qa__no" aria-hidden="true">02</span><p>Not when they are applied properly. We choose a weight your natural lash can carry and never attach more than one extension to a lash. Healthy lashes come first.</p></div></div>
+            </div>
+            <div class="qa" style="--r:3">
+              <button type="button" class="qa__q" aria-expanded="false"><i>03</i><span>Which style is right for me?</span><b class="qa__arrow" aria-hidden="true"><svg viewBox="0 0 24 8"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></b></button>
+              <div class="qa__a"><div class="qa__ai"><span class="qa__no" aria-hidden="true">03</span><p>That is what the consultation is for. We look at your eye shape and lash density, ask how you live, and recommend a look. You approve it before we begin.</p></div></div>
+            </div>
+            <div class="qa" style="--r:4">
+              <button type="button" class="qa__q" aria-expanded="false"><i>04</i><span>Can I wear makeup, swim or work out?</span><b class="qa__arrow" aria-hidden="true"><svg viewBox="0 0 24 8"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></b></button>
+              <div class="qa__a"><div class="qa__ai"><span class="qa__no" aria-hidden="true">04</span><p>Yes to all three. Keep your lashes dry for the first 24 hours while the adhesive cures. After that, live normally and use oil-free products around your eyes.</p></div></div>
+            </div>
+            <div class="qa" style="--r:5">
+              <button type="button" class="qa__q" aria-expanded="false"><i>05</i><span>What is your cancellation policy?</span><b class="qa__arrow" aria-hidden="true"><svg viewBox="0 0 24 8"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></b></button>
+              <div class="qa__a"><div class="qa__ai"><span class="qa__no" aria-hidden="true">05</span><p>Please give us 24 hours&rsquo; notice to move or cancel. Your deposit holds your appointment and is taken off the price of your service.</p></div></div>
+            </div>
+            <div class="qa" style="--r:6">
+              <button type="button" class="qa__q" aria-expanded="false"><i>06</i><span>Do you remove lashes done elsewhere?</span><b class="qa__arrow" aria-hidden="true"><svg viewBox="0 0 24 8"><path d="M0 4h22M18 1l4 3-4 3" fill="none" stroke="currentColor"/></svg></b></button>
+              <div class="qa__a"><div class="qa__ai"><span class="qa__no" aria-hidden="true">06</span><p>Yes. We remove them gently, and can put on a new set in the same appointment.</p></div></div>
+            </div>
           </div>
         </div>
       </div>
