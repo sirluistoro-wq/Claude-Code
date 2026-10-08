@@ -1,7 +1,7 @@
 # Raul's Automotive: media pipeline
 
 - `../build.py` generates the site pages into `demos/raul-auto/`.
-- `car-scene.js` + `render.js` render the section stills (`assets/still-*.jpg`) from the 3D sunset scene:
+- `car-scene.js` + `render.js` render stills (`still-*.jpg`) from the 3D sunset scene. The live site now uses real photos, so these are not deployed:
   `node render.js /path/to/three.min.js(r128) ../../raul-auto/assets`
   Add `--videos` to also re-render the 3D hero clips (this overwrites the stock footage below).
 
