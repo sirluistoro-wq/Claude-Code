@@ -175,20 +175,45 @@
   const clips = [];
   $$('.photo[data-video]').forEach((fig) => {
     const v = document.createElement('video');
-    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.preload = 'auto'; v.tabIndex = -1;
-    v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
-    v.addEventListener('loadeddata', () => { fig.classList.add('is-loaded', 'has-video'); }, { once: true });
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.preload = 'auto'; v.tabIndex = -1; v.loop = false;
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+    v.setAttribute('disablepictureinpicture', ''); v.setAttribute('aria-hidden', 'true');
+    // show the video as soon as the browser has anything to draw (phones fire different events)
+    const show = () => fig.classList.add('is-loaded', 'has-video');
+    ['loadeddata', 'canplay', 'playing'].forEach((ev) => v.addEventListener(ev, show, { once: true }));
     // phones get a lighter clip when one is provided; try .mp4 first, then a .webm with the same name
     const base = (matchMedia('(max-width: 700px)').matches && fig.dataset.videoMobile) || fig.dataset.video;
     let triedWebm = false;
     v.addEventListener('error', () => {
       if (!triedWebm && /\.mp4$/.test(base)) { triedWebm = true; v.src = base.replace(/\.mp4$/, '.webm'); }
-      else v.remove();
+      else { fig.classList.remove('has-video'); v.remove(); }
     });
-    v.src = base;
     $('.photo__in', fig).appendChild(v);
-    clips.push({ fig, v, hero: fig.classList.contains('hero__video') });
+    clips.push({ fig, v, base, started: false, hero: fig.classList.contains('hero__video') });
   });
+
+  // iPhones and some Androids only start loading a video after it has been told to play once.
+  // Muted + inline playback is allowed, so start it, then stop it on the first frame so scroll can drive it.
+  const prime = (v) => {
+    if (v.dataset.primed || !v.src) return;
+    const p = v.play();
+    if (p && p.then) p.then(() => { v.dataset.primed = '1'; v.pause(); }).catch(() => {});
+  };
+  // clips download only when they get close to the screen (the hero starts straight away), so phones are not flooded
+  const startClip = (c) => {
+    if (c.started) return; c.started = true;
+    c.v.src = c.base; c.v.load();
+    c.v.addEventListener('loadedmetadata', () => prime(c.v), { once: true });
+    prime(c.v);
+  };
+  const clipIO = new IntersectionObserver((ents) => ents.forEach((en) => {
+    if (!en.isIntersecting) return;
+    const c = clips.find((x) => x.fig === en.target); if (c) startClip(c);
+    clipIO.unobserve(en.target);
+  }), { rootMargin: '700px 0px' });
+  clips.forEach((c) => { if (c.hero) startClip(c); else clipIO.observe(c.fig); });
+  // if the phone refused (data saver / low power mode), the first touch is allowed to start them
+  ['touchstart', 'pointerdown', 'scroll'].forEach((ev) => addEventListener(ev, () => clips.forEach((c) => c.started && prime(c.v)), { once: true, passive: true }));
 
   /* ── Scroll-linked: nav, hero stage, photo motion and clip scrubbing ── */
   const nav = $('#nav');
@@ -239,7 +264,8 @@
     if (reduced) return;
     clips.forEach((c) => {
       const v = c.v;
-      if (!v.duration || !isFinite(v.duration) || v.readyState < 2) return;
+      if (!v.duration || !isFinite(v.duration) || v.readyState < 2 || v.seeking) return;
+      if (!v.paused) v.pause();
       let p;
       if (c.hero) p = heroP;
       else {
