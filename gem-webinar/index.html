@@ -558,6 +558,88 @@
     .guarantee h5 { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
     .guarantee p { font-size: 14.5px; color: var(--mute-d); }
 
+    /* ─── Client psychology segment ─────────────────────────── */
+    .fill-screen { min-height: 100vh; display: flex; align-items: center; }
+    .fill-screen > .wrap { width: 100%; }
+    @media (max-width: 860px) { .fill-screen { min-height: 0; display: block; } }
+    .psy-grid { align-items: center; }
+    .vibe-words { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+    .vibe-words li { font-family: var(--serif); font-style: italic; font-size: clamp(17px, 1.4vw, 21px); padding: 6px 16px; border-radius: 99px; border: 1px solid var(--line-l); }
+    .inspo { position: relative; justify-self: center; width: min(100%, calc(66vh * .673)); }
+    .inspo-photo { aspect-ratio: 1206 / 1792; border-radius: 24px; }
+    .pin { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px 7px 9px; border-radius: 99px; background: rgba(245,240,232,.92); color: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; box-shadow: 0 8px 20px -8px rgba(0,0,0,.45); white-space: nowrap; }
+    .pin::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); opacity: .5; }
+    .pin-lash { background: var(--teal); color: #fff; }
+    .pin-lash::before { background: #fff; opacity: 1; }
+    .inspo figcaption { margin-top: 14px; font-size: 13px; color: var(--mute-l); font-style: italic; font-family: var(--serif); }
+    .asks { display: grid; grid-template-columns: 1fr auto 1.35fr; gap: clamp(18px, 3vw, 40px); align-items: stretch; }
+    .ask { border-radius: 26px; padding: clamp(26px, 3vw, 44px); border: 1px solid rgba(123,216,208,.35); display: flex; flex-direction: column; gap: 18px; }
+    .ask-first { background: var(--cream); color: var(--ink); border-color: transparent; }
+    .ask-step { font-size: 11px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--aqua); }
+    .ask-first .ask-step { color: var(--teal); }
+    .ask blockquote { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 34px); line-height: 1.25; }
+    .ask-first blockquote { font-size: clamp(28px, 3vw, 46px); }
+    .ask blockquote em { font-style: italic; color: var(--teal); }
+    .ask-arrow { align-self: center; font-size: 34px; color: var(--aqua); }
+    .hype .inner { max-width: 1040px; }
+    .hype-title { font-size: clamp(48px, 7.4vw, 124px); }
+    .ladder { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; align-items: end; }
+    .ladder li { position: relative; padding: 22px 20px 24px; border-radius: 20px; background: rgba(245,240,232,.04); border: 1px solid var(--line-d); border-top: 3px solid var(--aqua); }
+    .ladder li:nth-child(1) { min-height: 170px; }
+    .ladder li:nth-child(2) { min-height: 200px; }
+    .ladder li:nth-child(3) { min-height: 230px; }
+    .ladder li:nth-child(4) { min-height: 260px; }
+    .ladder li:nth-child(5) { min-height: 290px; background: linear-gradient(180deg, rgba(123,216,208,.16), rgba(123,216,208,.03)); }
+    .ladder .lv { font-size: 10.5px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--aqua); }
+    .ladder h4 { font-family: var(--serif); font-weight: 430; font-size: clamp(24px, 2.2vw, 34px); margin: 12px 0 8px; }
+    .ladder p { font-size: 14.5px; color: var(--mute-d); line-height: 1.5; }
+    .cherry { display: flex; gap: 14px; align-items: baseline; margin-top: clamp(28px, 4vh, 44px); font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.8vw, 28px); line-height: 1.35; max-width: 50ch; }
+    .cherry-mark { color: var(--gold); font-style: normal; }
+    .soon-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #1A1408; background: linear-gradient(180deg, #F1D9A0, #D9B36A); padding: 10px 16px; border-radius: 99px; }
+    .tray { position: relative; justify-self: center; width: min(100%, 520px); padding: clamp(24px, 3vw, 36px); border-radius: 26px; background: #fff; box-shadow: 0 40px 80px -40px rgba(10,13,14,.45); transform: rotate(1.5deg); }
+    .tray svg { width: 100%; height: auto; display: block; }
+    .tray-lab { font: 600 22px/1 var(--serif); fill: var(--ink); }
+    .tray-strips { stroke: var(--ink); stroke-width: 2; stroke-linecap: round; opacity: .75; }
+    .tray-stamp { position: absolute; right: -14px; top: -16px; transform: rotate(8deg); font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #B4433F; padding: 8px 12px; border: 2.5px solid currentColor; border-radius: 6px; background: var(--cream); }
+    .pull { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.8vw, 27px); line-height: 1.4; padding-left: 20px; border-left: 2px solid var(--aqua); max-width: 40ch; }
+    .cream .pull { border-color: var(--teal); }
+    .techs .cell { min-height: 0; }
+    .techs .cell .num { margin-bottom: 18px; }
+    .vibe-check { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 28px); margin-top: clamp(30px, 4vh, 48px); }
+    .vibe-check p { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.5; padding-top: 16px; border-top: 1px solid var(--line-l); }
+    .callout { border-radius: 22px; padding: clamp(22px, 2.6vw, 32px); background: rgba(245,240,232,.05); border: 1px solid var(--line-d); max-width: 48ch; }
+    .callout p { font-size: 16.5px; line-height: 1.5; color: var(--mute-d); }
+    .callout-twist { margin-top: 10px; font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.8vw, 26px) !important; color: var(--cream) !important; }
+    .rec-frame { position: relative; justify-self: center; width: min(100%, calc(70vh * .5625)); aspect-ratio: 9 / 16; border-radius: 34px; overflow: hidden; border: 6px solid #1c2526; }
+    .rec-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .rec { position: absolute; top: 16px; left: 16px; font-size: 11px; font-weight: 700; letter-spacing: .2em; color: #fff; background: rgba(180,67,63,.9); padding: 6px 10px; border-radius: 6px; animation: recBlink 1.6s steps(2) infinite; }
+    @keyframes recBlink { 50% { opacity: .55; } }
+    .sauce-grid { align-items: center; }
+    .sauce-card { border-radius: 28px; padding: clamp(24px, 3vw, 40px); background: var(--cream); color: var(--ink); display: grid; gap: clamp(20px, 3vh, 30px); box-shadow: 0 40px 90px -40px rgba(0,0,0,.8); }
+    .sauce-item { display: grid; grid-template-columns: 54px 1fr; gap: 12px; }
+    .sauce-item + .sauce-item { padding-top: clamp(18px, 2.6vh, 26px); border-top: 1px dashed rgba(10,13,14,.25); }
+    .sauce-n { font-family: var(--serif); font-style: italic; font-size: 34px; line-height: 1; color: var(--teal); }
+    .sauce-item h4 { font-family: var(--serif); font-weight: 450; font-size: clamp(22px, 1.9vw, 28px); line-height: 1.15; margin-bottom: 8px; }
+    .sauce-item p { font-size: 15.5px; line-height: 1.55; color: rgba(10,13,14,.78); }
+    .sauce-item p + p { margin-top: 8px; }
+    .hook { font-family: var(--serif); font-style: italic; font-size: clamp(22px, 2vw, 30px) !important; line-height: 1.25 !important; color: var(--teal) !important; padding: 12px 16px; border-radius: 14px; background: rgba(45,156,149,.1); }
+    .sauce-note { font-size: 13.5px !important; font-style: italic; }
+    .q30-wrap { display: grid; grid-template-columns: auto 1fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
+    .timer { position: relative; width: clamp(180px, 22vw, 280px); aspect-ratio: 1; cursor: pointer; }
+    .timer svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .t-track { fill: none; stroke: var(--line-d); stroke-width: 4; }
+    .t-bar { fill: none; stroke: var(--aqua); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 339.3; stroke-dashoffset: 0; }
+    .t-num { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif); font-weight: 430; font-size: clamp(64px, 8vw, 110px); background: var(--gloss); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
+    @media (max-width: 860px) {
+      .asks { grid-template-columns: 1fr; } .ask-arrow { transform: rotate(90deg); justify-self: center; }
+      .ladder { grid-template-columns: 1fr; } .ladder li { min-height: 0 !important; }
+      .vibe-check { grid-template-columns: 1fr; }
+      .q30-wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+      .q30-wrap .eyebrow { justify-content: center; } .q30-wrap .lead { margin: 0 auto; }
+      .inspo { width: 100%; } .rec-frame { width: min(100%, 320px); }
+      .tray { transform: none; }
+    }
+
     /* ─── Liquid drips (from the logo) ───────────────────────── */
     .drips { position: absolute; left: 0; right: 0; top: 0; height: 240px; z-index: 4; pointer-events: none; }
     .drips svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 6px 10px rgba(0,0,0,.35)); }
@@ -748,7 +830,7 @@
       <img src="assets/logo-hg.png" alt="Hidden Gem Lashes" />
       <span>Hidden Gem Lashes<i>Free Masterclass</i></span>
     </a>
-    <div class="counter" id="counter" aria-hidden="true"><b id="counterNum">01</b><span>/ 42</span><span id="counterTitle">The Blueprint</span></div>
+    <div class="counter" id="counter" aria-hidden="true"><b id="counterNum">01</b><span>/ 52</span><span id="counterTitle">The Blueprint</span></div>
     <div class="top-actions">
       <div class="lang" role="group" aria-label="Language / Idioma">
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -767,6 +849,7 @@
     <a href="#seen" data-nav data-rail="seen"><span>I · Get Seen</span><i></i></a>
     <a href="#chosen" data-nav data-rail="chosen"><span>II · Get Chosen</span><i></i></a>
     <a href="#custom" data-nav data-rail="custom"><span>III · Custom Design</span><i></i></a>
+    <a href="#psychology" data-nav data-rail="psych"><span>Client Psychology</span><i></i></a>
     <a href="#academy" data-nav data-rail="academy"><span>The Academy</span><i></i></a>
     <a href="#enroll" data-nav data-rail="enroll"><span>Enroll</span><i></i></a>
     <a href="#questions" data-nav data-rail="questions"><span>Q&amp;A</span><i></i></a>
@@ -1305,8 +1388,198 @@
       </div>
     </section>
 
-    <!-- ═══ 31 · Growth path ═══ -->
-    <section class="section" data-slide="31" data-title="The Growth Path">
+    <!-- ═══ 31 · Client psychology ═══ -->
+    <section class="section cream" id="psychology" data-slide="31" data-title="Client Psychology" data-chapter="psych">
+      <div class="wrap grid-2 psy-grid">
+        <div class="stack">
+          <span class="eyebrow" data-fade>Client Psychology</span>
+          <h2 class="h2" data-split>Does she want the lashes… or does she want to look like <em>the woman wearing them?</em></h2>
+          <p class="lead" data-fade>A client brings you an inspo picture: lifted eyes, perfect skin, makeup, brows, lighting, maybe even a completely different facial structure. She says, “I want these lashes.” Emotionally, she may be responding to how that woman looks as a whole.</p>
+          <ul class="vibe-words" data-stagger>
+            <li>Feminine</li><li>Expensive</li><li>Sexy</li><li>Soft</li><li>Younger</li><li>Intimidating</li><li>Polished</li><li>Doll-like</li>
+          </ul>
+        </div>
+        <figure class="inspo" data-pins>
+          <div class="media inspo-photo" data-reveal><img src="assets/lash-client.jpg" alt="An inspo picture of a client with soft, fluffy lashes" loading="lazy" /></div>
+          <span class="pin" style="--x: 16%; --y: 9%;">Lighting</span>
+          <span class="pin" style="--x: 30%; --y: 30%;">Brows</span>
+          <span class="pin pin-lash" style="--x: 64%; --y: 37%;">Lashes</span>
+          <span class="pin" style="--x: 78%; --y: 49%;">Skin</span>
+          <span class="pin" style="--x: 48%; --y: 60%;">Makeup</span>
+          <figcaption>The inspo picture: only one of these is the lashes.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ═══ 32 · Reverse engineer ═══ -->
+    <section class="section fill-screen ink-2" data-slide="32" data-title="Reverse Engineer the Inspo">
+      <div class="wrap">
+        <div class="head">
+          <div class="stack">
+            <span class="eyebrow" data-fade>Reverse Engineer</span>
+            <h2 class="h1" data-split>The inspo isn't <em>instructions.</em></h2>
+          </div>
+          <p class="lead" data-fade>Reverse engineering is key. Before you copy anything, find out what she is really reacting to.</p>
+        </div>
+        <div class="asks" data-stagger>
+          <div class="ask ask-first"><span class="ask-step">Ask first</span><blockquote>“What <em>don't</em> you like about this picture?”</blockquote></div>
+          <span class="ask-arrow" aria-hidden="true">→</span>
+          <div class="ask"><span class="ask-step">Then ask</span><blockquote>“What do you love most about this picture: the lashes themselves, how lifted her eyes look, how full they look, or the overall vibe she gives?”</blockquote></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 33 · Pattern interrupt ═══ -->
+    <section class="fullbleed hype" data-slide="33" data-title="Pattern Interrupt">
+      <div class="bg" data-parallax="-10"><img src="assets/studio.jpg" alt="" loading="lazy" style="object-position: center 30%;" /></div>
+      <div class="inner">
+        <span class="eyebrow" data-fade>Pattern Interrupt</span>
+        <h2 class="display hype-title" data-split>Stay with me. <em>This is the good part.</em></h2>
+        <p class="lead" data-fade style="margin-left:auto;margin-right:auto;">What comes next is the framework I use on every single client. Sit up, grab your notes, and lock in.</p>
+        <div data-fade><div class="chat"><span class="dot"></span><span><b>Live chat</b>Type <strong>I'M READY</strong> in the chat if you're still with me.</span></div></div>
+      </div>
+    </section>
+
+    <!-- ═══ 34 · Permission ladder ═══ -->
+    <section class="section ladder-stage" data-slide="34" data-title="The Client Permission Ladder">
+      <div class="wrap">
+        <div class="head">
+          <div class="stack">
+            <span class="eyebrow" data-fade>Lash Psychology</span>
+            <h2 class="h1" data-split>The Client <em>Permission Ladder</em></h2>
+          </div>
+          <p class="lead" data-fade>This is my framework.</p>
+        </div>
+        <ol class="ladder" data-ladder>
+          <li><span class="lv">Level 1</span><h4>Listen</h4><p>Understand what she thinks she wants.</p></li>
+          <li><span class="lv">Level 2</span><h4>Translate</h4><p>Find the emotional meaning behind it.</p></li>
+          <li><span class="lv">Level 3</span><h4>Educate</h4><p>Explain what will and won't work.</p></li>
+          <li><span class="lv">Level 4</span><h4>Recommend</h4><p>Give your professional feedback.</p></li>
+          <li><span class="lv">Level 5</span><h4>Design</h4><p>Create the set.</p></li>
+        </ol>
+        <p class="cherry" data-fade><span class="cherry-mark">✦</span><span>The cherry on top: meet her in the middle. Never over-give, never under-give.</span></p>
+      </div>
+    </section>
+
+    <!-- ═══ 35 · Curls ═══ -->
+    <section class="section fill-screen cream" data-slide="35" data-title="L, UC &amp; V Curl">
+      <div class="wrap grid-2">
+        <div class="stack">
+          <span class="eyebrow" data-fade>Curl Talk</span>
+          <h2 class="h1" data-split>L, UC <em>&amp; V curl</em></h2>
+          <p class="lead" data-fade>The curls I'll break down live, and a little sneak peek at something I've been working on.</p>
+          <div data-fade><span class="soon-tag">✦ Coming this November · Gem's lash trays</span></div>
+        </div>
+        <figure class="tray" data-fade>
+          <svg viewBox="0 0 390 240" aria-hidden="true"><rect x="30" y="40" width="100" height="180" rx="10" fill="rgba(10,13,14,.04)" stroke="rgba(10,13,14,.18)"/><text x="80" y="30" text-anchor="middle" class="tray-lab">L</text><g class="tray-strips"><line x1="46" y1="70" x2="114" y2="70"/><line x1="46" y1="88" x2="114" y2="88"/><line x1="46" y1="106" x2="114" y2="106"/><line x1="46" y1="124" x2="114" y2="124"/><line x1="46" y1="142" x2="114" y2="142"/><line x1="46" y1="160" x2="114" y2="160"/><line x1="46" y1="178" x2="114" y2="178"/><line x1="46" y1="196" x2="114" y2="196"/></g><rect x="140" y="40" width="100" height="180" rx="10" fill="rgba(10,13,14,.04)" stroke="rgba(10,13,14,.18)"/><text x="190" y="30" text-anchor="middle" class="tray-lab">UC</text><g class="tray-strips"><line x1="156" y1="70" x2="224" y2="70"/><line x1="156" y1="88" x2="224" y2="88"/><line x1="156" y1="106" x2="224" y2="106"/><line x1="156" y1="124" x2="224" y2="124"/><line x1="156" y1="142" x2="224" y2="142"/><line x1="156" y1="160" x2="224" y2="160"/><line x1="156" y1="178" x2="224" y2="178"/><line x1="156" y1="196" x2="224" y2="196"/></g><rect x="250" y="40" width="100" height="180" rx="10" fill="rgba(10,13,14,.04)" stroke="rgba(10,13,14,.18)"/><text x="300" y="30" text-anchor="middle" class="tray-lab">V</text><g class="tray-strips"><line x1="266" y1="70" x2="334" y2="70"/><line x1="266" y1="88" x2="334" y2="88"/><line x1="266" y1="106" x2="334" y2="106"/><line x1="266" y1="124" x2="334" y2="124"/><line x1="266" y1="142" x2="334" y2="142"/><line x1="266" y1="160" x2="334" y2="160"/><line x1="266" y1="178" x2="334" y2="178"/><line x1="266" y1="196" x2="334" y2="196"/></g></svg>
+          <span class="tray-stamp">Sneak peek</span>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ═══ 36 · Chapter 1 vs 7 ═══ -->
+    <section class="section" data-slide="36" data-title="Chapter 1 vs Chapter 7">
+      <div class="wrap grid-2">
+        <div class="media" data-reveal style="aspect-ratio: 4/5; border-radius: 28px; max-height: 72vh;"><img src="assets/gem-home.jpg" alt="Gem lashing from her home setup" loading="lazy" style="object-position: center 30%;" /></div>
+        <div class="stack">
+          <span class="eyebrow" data-fade>Real Talk</span>
+          <h2 class="h2" data-split>Don't compare your chapter 1 to <em>someone else's chapter 7.</em></h2>
+          <p class="lead" data-fade>Stalking other artists and feeling discouraged, or even jealous, makes it harder to keep growing. You put a cap on your own ceiling.</p>
+          <p class="pull" data-fade>I lashed from home. I had to figure out how to become undeniable. Clients love a fancy setup, but the result speaks louder than the address.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 37 · No competition ═══ -->
+    <section class="section cream" data-slide="37" data-title="There's No Competition">
+      <div class="wrap">
+        <div class="head">
+          <div class="stack">
+            <span class="eyebrow" data-fade>Human Psychology</span>
+            <h2 class="h1" data-split>There is <em>no competition.</em></h2>
+          </div>
+          <p class="lead" data-fade>I go to four different lash techs myself.</p>
+        </div>
+        <div class="grid-4 techs" data-stagger>
+          <div class="cell"><span class="num">01</span><h4>Great styling</h4><p>Bad retention.</p></div>
+          <div class="cell"><span class="num">02</span><h4>Great styling</h4><p>Bad retention.</p></div>
+          <div class="cell"><span class="num">03</span><h4>Only uses DD curl</h4><p>I have to bring my own trays.</p></div>
+          <div class="cell"><span class="num">04</span><h4>A nail salon</h4><p>Yes, I go there too.</p></div>
+        </div>
+        <div class="vibe-check" data-stagger>
+          <p>No competition, and I even mean <strong>how you act.</strong></p>
+          <p>If you're loud and she's timid, she may not vibe with you.</p>
+          <p>If you show up as successful, some clients may decide not to go with you.</p>
+        </div>
+        <p class="keymsg" data-split>Your client might not vibe with me, and my client might not vibe with you. <em>That's human psychology.</em></p>
+      </div>
+    </section>
+
+    <!-- ═══ 38 · Content psychology ═══ -->
+    <section class="section ink-2" data-slide="38" data-title="Content Psychology">
+      <div class="wrap grid-2">
+        <div class="stack">
+          <span class="eyebrow" data-fade>Content Psychology</span>
+          <h2 class="h1" data-split>Make people <em>obsessed</em> with you.</h2>
+          <p class="lead" data-fade>With the words you choose. With the outfit you wear in your video. Every detail tells the right client: this is for you.</p>
+          <div class="callout" data-fade>
+            <p>We all say we want older clients because they've got the money…</p>
+            <p class="callout-twist">But your big bat lashes? Some mature clients don't like that.</p>
+          </div>
+        </div>
+        <div class="rec-frame" data-reveal><img src="assets/gem-selfie.jpg" alt="Gem filming content" loading="lazy" /><span class="rec">● REC</span></div>
+      </div>
+    </section>
+
+    <!-- ═══ 39 · Homework ═══ -->
+    <section class="section fill-screen sauce-stage" data-slide="39" data-title="Your Homework">
+      <div class="wrap grid-2 sauce-grid">
+        <div class="stack">
+          <span class="eyebrow" data-fade>Your Homework</span>
+          <h2 class="h1" data-split>This is <em>the sauce.</em></h2>
+          <p class="pull" data-fade>My mom didn't make Gem my middle name for no reason.</p>
+          <div data-fade><span class="soon-tag">✦ Screenshot this</span></div>
+        </div>
+        <div class="sauce-card" data-fade>
+          <div class="sauce-item">
+            <span class="sauce-n">01</span>
+            <div>
+              <h4>What is the goal of your video?</h4>
+              <p><strong>Bookings or followers.</strong> It must be one. Pick one this week, then the other one next week.</p>
+              <p>That's the secret to “I don't know what to post.” You don't post everything. You post in categories.</p>
+            </div>
+          </div>
+          <div class="sauce-item">
+            <span class="sauce-n">02</span>
+            <div>
+              <h4>For the girls taking action today</h4>
+              <p>List 5 pain points of your client, your product, or your class. Then I dare you to post this hook:</p>
+              <p class="hook">“Day 1 of being embarrassed to post.”</p>
+              <p class="sauce-note">Even if you're not. People buy from security and that home feeling.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 40 · Questions break ═══ -->
+    <section class="section fill-screen q30" data-slide="40" data-title="30-Second Questions">
+      <div class="wrap q30-wrap">
+        <div class="timer" data-timer role="timer" aria-label="30 second timer">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="t-track" cx="60" cy="60" r="54"/><circle class="t-bar" cx="60" cy="60" r="54"/></svg>
+          <b class="t-num">30</b>
+        </div>
+        <div class="stack">
+          <span class="eyebrow" data-fade>Quick Pause</span>
+          <h2 class="h1" data-split>30-second <em>questions.</em></h2>
+          <p class="lead" data-fade>Okay, I'm saying way too much. Anyone? Drop your question in the chat.</p>
+          <p class="small" data-fade>Click the timer to restart it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 41 · Growth path ═══ -->
+    <section class="section" data-slide="41" data-title="The Growth Path">
       <div class="wrap">
         <div class="head">
           <div class="stack">
@@ -1324,8 +1597,8 @@
       </div>
     </section>
 
-    <!-- ═══ 32 · Offer transition ═══ -->
-    <section class="section ink-2" data-slide="32" data-title="From Information to Implementation">
+    <!-- ═══ 42 · Offer transition ═══ -->
+    <section class="section ink-2" data-slide="42" data-title="From Information to Implementation">
       <div class="wrap grid-2">
         <div class="media" data-reveal style="aspect-ratio: 3/4; border-radius: 300px 300px 0 0;"><img src="assets/gem-cream.jpg" alt="Gem in a cream blouse, lit by golden window light" loading="lazy" style="object-position: center 30%;" /></div>
         <div class="stack">
@@ -1342,8 +1615,8 @@
       </div>
     </section>
 
-    <!-- ═══ 33 · Custom Lash Academy ═══ -->
-    <section class="section academy" id="academy" data-slide="33" data-title="Introducing the Academy" data-chapter="academy">
+    <!-- ═══ 43 · Custom Lash Academy ═══ -->
+    <section class="section academy" id="academy" data-slide="43" data-title="Introducing the Academy" data-chapter="academy">
       <div class="drips" data-drips aria-hidden="true"></div>
       <div class="wrap">
         <span class="eyebrow" data-fade style="justify-content:center;">Introducing</span>
@@ -1358,8 +1631,8 @@
       </div>
     </section>
 
-    <!-- ═══ 34 · What's inside ═══ -->
-    <section class="section ink-2 inside-stage" data-slide="34" data-title="What's Inside">
+    <!-- ═══ 44 · What's inside ═══ -->
+    <section class="section ink-2 inside-stage" data-slide="44" data-title="What's Inside">
       <div class="wrap">
         <div class="head inside-head">
           <div class="stack">
@@ -1385,8 +1658,8 @@
       </div>
     </section>
 
-    <!-- ═══ 35 · Weekly support ═══ -->
-    <section class="section cream" data-slide="35" data-title="Support + Mindset">
+    <!-- ═══ 45 · Weekly support ═══ -->
+    <section class="section cream" data-slide="45" data-title="Support + Mindset">
       <div class="wrap grid-2">
         <div class="stack">
           <span class="eyebrow" data-fade>Support + Mindset</span>
@@ -1402,8 +1675,8 @@
       </div>
     </section>
 
-    <!-- ═══ 36 · Total value ═══ -->
-    <section class="section price-stage" id="enroll" data-slide="36" data-title="Total Value" data-chapter="enroll">
+    <!-- ═══ 46 · Total value ═══ -->
+    <section class="section price-stage" id="enroll" data-slide="46" data-title="Total Value" data-chapter="enroll">
       <div class="wrap price-grid">
         <div class="pg-main">
           <span class="eyebrow" data-fade>Enrollment</span>
@@ -1419,8 +1692,8 @@
       </div>
     </section>
 
-    <!-- ═══ 37 · Standard value ═══ -->
-    <section class="section price-stage ink-2" data-slide="37" data-title="Standard Value">
+    <!-- ═══ 47 · Standard value ═══ -->
+    <section class="section price-stage ink-2" data-slide="47" data-title="Standard Value">
       <div class="wrap price-grid">
         <div class="pg-main">
           <span class="eyebrow" data-fade>Enrollment</span>
@@ -1432,8 +1705,8 @@
       </div>
     </section>
 
-    <!-- ═══ 38 · Today's price ═══ -->
-    <section class="section price-stage today-stage" data-slide="38" data-title="Today's Price">
+    <!-- ═══ 48 · Today's price ═══ -->
+    <section class="section price-stage today-stage" data-slide="48" data-title="Today's Price">
       <div class="wrap price-grid offer-grid">
         <div class="pg-main offer-copy">
           <span class="eyebrow" data-fade>Your price today</span>
@@ -1475,8 +1748,8 @@
       </div>
     </section>
 
-    <!-- ═══ 39 · Bonuses ═══ -->
-    <section class="section ink-2" data-slide="39" data-title="Enrollment Bonuses">
+    <!-- ═══ 49 · Bonuses ═══ -->
+    <section class="section ink-2" data-slide="49" data-title="Enrollment Bonuses">
       <div class="wrap">
         <div class="head">
           <div class="stack">
@@ -1499,8 +1772,8 @@
       </div>
     </section>
 
-    <!-- ═══ 40 · Proof + next step ═══ -->
-    <section class="fullbleed" data-slide="40" data-title="Proof + Next Step">
+    <!-- ═══ 50 · Proof + next step ═══ -->
+    <section class="fullbleed" data-slide="50" data-title="Proof + Next Step">
       <div class="bg" data-parallax="-12"><img src="assets/gem-mirror.jpg" alt="Gem taking a mirror selfie in her content studio" loading="lazy" style="object-position: center 6%;" /></div>
       <div class="inner">
         <span class="eyebrow" data-fade>Proof + Next Step</span>
@@ -1512,8 +1785,8 @@
       </div>
     </section>
 
-    <!-- ═══ 41 · Who it's for ═══ -->
-    <section class="section cream" data-slide="41" data-title="Is This for You?">
+    <!-- ═══ 51 · Who it's for ═══ -->
+    <section class="section cream" data-slide="51" data-title="Is This for You?">
       <div class="wrap">
         <div class="head">
           <div class="stack">
@@ -1534,8 +1807,8 @@
       </div>
     </section>
 
-    <!-- ═══ 42 · Questions ═══ -->
-    <section class="final" id="questions" data-slide="42" data-title="Questions + Final Invitation" data-chapter="questions">
+    <!-- ═══ 52 · Questions ═══ -->
+    <section class="final" id="questions" data-slide="52" data-title="Questions + Final Invitation" data-chapter="questions">
       <div>
         <span class="eyebrow" data-fade>Questions + Final Invitation</span>
         <h2 class="display" data-split style="margin-top: 26px;"><em>Questions?</em></h2>
@@ -1932,6 +2205,30 @@
       gsap.set($('.drip-reveal', host), { attr: { height: 14 } });
       var lastW = host.clientWidth;
       window.addEventListener('resize', function () { if (Math.abs(host.clientWidth - lastW) < 40) return; lastW = host.clientWidth; draw(); if (!played) gsap.set($('.drip-reveal', host), { attr: { height: 14 } }); });
+    });
+
+    // Inspo photo: labels pop in one by one, "Lashes" last.
+    $$('[data-pins]').forEach(function (fig) {
+      var pins = $$('.pin', fig).sort(function (a, b) { return a.classList.contains('pin-lash') - b.classList.contains('pin-lash'); });
+      gsap.from(pins, { autoAlpha: 0, scale: .6, duration: .55, ease: 'back.out(2)', stagger: .22, delay: .8, scrollTrigger: { trigger: fig, start: 'top 70%' } });
+    });
+    // Permission ladder: each level rises into place.
+    $$('[data-ladder]').forEach(function (ol) {
+      gsap.from(ol.children, { autoAlpha: 0, y: 70, duration: 1, ease: 'expo.out', stagger: .14, scrollTrigger: { trigger: ol, start: 'top 85%' } });
+    });
+    // 30-second question timer: runs when the slide arrives, click to restart.
+    $$('[data-timer]').forEach(function (t) {
+      var bar = $('.t-bar', t), num = $('.t-num', t), run = null;
+      var start = function () {
+        if (run) run.kill();
+        var o = { s: 30 };
+        gsap.set(bar, { strokeDashoffset: 0 });
+        run = gsap.timeline()
+          .to(o, { s: 0, duration: 30, ease: 'none', onUpdate: function () { num.textContent = Math.ceil(o.s); } }, 0)
+          .to(bar, { strokeDashoffset: 339.3, duration: 30, ease: 'none' }, 0);
+      };
+      ScrollTrigger.create({ trigger: t, start: 'top 80%', onEnter: start, onEnterBack: start });
+      t.addEventListener('click', start);
     });
 
     // Lash map: lashes draw out from the lid, then the lengths appear.
