@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Custom Lash Business Blueprint — Gem</title>
+  <title>The Custom Lash Blueprint — Gem</title>
   <meta name="description" content="A free masterclass by Gem, founder of Hidden Gem Lashes. Attract better-fit clients, create custom sets, and build a more consistent lash business." />
   <meta name="theme-color" content="#0A0D0E" />
   <link rel="icon" type="image/png" href="assets/logo-hg.png" />
@@ -804,6 +804,124 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
+    /* ─── Offer section ───────────────────────────────────────── */
+    .q-big { font-family: var(--serif); font-weight: 430; font-size: clamp(32px, 4.2vw, 64px); line-height: 1.12; letter-spacing: -0.02em; max-width: 22ch; margin: clamp(20px, 3vh, 32px) auto 0; text-wrap: balance; }
+    .q-big em { background: var(--gloss); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .q-big em .wi { background: var(--gloss); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .12em; margin-right: -.12em; }
+    .two-women { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2.4vw, 32px); max-width: 920px; margin: clamp(36px, 6vh, 64px) auto 0; text-align: left; }
+    .two-women > div { padding: clamp(22px, 2.6vw, 32px); border-radius: 22px; border: 1px solid var(--line-d); background: rgba(245,240,232,.04); }
+    .tw-label { display: block; font-family: var(--serif); font-style: italic; font-size: clamp(22px, 2vw, 30px); color: var(--aqua); margin-bottom: 10px; }
+    .two-women p { font-size: clamp(16px, 1.3vw, 18px); line-height: 1.55; color: var(--mute-d); }
+    .flow { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1px solid var(--line-l); counter-reset: f; }
+    .flow li { position: relative; padding: clamp(22px, 3vh, 32px) clamp(14px, 1.6vw, 24px) 0 0; }
+    .flow li + li { padding-left: clamp(14px, 1.6vw, 24px); border-left: 1px solid var(--line-l); }
+    .flow li::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--teal); }
+    .flow li + li::before { left: -5px; }
+    .flow .num { font-size: 22px; display: block; margin-bottom: 14px; }
+    .flow h4 { font-family: var(--serif); font-weight: 450; font-size: clamp(22px, 1.9vw, 30px); line-height: 1.12; margin-bottom: 10px; }
+    .flow p { font-size: 15.5px; line-height: 1.5; color: var(--mute-l); }
+    .offer-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px 40px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vh, 48px); }
+    .offer-line { font-family: var(--serif); font-style: italic; font-size: clamp(21px, 1.9vw, 29px); line-height: 1.3; color: var(--aqua); max-width: 30ch; }
+    .cream .offer-line { color: var(--teal); }
+    .price-tag { display: grid; justify-items: end; gap: 4px; }
+    .price-tag b { font-family: var(--serif); font-weight: 430; font-size: clamp(56px, 6.4vw, 104px); line-height: .9; letter-spacing: -.03em; background: var(--gloss); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .04em; }
+    .cream .price-tag b { background-image: var(--gloss-deep); }
+    .price-tag span { font-size: 11px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--mute-d); }
+    .cream .price-tag span { color: var(--mute-l); }
+    .weeks { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .weeks li { padding: clamp(18px, 2.4vh, 26px) 20px; border-radius: 18px; border: 1px solid var(--line-d); border-top: 3px solid var(--aqua); background: rgba(245,240,232,.03); }
+    .wk { display: block; font-family: var(--serif); font-style: italic; font-size: clamp(24px, 2vw, 30px); color: var(--cream); margin-bottom: 6px; }
+    .weeks p { font-size: 15px; color: var(--mute-d); }
+    .offer-extras { display: grid; grid-template-columns: 1.15fr 1fr; gap: 14px; margin-top: 14px; }
+    .extra-card { padding: clamp(20px, 2.6vw, 30px); border-radius: 22px; border: 1px solid var(--line-d); background: rgba(245,240,232,.04); }
+    .extra-k { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--aqua); margin-bottom: 10px; }
+    .cream .extra-k { color: var(--teal); }
+    .extra-card h4 { font-family: var(--serif); font-weight: 450; font-size: clamp(21px, 1.8vw, 27px); line-height: 1.2; margin-bottom: 8px; }
+    .extra-card p { font-size: 15px; line-height: 1.5; color: var(--mute-d); }
+    .ticks { list-style: none; display: grid; gap: 8px; }
+    .ticks li { display: flex; gap: 10px; font-size: 16px; }
+    .ticks li::before { content: "✦"; color: var(--aqua); font-size: 12px; line-height: 1.9; }
+    .res-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 1.8vw, 24px); }
+    .res h4 { font-family: var(--serif); font-weight: 450; font-size: clamp(19px, 1.5vw, 23px); line-height: 1.2; margin: 18px 0 6px; }
+    .res p { font-size: 14.5px; line-height: 1.5; color: var(--mute-d); }
+    .res-val { display: inline-block; margin-top: 10px; font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+    .cover { position: relative; aspect-ratio: 16 / 10; border-radius: 6px 16px 16px 6px; padding: clamp(16px, 1.6vw, 22px); display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(160deg, #1A2A29, #0D1314); border: 1px solid rgba(123,216,208,.25); box-shadow: -6px 0 0 rgba(0,0,0,.25) inset, 0 30px 60px -30px rgba(0,0,0,.8); }
+    .cover::before { content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 1px; background: rgba(245,240,232,.12); }
+    .cover-cream { background: linear-gradient(160deg, #F7F1E7, #E5DACA); color: var(--ink); border-color: transparent; }
+    .cover-teal { background: linear-gradient(160deg, #2D9C95, #155F5A); border-color: transparent; }
+    .cover-k { font-size: 9.5px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; opacity: .75; padding-left: 8px; }
+    .cover-t { font-family: var(--serif); font-weight: 450; font-size: clamp(17px, 1.5vw, 22px); line-height: 1.15; padding-left: 8px; }
+    .cover-course b { font-family: var(--serif); font-weight: 430; font-size: clamp(48px, 4.4vw, 68px); line-height: .9; background: var(--gloss); -webkit-background-clip: text; background-clip: text; color: transparent; padding-left: 8px; }
+    .cover-s { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute-d); padding-left: 8px; margin-top: -6px; }
+    .res-foot { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(28px, 4vh, 44px); }
+    .res-foot span { padding: 9px 16px; border-radius: 99px; border: 1px solid rgba(123,216,208,.3); font-size: 13.5px; }
+    .private-grid { align-items: center; grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); gap: clamp(32px, 4.4vw, 72px); }
+    .private-grid > .stack { gap: clamp(14px, 2vh, 22px); }
+    .private-grid .price-tag { justify-items: start; }
+    .private-grid .h2 { font-size: clamp(38px, 3.9vw, 60px); }
+    .private-grid .price-tag b { font-size: clamp(48px, 5vw, 80px); }
+    .compare-head .h2 { max-width: none; }
+    .private-grid .offer-head { margin-bottom: 0; }
+    .private-points { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-l); border: 1px solid var(--line-l); border-radius: 18px; overflow: hidden; }
+    .private-points > div { background: var(--cream); padding: clamp(14px, 1.6vw, 20px) clamp(16px, 1.8vw, 22px); }
+    .private-points h4 { font-family: var(--serif); font-weight: 450; font-size: clamp(19px, 1.5vw, 23px); line-height: 1.2; margin-bottom: 6px; }
+    .private-points p { font-size: 14.5px; color: var(--mute-l); line-height: 1.5; }
+    .only-here { padding: 16px 20px; border-radius: 16px; background: rgba(45,156,149,.1); }
+    .only-here p { font-size: 15px; line-height: 1.55; }
+    .cmp-wrap { overflow-x: auto; border-radius: 22px; border: 1px solid var(--line-d); }
+    .cmp { width: 100%; border-collapse: collapse; min-width: 640px; font-size: clamp(14px, 1.1vw, 16px); }
+    .cmp th, .cmp td { text-align: left; padding: clamp(11px, 1.6vh, 16px) clamp(14px, 1.6vw, 22px); border-bottom: 1px solid var(--line-d); vertical-align: top; line-height: 1.45; }
+    .cmp tbody tr:last-child th, .cmp tbody tr:last-child td { border-bottom: 0; }
+    .cmp thead th { font-family: var(--serif); font-weight: 450; font-size: clamp(18px, 1.5vw, 23px); padding-top: 20px; padding-bottom: 18px; }
+    .cmp tbody th { font-size: 10.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--mute-d); width: 20%; }
+    .cmp td { color: rgba(245,240,232,.88); width: 40%; }
+    .cmp .cmp-hi { background: rgba(123,216,208,.07); }
+    .cmp thead .cmp-hi { color: var(--aqua); }
+    .cmp .cmp-price { font-family: var(--serif); font-size: clamp(24px, 2.2vw, 34px); line-height: 1; }
+    .cmp .cmp-no { color: var(--mute-d); font-style: italic; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .compare-head { margin-bottom: clamp(24px, 3vh, 36px); }
+    .enroll-stage .h1 { max-width: 18ch; margin-left: auto; margin-right: auto; }
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 24px); max-width: 900px; margin: clamp(32px, 5vh, 52px) auto 0; }
+    .option { padding: clamp(22px, 2.8vw, 34px); border-radius: 24px; border: 1px solid var(--line-d); background: rgba(245,240,232,.04); display: grid; gap: 8px; }
+    .option-hi { border-color: rgba(123,216,208,.5); background: linear-gradient(180deg, rgba(123,216,208,.12), rgba(123,216,208,.02)); }
+    .option h4 { font-family: var(--serif); font-weight: 450; font-size: clamp(22px, 2vw, 30px); line-height: 1.15; }
+    .option-price { font-family: var(--serif); font-weight: 430; font-size: clamp(46px, 4.6vw, 72px); line-height: 1; letter-spacing: -.03em; background: var(--gloss); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .04em; justify-self: start; }
+    .option p { font-size: 15px; color: var(--mute-d); line-height: 1.5; }
+    .enroll-cta { margin-top: clamp(28px, 4vh, 44px); display: grid; justify-items: center; gap: 12px; }
+    .enroll-quote { margin: clamp(28px, 4vh, 44px) auto 0; max-width: 46ch; text-align: center; font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.45; color: var(--mute-d); }
+    .ebook-grid { align-items: center; }
+    .ebook-card { padding: clamp(26px, 3.4vw, 44px); border-radius: 26px; background: #fff; box-shadow: 0 40px 80px -40px rgba(10,13,14,.4); display: grid; gap: 10px; justify-items: start; max-width: 520px; }
+    .ebook-card h4 { font-family: var(--serif); font-weight: 450; font-size: clamp(26px, 2.4vw, 36px); line-height: 1.1; }
+    .ebook-card .option-price { background-image: var(--gloss-deep); }
+    .ebook-card p { font-size: 16px; line-height: 1.5; color: rgba(10,13,14,.78); }
+    .ebook-note { font-size: 14px !important; padding-top: 12px; border-top: 1px dashed rgba(10,13,14,.2); width: 100%; }
+    .ebook-cta { display: grid; gap: 10px; margin-top: 8px; }
+    .ebook-card .btn.ghost { color: var(--ink); background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink); }
+    .ebook-card .btn.ghost::before { background: var(--ink); }
+    .ebook-card .btn.ghost:hover { color: var(--cream); }
+    .final-offer .fo-item { display: inline-flex; align-items: baseline; gap: 16px; }
+    .final-offer b { font-size: clamp(36px, 3.4vw, 54px) !important; }
+    @media (max-width: 1100px) { .flow { grid-template-columns: 1fr 1fr; row-gap: 26px; } .flow li + li { border-left: 0; padding-left: 0; } .flow li::before, .flow li + li::before { left: 0; } .res-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 860px) {
+      .two-women, .offer-extras, .options, .private-points, .private-grid { grid-template-columns: 1fr; }
+      .weeks { grid-template-columns: 1fr 1fr; }
+      .price-tag { justify-items: start; }
+      .cover { max-height: none; }
+      .cmp { min-width: 0; font-size: 14px; }
+      .cmp, .cmp thead, .cmp tbody { display: block; }
+      .cmp tr { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line-d); }
+      .cmp tbody tr:last-child { border-bottom: 0; }
+      .cmp th, .cmp td { width: auto; border-bottom: 0; padding: 10px 14px; }
+      .cmp thead th:first-child { display: none; }
+      .cmp thead th { font-size: 17px; padding: 16px 14px; }
+      .cmp tbody th { grid-column: 1 / -1; padding-bottom: 0; }
+      .cmp .cmp-price { font-size: 26px; }
+    }
+    @media (max-width: 560px) { .flow, .res-grid { grid-template-columns: 1fr; } .cover { aspect-ratio: 16 / 9; } }
+
+    .btn[hidden] { display: none; }
+    .invite { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.25; margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--line-d); }
   </style>
 </head>
 
@@ -837,7 +955,7 @@
         <button type="button" data-lang="es" aria-pressed="false">ES</button>
         <button type="button" data-lang="pt" aria-pressed="false">PT</button>
       </div>
-      <a href="#enroll" class="btn js-enroll" data-nav>Join the Academy <span class="arrow">→</span></a>
+      <a href="#enroll" class="btn js-enroll" data-nav>Explore Mentorship <span class="arrow">→</span></a>
     </div>
   </header>
 
@@ -850,7 +968,7 @@
     <a href="#chosen" data-nav data-rail="chosen"><span>II · Get Chosen</span><i></i></a>
     <a href="#custom" data-nav data-rail="custom"><span>III · Custom Design</span><i></i></a>
     <a href="#psychology" data-nav data-rail="psych"><span>Client Psychology</span><i></i></a>
-    <a href="#academy" data-nav data-rail="academy"><span>The Academy</span><i></i></a>
+    <a href="#mentorship" data-nav data-rail="mentorship"><span>Mentorship</span><i></i></a>
     <a href="#enroll" data-nav data-rail="enroll"><span>Enroll</span><i></i></a>
     <a href="#questions" data-nav data-rail="questions"><span>Q&amp;A</span><i></i></a>
   </nav>
@@ -864,7 +982,7 @@
       <div class="hero-bg"><img src="assets/hero.jpg" alt="Gem walking down a palm-lined boulevard at night" id="heroImg" /></div>
       <div class="hero-content">
         <span class="eyebrow hero-in">Free Masterclass</span>
-        <h1 class="display" data-hero-split>The Custom Lash <span class="line2">Business Blueprint</span></h1>
+        <h1 class="display" data-hero-split>The Custom Lash <span class="line2">Blueprint</span></h1>
         <div class="hero-foot hero-in">
           <p class="lead">Attract better-fit clients. Create custom sets. Build a more consistent business.</p>
           <p class="presenter">Presented by <b>Gem</b><br />Founder, Hidden Gem Lashes</p>
@@ -935,13 +1053,12 @@
         <div class="stack">
           <span class="eyebrow" data-fade>Stay Until the End</span>
           <h2 class="h1" data-split>Leave with a plan, <em>not just notes.</em></h2>
-          <div data-fade><span class="tag">Bonus · Content Calendar to Convert Eyeballs into Clients</span></div>
-          <p class="lead" data-fade>Everyone who stays to the end and confirms enrollment receives this done-for-you Content Calendar. It is a practical planning tool designed to help lash artists turn casual followers into paying clients.</p>
-          <p class="small" data-fade>Timing and delivery details will be shared before the end of the masterclass.</p>
+          <p class="lead" data-fade>Stay to the end for the live Q&amp;A, and to see how you can keep practicing this method with guidance after today.</p>
+          <p class="small" data-fade>Bring your questions. We'll answer them together at the end.</p>
         </div>
         <div>
-          <div class="media frame" data-reveal style="aspect-ratio: 16/9; border-radius: 6px;"><img src="assets/bonus-calendar.jpg" alt="Content Calendar bonus preview" loading="lazy" /></div>
-          <div class="caption" data-fade><span>Webinar bonus</span><span>@hiddengemely.lash</span></div>
+          <div class="media frame" data-reveal style="aspect-ratio: 4/5; max-height: 72vh; border-radius: 6px;"><img src="assets/gem-studio-selfie.jpg" alt="Gem in her lash studio" loading="lazy" /></div>
+          <div class="caption" data-fade><span>Live Q&amp;A at the end</span><span>@hiddengemely.lash</span></div>
         </div>
       </div>
     </section>
@@ -1066,7 +1183,7 @@
         <div class="center stack" style="margin-bottom: clamp(60px, 8vw, 120px);">
           <span class="eyebrow" data-fade>The Blueprint</span>
           <h2 class="h1" data-split>One business. <em>Three connected decisions.</em></h2>
-          <p class="lead" data-fade>The Custom Lash Business Blueprint is one connected system. Each decision builds on the one before it and creates a business that is easier to find, easier to choose, and easier to remember.</p>
+          <p class="lead" data-fade>The Custom Lash Blueprint is one connected system. Each decision builds on the one before it and creates a business that is easier to find, easier to choose, and easier to remember.</p>
         </div>
         <div class="blueprint" id="bp">
           <svg class="path" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
@@ -1598,211 +1715,237 @@
     </section>
 
     <!-- ═══ 42 · Offer transition ═══ -->
-    <section class="section ink-2" data-slide="42" data-title="From Information to Implementation">
+    <section class="section ink-2" id="mentorship" data-slide="42" data-title="From Learning to Practice" data-chapter="mentorship">
       <div class="wrap grid-2">
         <div class="media" data-reveal style="aspect-ratio: 3/4; border-radius: 300px 300px 0 0;"><img src="assets/gem-cream.jpg" alt="Gem in a cream blouse, lit by golden window light" loading="lazy" style="object-position: center 30%;" /></div>
         <div class="stack">
-          <span class="eyebrow" data-fade>From Information to Implementation</span>
-          <h2 class="h1" data-split>Knowing what to do is <em>the first step.</em></h2>
-          <p class="lead" data-fade>Today you learned the Blueprint, the 4C content structure, the client process, and the power of custom lash design. Information alone rarely changes a business. Implementation creates progress.</p>
+          <span class="eyebrow" data-fade>From Learning to Practice</span>
+          <h2 class="h2" data-split>Knowing the why is the beginning. <em>Practicing it is the next step.</em></h2>
+          <p class="lead" data-fade>Today you saw how client psychology, intentional content, and custom design work together. The next step is practicing it with guidance.</p>
           <div class="needs" data-stagger>
             <div><div><h4>Real Examples</h4><p>Seeing the method demonstrated makes it easier to apply.</p></div></div>
             <div><div><h4>Personalized Feedback</h4><p>Knowing what to adjust helps close the gap between learning and results.</p></div></div>
             <div><div><h4>A Clear Next Step</h4><p>The right structure removes the paralysis created by too many options.</p></div></div>
           </div>
-          <p class="ask" data-fade>“Would it be okay if I showed you how I can help you put this into practice?”</p>
+          <p class="invite" data-fade>“Would it be okay if I showed you how I can help you put this into practice?”</p>
         </div>
       </div>
     </section>
 
-    <!-- ═══ 43 · Custom Lash Academy ═══ -->
-    <section class="section academy" id="academy" data-slide="43" data-title="Introducing the Academy" data-chapter="academy">
-      <div class="drips" data-drips aria-hidden="true"></div>
-      <div class="wrap">
-        <span class="eyebrow" data-fade style="justify-content:center;">Introducing</span>
-        <h2 class="display" data-split style="margin-top: 26px;">Gem's Custom Lash <em>Academy</em></h2>
-        <div class="logo-frame media" data-reveal style="aspect-ratio: 16/9; border-radius: 4px;"><img src="assets/academy-cover.jpg" alt="Custom Lash Academy cover" loading="lazy" /></div>
-        <p class="lead" data-fade style="margin: 0 auto;">The complete implementation program for lash artists ready to turn today's Blueprint into a repeatable client process.</p>
-        <div class="formula" data-stagger style="margin-top: 56px;">
-          <span><em>Training</em></span><span>+</span><span><em>Tools</em></span><span>+</span><span><em>Coaching</em></span>
+    <!-- ═══ 43 · The central question ═══ -->
+    <section class="section fill-screen" data-slide="43" data-title="The Central Question">
+      <div class="wrap center">
+        <span class="eyebrow" data-fade>What You'll Learn to Do</span>
+        <h2 class="q-big" data-split>How does this client want to <em>feel</em> when she sees herself, and what visual choices will create that effect?</h2>
+        <div class="two-women" data-stagger>
+          <div><span class="tw-label">The woman in your chair</span><p>Design a set around how she wants to look and feel, not just the picture she brought.</p></div>
+          <div><span class="tw-label">The woman behind the screen</span><p>Create content that speaks to how your ideal client wants to feel while she's watching.</p></div>
         </div>
-        <p class="small" data-fade style="margin: 30px auto 0; max-width: 56ch;">Everything is connected so you can learn the process, practice it, and get support while you implement.</p>
-        <p class="keymsg" data-split>Built for action, <em>not another course you watch and forget.</em></p>
       </div>
     </section>
 
-    <!-- ═══ 44 · What's inside ═══ -->
-    <section class="section ink-2 inside-stage" data-slide="44" data-title="What's Inside">
+    <!-- ═══ 44 · The learning approach ═══ -->
+    <section class="section cream fill-screen" data-slide="44" data-title="The Learning Approach">
       <div class="wrap">
-        <div class="head inside-head">
+        <div class="head">
           <div class="stack">
-            <span class="eyebrow" data-fade>What's Inside</span>
-            <h2 class="h2" data-split>Training for the <em>full client journey</em></h2>
+            <span class="eyebrow" data-fade>The Learning Approach</span>
+            <h2 class="h1" data-split>From psychology to <em>styling decisions</em></h2>
           </div>
-          <p class="lead" data-fade>One connected system, from attracting attention to designing the client experience.</p>
+          <p class="lead" data-fade>This is the order we work in, so every choice you make has a reason behind it.</p>
         </div>
-        <div class="bento" data-stagger>
-          <article class="tile tile-photo tile-a">
-            <img src="assets/lash-1.jpg" alt="" loading="lazy" />
-            <div class="tile-body"><span class="tile-n">01</span><h4>Custom Lash Mastery</h4><p>Consultation, mapping, and custom set design.</p><span class="value">$1,997 value</span></div>
-          </article>
-          <article class="tile tile-photo tile-b">
-            <img src="assets/gem-lashing.jpg" alt="" loading="lazy" style="object-position: 40% 40%;" />
-            <div class="tile-body"><span class="tile-n">02</span><h4>Expert Coaching</h4><p>Personalized feedback while you implement.</p><span class="value">$1,997 value</span></div>
-          </article>
-          <article class="tile tile-c"><span class="tile-n">03</span><div><h4>Custom Lash Blueprint</h4><p>A clear framework from consultation to application.</p></div></article>
-          <article class="tile tile-d tile-stat"><span class="tile-big">10+</span><div><h4>Step-by-step videos</h4><p>See each important decision demonstrated.</p></div></article>
-          <article class="tile tile-e"><span class="tile-n">05</span><div><h4>Strategies &amp; Templates</h4><p>Scripts, checklists, and tools you can use.</p></div></article>
-          <article class="tile tile-f tile-stat"><span class="tile-big">10+</span><div><h4>Months of access</h4><p>Time to learn, practice, and revisit the training.</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ 45 · Weekly support ═══ -->
-    <section class="section cream" data-slide="45" data-title="Support + Mindset">
-      <div class="wrap grid-2">
-        <div class="stack">
-          <span class="eyebrow" data-fade>Support + Mindset</span>
-          <h2 class="h1" data-split>Weekly guidance keeps <em>implementation moving</em></h2>
-          <p class="lead" data-fade>The goal is not to leave you alone with information. Weekly Mindset Mastery sessions help you build the consistency and decision-making of a top lash artist.</p>
-          <div class="rows" data-stagger style="margin-top: 40px;">
-            <div class="row" style="grid-template-columns: 60px 1fr;"><span class="num">01</span><div><h4>Weekly Live Sessions</h4><p style="margin-top: 6px;">Return with questions and keep your momentum.</p></div></div>
-            <div class="row" style="grid-template-columns: 60px 1fr;"><span class="num">02</span><div><h4>Feedback &amp; Coaching</h4><p style="margin-top: 6px;">Know what to adjust instead of guessing.</p></div></div>
-            <div class="row" style="grid-template-columns: 60px 1fr;"><span class="num">03</span><div><h4>A Clear Next Step</h4><p style="margin-top: 6px;">Focus on the action that matters this week.</p></div></div>
-          </div>
-        </div>
-        <div class="media frame" data-reveal style="aspect-ratio: 4/5; border-radius: 30px; justify-self: center; width: min(100%, 580px);"><img src="assets/gem-studio-selfie.jpg" alt="Gem in her lash studio, working under the lash lamp" loading="lazy" style="object-position: 42% 50%;" /></div>
-      </div>
-    </section>
-
-    <!-- ═══ 46 · Total value ═══ -->
-    <section class="section price-stage" id="enroll" data-slide="46" data-title="Total Value" data-chapter="enroll">
-      <div class="wrap price-grid">
-        <div class="pg-main">
-          <span class="eyebrow" data-fade>Enrollment</span>
-          <h2 class="h2" data-split>The total value of everything inside <em>Custom Lash Academy</em></h2>
-          <div class="reveal-price" data-price-reveal><span class="cur">$</span><span data-count="10000">10,000</span></div>
-        </div>
-        <ol class="value-list" data-stagger>
-          <li><span class="num">01</span><span>Complete training</span></li>
-          <li><span class="num">02</span><span>Expert coaching and support</span></li>
-          <li><span class="num">03</span><span>Templates, scripts, and checklists</span></li>
-          <li><span class="num">04</span><span>All five enrollment bonuses</span></li>
+        <ol class="flow" data-stagger>
+          <li><span class="num">01</span><h4>Client psychology</h4><p>Understand what she's really asking for.</p></li>
+          <li><span class="num">02</span><h4>Identity</h4><p>How she sees herself, and how she wants to be seen.</p></li>
+          <li><span class="num">03</span><h4>Visual intention</h4><p>The effect you want the set to create.</p></li>
+          <li><span class="num">04</span><h4>Anatomy</h4><p>Her eye shape and natural lashes.</p></li>
+          <li><span class="num">05</span><h4>Styling decisions</h4><p>Curl, length, and mapping, each with a reason.</p></li>
         </ol>
       </div>
     </section>
 
-    <!-- ═══ 47 · Standard value ═══ -->
-    <section class="section price-stage ink-2" data-slide="47" data-title="Standard Value">
-      <div class="wrap price-grid">
-        <div class="pg-main">
-          <span class="eyebrow" data-fade>Enrollment</span>
-          <h2 class="h2" data-split>The standard value of <em>the Academy</em></h2>
-          <div class="was"><span class="v">$10,000<span class="strike"></span></span></div>
-          <div class="reveal-price" data-price-reveal><span class="cur">$</span><span data-count="5000">5,000</span></div>
-        </div>
-        <p class="pg-note" data-fade>This is what the complete program is normally valued at.</p>
-      </div>
-    </section>
-
-    <!-- ═══ 48 · Today's price ═══ -->
-    <section class="section price-stage today-stage" data-slide="48" data-title="Today's Price">
-      <div class="wrap price-grid offer-grid">
-        <div class="pg-main offer-copy">
-          <span class="eyebrow" data-fade>Your price today</span>
-          <h2 class="h2" data-split>But if you join <em>today…</em></h2>
-          <p class="offer-bonus" data-price-after>Fast-action bonus: personalized 1:1 consultation with Gem for the first 15 confirmed enrollees.</p>
-          <div class="offer-actions" data-price-after>
-            <a href="#" class="btn js-enroll-out">Join Today <span class="arrow">→</span></a>
-            <p class="small">Payment options may be available through Klarna, Affirm, or Afterpay.</p>
+    <!-- ═══ 45 · Custom Lash Mastery ═══ -->
+    <section class="section ink-2" data-slide="45" data-title="Custom Lash Mastery">
+      <div class="wrap">
+        <div class="offer-head">
+          <div class="stack">
+            <span class="eyebrow" data-fade>Group Mentorship</span>
+            <h2 class="h1" data-split>Custom Lash <em>Mastery</em></h2>
+            <p class="offer-line" data-fade>Learn the method. Put it into practice with guidance.</p>
           </div>
+          <div class="price-tag" data-fade><b>$797</b><span>4 weeks</span></div>
         </div>
-        <div class="receipt-wrap">
-          <div class="receipt">
-            <div class="rc-head">
-              <img src="assets/logo-hg.png" alt="" />
-              <div><b>Custom Lash Academy</b><span>Enrollment</span></div>
-              <time class="rc-date" id="rcDate"></time>
-            </div>
-            <div class="rc-line"><span>Total value</span><i></i><span class="v">$10,000<span class="strike"></span></span></div>
-            <div class="rc-line"><span>Standard value</span><i></i><span class="v">$5,000<span class="strike"></span></span></div>
-            <div class="rc-total">
-              <div class="stamp" data-stamp>Save $4,303</div>
-              <span class="rc-label">Today</span>
-              <div class="reveal-price" data-price-reveal><span class="cur">$</span><span data-count="697">697</span></div>
-            </div>
-            <div class="rc-foot">
-              <div class="seal">
-              <svg class="seal-ring" viewBox="0 0 120 120" aria-hidden="true">
-                <defs><path id="sealPath" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-                <circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width="1"/>
-                <circle cx="60" cy="60" r="33" fill="none" stroke="currentColor" stroke-width="1"/>
-                <text><textPath href="#sealPath" textLength="276" lengthAdjust="spacing">14-Day Satisfaction Guarantee</textPath></text>
-              </svg>
-                <span class="seal-num">14</span>
-              </div>
-              <p>Request a full refund within 14 days if you are not satisfied.</p>
-            </div>
+        <ol class="weeks" data-stagger>
+          <li><span class="wk">Week 1</span><p>40-minute group call</p></li>
+          <li><span class="wk">Week 2</span><p>40-minute group call</p></li>
+          <li><span class="wk">Week 3</span><p>40-minute group call</p></li>
+          <li><span class="wk">Week 4</span><p>40-minute group call</p></li>
+        </ol>
+        <div class="offer-extras" data-stagger>
+          <div class="extra-card">
+            <span class="extra-k">Your 1:1 time</span>
+            <h4>One 30-minute Express Instagram Content Audit</h4>
+            <p>We look at your Instagram together so you can plan your own content.</p>
+          </div>
+          <div class="extra-card">
+            <span class="extra-k">After the four weeks</span>
+            <ul class="ticks"><li>Lifetime course access</li><li>Monthly check-ins</li><li>3–5 new videos each month</li></ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══ 49 · Bonuses ═══ -->
-    <section class="section ink-2" data-slide="49" data-title="Enrollment Bonuses">
+    <!-- ═══ 46 · Course + resources ═══ -->
+    <section class="section" data-slide="46" data-title="The Course and Guides">
       <div class="wrap">
         <div class="head">
           <div class="stack">
-            <span class="eyebrow" data-fade>Enrollment Bonuses</span>
-            <h2 class="h1" data-split>Five tools that <em>shorten the path</em> to action</h2>
+            <span class="eyebrow" data-fade>Included in Both Mentorships</span>
+            <h2 class="h2" data-split>The course and guides <em>behind the method</em></h2>
           </div>
-          <p class="lead" data-fade>Enroll while the fast-action consultation is still available.</p>
+          <p class="lead" data-fade>What you learn on the calls, you can watch again and keep close while you practice.</p>
         </div>
-        <div class="fast" data-fade>
-          <span class="star">✦</span>
-          <div><span class="tag">Fast-Action Bonus</span><h4 style="margin-top: 16px;">Personalized 1:1 consultation with Gem</h4><p>For the first 15 confirmed enrollees.</p></div>
-          <a href="#" class="btn js-enroll-out">Claim My Spot <span class="arrow">→</span></a>
+        <div class="res-grid" data-stagger>
+          <article class="res">
+            <div class="cover cover-course"><span class="cover-k">Custom Online Course</span><b>50+</b><span class="cover-s">prerecorded videos</span></div>
+            <h4>Custom Online Course</h4><p>Watch each step, then rewatch it while you practice.</p>
+          </article>
+          <article class="res">
+            <div class="cover"><span class="cover-k">Retention</span><b class="cover-t">Beyond the 24-Hour Rule Guide</b></div>
+            <h4>Beyond the 24-Hour Rule Guide</h4><p>A dedicated retention reference to support your learning.</p><span class="res-val">Gem's value: $99.97</span>
+          </article>
+          <article class="res">
+            <div class="cover cover-cream"><span class="cover-k">Consultation</span><b class="cover-t">The Client Psychology Method™</b></div>
+            <h4>The Client Psychology Method™</h4><p>Connect what she asks for with how she wants to look and feel.</p><span class="res-val">Gem's value: $49.97</span>
+          </article>
+          <article class="res">
+            <div class="cover cover-teal"><span class="cover-k">Instagram &amp; TikTok</span><b class="cover-t">The Lash Artist's Second Brain™</b></div>
+            <h4>The Lash Artist's Second Brain™</h4><p>ChatGPT prompts for content ideas and for talking about your work.</p>
+          </article>
         </div>
-        <div class="bonuses" data-stagger>
-          <div class="bonus"><div class="media"><img src="assets/bonus-calendar.jpg" alt="Content Calendar bonus" loading="lazy" /></div><div class="b-body"><div><h4>Content Calendar</h4><p>Create a consistent visibility plan.</p></div><span class="num">02</span></div></div>
-          <div class="bonus"><div class="media"><img src="assets/bonus-playbook.jpg" alt="Consultation Playbook bonus" loading="lazy" /></div><div class="b-body"><div><h4>Consultation Playbook</h4><p>Lead stronger client conversations.</p></div><span class="num">03</span></div></div>
-          <div class="bonus"><div class="media"><img src="assets/bonus-manual.jpg" alt="Lash Training Manual bonus" loading="lazy" /></div><div class="b-body"><div><h4>Lash Training Manual</h4><p>Keep the complete process close.</p></div><span class="num">04</span></div></div>
-          <div class="bonus text-only"><span class="big-ic">∞</span><div class="b-body"><div><h4>Master Retention Ebook</h4><p>Support stronger retention habits.</p></div><span class="num">05</span></div></div>
+        <p class="res-foot" data-fade><span>Lifetime course access</span><span>Monthly check-ins</span><span>3–5 new videos each month</span></p>
+      </div>
+    </section>
+
+    <!-- ═══ 47 · Private Custom Mentorship ═══ -->
+    <section class="section cream" data-slide="47" data-title="Private Custom Mentorship">
+      <div class="wrap grid-2 private-grid">
+        <div class="media" data-reveal style="aspect-ratio: 4/5; border-radius: 28px; max-height: 72vh;"><img src="assets/gem-red.jpg" alt="Gem, founder of Hidden Gem Lashes" loading="lazy" style="object-position: center 20%;" /></div>
+        <div class="stack">
+          <div class="offer-head">
+            <div class="stack">
+              <span class="eyebrow" data-fade>Private Mentorship</span>
+              <h2 class="h2" data-split>Private Custom <em>Mentorship</em></h2>
+            </div>
+            <div class="price-tag" data-fade><b>$2,000</b><span>6 weeks</span></div>
+          </div>
+          <p class="offer-line" data-fade>Work directly with Gem. Apply the method to your artistry and content.</p>
+          <div class="private-points" data-stagger>
+            <div><h4>Two private calls a week</h4><p>40 minutes each, for six weeks.</p></div>
+            <div><h4>Four models with Gem</h4><p>Practice the method on real sets together.</p></div>
+            <div><h4>Personalized content calendar</h4><p>Planned around your work and your ideal client.</p></div>
+            <div><h4>Content kit</h4><p>Content equipment, valued by Gem at $600.</p></div>
+          </div>
+          <div class="only-here" data-fade>
+            <span class="extra-k">Only in private mentorship</span>
+            <p>A-to-Z Lash Manual · Lash vendor list · Amazon list · 10% off Gem's products launching in November</p>
+          </div>
+          <p class="small" data-fade>Plus the full online course, all three guides, lifetime access, monthly check-ins, and 3–5 new videos each month.</p>
         </div>
       </div>
     </section>
 
-    <!-- ═══ 50 · Proof + next step ═══ -->
-    <section class="fullbleed" data-slide="50" data-title="Proof + Next Step">
-      <div class="bg" data-parallax="-12"><img src="assets/gem-mirror.jpg" alt="Gem taking a mirror selfie in her content studio" loading="lazy" style="object-position: center 6%;" /></div>
-      <div class="inner">
-        <span class="eyebrow" data-fade>Proof + Next Step</span>
-        <h2 class="h1" data-split>The support extends <em>beyond the lessons</em></h2>
-        <p class="h3" data-fade style="font-style: italic;">“Lashing changed my life, and the Academy was built to help you replace confusion with a clear process, practice, and support.”</p>
-        <p class="lead" data-fade style="margin-left:auto;margin-right:auto;">You do not need another pile of information. You need a system you can use and guidance while you use it.</p>
-        <div data-fade><a href="#" class="btn js-enroll-out">Join Today for $697 <span class="arrow">→</span></a></div>
-        <p class="small" data-fade>Visit the enrollment link in the chat.</p>
+    <!-- ═══ 48 · Compare ═══ -->
+    <section class="section ink-2" data-slide="48" data-title="Compare the Mentorships">
+      <div class="wrap">
+        <div class="head compare-head">
+          <div class="stack">
+            <span class="eyebrow" data-fade>Side by Side</span>
+            <h2 class="h2" data-split>Two ways to <em>work with me</em></h2>
+          </div>
+        </div>
+        <div class="cmp-wrap" data-fade>
+          <table class="cmp">
+            <thead>
+              <tr><th scope="col"><span class="sr">Feature</span></th><th scope="col">Custom Lash Mastery</th><th scope="col" class="cmp-hi">Private Custom Mentorship</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Price</th><td class="cmp-price">$797</td><td class="cmp-price cmp-hi">$2,000</td></tr>
+              <tr><th scope="row">Duration</th><td>4 weeks</td><td class="cmp-hi">6 weeks</td></tr>
+              <tr><th scope="row">Calls</th><td>One 40-minute group call per week</td><td class="cmp-hi">Two private 40-minute calls per week</td></tr>
+              <tr><th scope="row">Content support</th><td>Express Instagram Content Audit (30 min, 1:1)</td><td class="cmp-hi">Personalized content calendar and content kit</td></tr>
+              <tr><th scope="row">Model practice</th><td class="cmp-no">Not included</td><td class="cmp-hi">Four models with Gem</td></tr>
+              <tr><th scope="row">Course and guides</th><td>50+ video course and all three guides</td><td class="cmp-hi">50+ video course and all three guides</td></tr>
+              <tr><th scope="row">Exclusive resources</th><td class="cmp-no">Not included</td><td class="cmp-hi">A-to-Z Lash Manual, vendor list, Amazon list, 10% off November products</td></tr>
+              <tr><th scope="row">After the program</th><td>Lifetime access, monthly check-ins, 3–5 new videos a month</td><td class="cmp-hi">Lifetime access, monthly check-ins, 3–5 new videos a month</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <!-- ═══ 51 · Who it's for ═══ -->
-    <section class="section cream" data-slide="51" data-title="Is This for You?">
+    <!-- ═══ 49 · Who it's for ═══ -->
+    <section class="section cream fill-screen" data-slide="49" data-title="Is This for You?">
       <div class="wrap">
         <div class="head">
           <div class="stack">
             <span class="eyebrow" data-fade>Is This for You?</span>
-            <h2 class="h1" data-split>Custom Lash Academy may be right for you <em>if…</em></h2>
+            <h2 class="h1" data-split>A mentorship may be right for you <em>if…</em></h2>
           </div>
-          <p class="lead" data-fade>Custom Lash Academy is designed for artists ready to move from learning to doing.</p>
+          <p class="lead" data-fade>Both options are for artists ready to move from learning to doing.</p>
         </div>
         <div class="for-list" data-stagger>
           <div><span class="check">i.</span><h4>You are ready to practice and implement</h4><p>You are prepared to apply the system, practice the method, and track your progress.</p></div>
           <div><span class="check">ii.</span><h4>You want a clearer process</h4><p>You want a structured path for content, client experience, and custom lash design.</p></div>
-          <div><span class="check">iii.</span><h4>You value guidance and feedback</h4><p>You want examples, coaching, and a community to support your growth.</p></div>
+          <div><span class="check">iii.</span><h4>You value guidance and feedback</h4><p>You want examples, feedback, and support while you practice.</p></div>
         </div>
-        <div class="center" style="margin-top: clamp(60px, 7vw, 100px);" data-fade>
-          <a href="#" class="btn js-enroll-out">Enroll Today <span class="arrow">→</span></a>
-          <p class="small" style="margin-top: 18px;">Visit the link in the chat.</p>
+      </div>
+    </section>
+
+    <!-- ═══ 50 · Enrollment ═══ -->
+    <section class="section fill-screen enroll-stage" id="enroll" data-slide="50" data-title="Choose Your Mentorship" data-chapter="enroll">
+      <div class="wrap">
+        <div class="center stack">
+          <span class="eyebrow" data-fade>Enrollment</span>
+          <h2 class="h1" data-split>Choose the support that fits <em>your next step.</em></h2>
+        </div>
+        <div class="options" data-stagger>
+          <div class="option">
+            <span class="extra-k">Group mentorship</span>
+            <h4>Custom Lash Mastery</h4>
+            <b class="option-price">$797</b>
+            <p>4 weeks · weekly group calls · Express Instagram Content Audit</p>
+          </div>
+          <div class="option option-hi">
+            <span class="extra-k">Private mentorship</span>
+            <h4>Private Custom Mentorship</h4>
+            <b class="option-price">$2,000</b>
+            <p>6 weeks · two private calls a week · four models with Gem</p>
+          </div>
+        </div>
+        <div class="center enroll-cta" data-fade>
+          <a href="#" class="btn js-enroll-out">Choose Your Mentorship <span class="arrow">→</span></a>
+          <p class="small">Find the link in the chat.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 51 · Standalone ebook ═══ -->
+    <section class="section cream fill-screen" data-slide="51" data-title="Start With the Guide">
+      <div class="wrap grid-2 ebook-grid">
+        <div class="stack">
+          <span class="eyebrow" data-fade>A Starting Option</span>
+          <h2 class="h1" data-split>Want to start <em>with a guide?</em></h2>
+          <p class="lead" data-fade>If you're not ready for mentorship yet, you can start here.</p>
+        </div>
+        <div class="ebook-card" data-fade>
+          <span class="extra-k">Standalone ebook</span>
+          <h4>Custom Lash Ebook</h4>
+          <b class="option-price">$69.99</b>
+          <p class="offer-line">Start with the guide.</p>
+          <p>Explore Gem's approach to intentional custom lash design at your own pace.</p>
+          <p class="ebook-note">A standalone digital guide. It doesn't include the course, mentorship calls, content audit, or community.</p>
+          <div class="ebook-cta"><a href="#" class="btn ghost js-ebook-out">Get the Ebook <span class="arrow">→</span></a><p class="small js-ebook-fallback">Find the link in the chat.</p></div>
         </div>
       </div>
     </section>
@@ -1812,13 +1955,13 @@
       <div>
         <span class="eyebrow" data-fade>Questions + Final Invitation</span>
         <h2 class="display" data-split style="margin-top: 26px;"><em>Questions?</em></h2>
-        <p class="lead" data-fade style="margin-top: 26px;">This is your moment to ask anything about the Blueprint, the Academy, or whether this is the right next step for your business.</p>
+        <p class="lead" data-fade style="margin-top: 26px;">This is your moment to ask anything about today's lesson, the mentorships, or which option fits your next step.</p>
         <div class="final-offer" data-fade>
-          <span class="eyebrow">Custom Lash Academy</span><b>$697</b>
-          <span class="small" style="flex-basis: 100%;">Payment plan options may be available through Klarna, Affirm, or Afterpay.</span>
+          <span class="fo-item"><span class="eyebrow">Custom Lash Mastery</span><b>$797</b></span>
+          <span class="fo-item"><span class="eyebrow">Private Custom Mentorship</span><b>$2,000</b></span>
         </div>
-        <p class="lead" data-fade>If the Academy matches the support you need, join today using the enrollment link in the chat.</p>
-        <div data-fade style="margin-top: 34px;"><a href="#" class="btn js-enroll-out">Join Custom Lash Academy <span class="arrow">→</span></a></div>
+        <p class="lead" data-fade>If one of these matches the support you need, choose your option using the link in the chat.</p>
+        <div data-fade style="margin-top: 34px;"><a href="#" class="btn js-enroll-out">Choose Your Mentorship <span class="arrow">→</span></a></div>
         <p class="closing" data-fade>Thank you for being here. Now let's put this into <span style="color: var(--aqua);">practice.</span></p>
       </div>
       <div class="media qa" data-reveal><img src="assets/qa-session.jpg" alt="Lash Q&amp;A session — let's connect" loading="lazy" /></div>
@@ -1840,7 +1983,8 @@
   <script>
   (function () {
     /* ── Settings: paste Gem's checkout link here ─────────────── */
-    var ENROLL_URL = ''; // e.g. 'https://checkout.example.com/custom-lash-academy'
+    var ENROLL_URL = ''; // offer page, e.g. 'https://checkout.example.com/custom-lash-mastery'
+    var EBOOK_URL = '';  // Custom Lash Ebook checkout page
 
     var $ = function (s, c) { return (c || document).querySelector(s); };
     var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
@@ -1886,6 +2030,11 @@
     $$('.js-enroll-out').forEach(function (a) {
       if (ENROLL_URL) { a.href = ENROLL_URL; a.target = '_blank'; a.rel = 'noopener'; }
       else { a.href = '#enroll'; a.setAttribute('data-nav', ''); }
+    });
+    // Ebook button only shows once its checkout link is set; until then the slide points to the chat.
+    $$('.js-ebook-out').forEach(function (a) {
+      if (EBOOK_URL) { a.href = EBOOK_URL; a.target = '_blank'; a.rel = 'noopener'; $$('.js-ebook-fallback').forEach(function (n) { n.hidden = true; }); }
+      else a.hidden = true;
     });
 
     // Preloader — always releases, even if animation libraries fail to load.
@@ -2240,21 +2389,6 @@
         .from($$('.lm-labels text', fig), { autoAlpha: 0, y: 6, duration: .4, stagger: .05 }, '-=.6');
     });
 
-    // Price reveal slides: cross out the old values, then the new number lands and counts up.
-    var rcDate = $('#rcDate');
-    if (rcDate) rcDate.textContent = new Date().toLocaleDateString(LANG === 'pt' ? 'pt-BR' : LANG === 'es' ? 'es' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    gsap.set('[data-stamp]', { autoAlpha: 0 });
-    $$('.price-stage').forEach(function (stage) {
-      var price = $('[data-price-reveal]', stage), num = $('[data-count]', price), end = parseFloat(num.getAttribute('data-count')), o = { v: 0 };
-      var after = $$('[data-price-after]', stage);
-      gsap.set(price, { autoAlpha: 0 }); gsap.set(after, { autoAlpha: 0, y: 30 });
-      gsap.timeline({ delay: .55, scrollTrigger: { trigger: stage, start: 'top 55%' } })
-        .fromTo($$('.strike', stage), { scaleX: 0, rotation: -3 }, { scaleX: 1, rotation: -3, duration: .7, ease: 'expo.inOut', stagger: .35 })
-        .fromTo(price, { autoAlpha: 0, scale: .72, filter: 'blur(14px)' }, { autoAlpha: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'expo.out', clearProps: 'filter' }, '>-0.1')
-        .to(o, { v: end, duration: 1.6, ease: 'power3.out', onUpdate: function () { num.textContent = Math.round(o.v).toLocaleString('en-US'); } }, '<')
-        .fromTo($$('[data-stamp]', stage), { autoAlpha: 0, scale: 2.4, rotation: -24 }, { autoAlpha: .88, scale: 1, rotation: -9, duration: .45, ease: 'power4.in' }, '-=0.7')
-        .to(after, { autoAlpha: 1, y: 0, duration: .9, ease: 'expo.out', stagger: .12 }, '-=0.2');
-    });
     // 4C horizontal scroll (desktop), vertical stack on small screens
     ScrollTrigger.matchMedia({
       '(min-width: 861px)': function () {
