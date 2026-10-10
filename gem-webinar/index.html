@@ -2145,8 +2145,12 @@
       // A slide taller than the screen shows the rest of itself before the deck moves on.
       var cur = slides[currentIndex()], r = cur.getBoundingClientRect(), vh = window.innerHeight;
       var contentBottom = r.bottom - (parseFloat(getComputedStyle(cur).paddingBottom) || 0) * 0.6;
-      if (dir > 0 && !cur.closest('#hTrack') && contentBottom > vh + 8) {
-        var y = window.scrollY + Math.min(r.bottom - vh, vh * 0.8);
+      var nxt = slides[slides.indexOf(cur) + 1];
+      if (dir > 0 && !cur.closest('#hTrack') && !(nxt && cur.contains(nxt)) && contentBottom > vh + 8) {
+        var dy = Math.min(contentBottom - vh + 24, vh * 0.8);
+        // Never scroll past where the next slide would start; go to it instead.
+        if (nxt && !nxt.closest('#hTrack') && dy >= docTop(nxt) + barOffset(nxt) - window.scrollY - 4) return goToSlide(slides.indexOf(nxt));
+        var y = window.scrollY + dy;
         if (lenis) lenis.scrollTo(y, { duration: .9 }); else window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
         return;
       }
