@@ -1815,8 +1815,8 @@
             <h4>Beyond the 24-Hour Rule Guide</h4><p>A dedicated retention reference to support your learning.</p><span class="res-val">Gem's value: $99.97</span>
           </article>
           <article class="res">
-            <div class="cover cover-cream"><span class="cover-k">Consultation</span><b class="cover-t">The Client Psychology Method™</b></div>
-            <h4>The Client Psychology Method™</h4><p>Connect what she asks for with how she wants to look and feel.</p><span class="res-val">Gem's value: $49.97</span>
+            <div class="cover cover-cream"><span class="cover-k">Consultation</span><b class="cover-t">THE CLIENT PSYCHOLOGY METHOD™</b></div>
+            <h4>THE CLIENT PSYCHOLOGY METHOD™</h4><p>Connect what she asks for with how she wants to look and feel.</p><span class="res-val">Gem's value: $49.97</span>
           </article>
           <article class="res">
             <div class="cover cover-teal"><span class="cover-k">Instagram &amp; TikTok</span><b class="cover-t">The Lash Artist's Second Brain™</b></div>
@@ -2103,7 +2103,7 @@
       $('#wipeTitle').textContent = s.getAttribute('data-title');
       gsap.timeline({ onComplete: function () {
           cutting = false;
-          if (queued) { var d = queued; queued = 0; goToSlide(currentIndex() + d); }
+          if (queued) { var d = queued; queued = 0; step(d); }
         } })
         .set('#wipe', { visibility: 'visible' })
         .fromTo('.wipe-a', { yPercent: 101 }, { yPercent: 0, duration: .55, ease: 'expo.inOut' }, 0)
@@ -2134,13 +2134,25 @@
     }
     document.addEventListener('keydown', function (e) {
       if (e.target.closest('input, textarea, [contenteditable]')) return;
-      if (cutting) { e.preventDefault(); queued = next ? 1 : (prev ? -1 : 0); return; }
       var next = ['ArrowDown', 'ArrowRight', 'PageDown', ' '].indexOf(e.key) > -1;
       var prev = ['ArrowUp', 'ArrowLeft', 'PageUp'].indexOf(e.key) > -1;
+      if (cutting) { e.preventDefault(); queued = next ? 1 : (prev ? -1 : 0); return; }
       if (!next && !prev) return;
       e.preventDefault();
-      goToSlide(currentIndex() + (next ? 1 : -1));
+      step(next ? 1 : -1);
     });
+    function step(dir) {
+      // A slide taller than the screen shows the rest of itself before the deck moves on.
+      var cur = slides[currentIndex()], r = cur.getBoundingClientRect(), vh = window.innerHeight;
+      var contentBottom = r.bottom - (parseFloat(getComputedStyle(cur).paddingBottom) || 0) * 0.6;
+      if (dir > 0 && !cur.closest('#hTrack') && contentBottom > vh + 8) {
+        var y = window.scrollY + Math.min(r.bottom - vh, vh * 0.8);
+        if (lenis) lenis.scrollTo(y, { duration: .9 }); else window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+        return;
+      }
+      var to = currentIndex() + dir;
+      if (to >= 0 && to < slides.length) goToSlide(to);
+    }
     function goToSlide(i, immediate) {
       i = Math.max(0, Math.min(slides.length - 1, i));
       var target = slides[i];
