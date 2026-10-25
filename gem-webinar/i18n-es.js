@@ -569,7 +569,10 @@ window.GEM_ES = {
   "A standalone digital guide. It doesn't include the course, mentorship calls, content audit, or community.": "Una guía digital independiente. No incluye el curso, las llamadas de mentoría, la auditoría de contenido ni la comunidad.",
   "Get the Ebook <span class=\"arrow\">→</span>": "Obtener el Ebook <span class=\"arrow\">→</span>",
   "This is your moment to ask anything about today's lesson, the mentorships, or which option fits your next step.": "Este es tu momento para preguntar lo que quieras sobre la clase de hoy, las mentorías o qué opción encaja con tu siguiente paso.",
-  "If one of these matches the support you need, choose your option using the link in the chat.": "Si una de estas opciones es el apoyo que necesitas, elígela con el enlace del chat."
+  "If one of these matches the support you need, choose your option using the link in the chat.": "Si una de estas opciones es el apoyo que necesitas, elígela con el enlace del chat.",
+  "Find You starts with your profile. Which one would a new client choose?": "Que te encuentren empieza por tu perfil. ¿Cuál elegiría una clienta nueva?",
+  "<span class=\"fy-mark\">✕</span>Easy to scroll past": "<span class=\"fy-mark\">✕</span>Fácil de pasar de largo",
+  "<span class=\"fy-mark\">✓</span>Easy to find and choose": "<span class=\"fy-mark\">✓</span>Fácil de encontrar y elegir"
  },
  "titles": {
   "The Blueprint": "El Blueprint",
