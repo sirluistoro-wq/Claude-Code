@@ -351,6 +351,9 @@
     .versus .win p { color: var(--mute-d); }
     .versus .label { font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--rose); }
     .versus .win .label { color: var(--aqua); }
+    .versus-shot { grid-template-columns: .78fr 1.22fr; }
+    .vs-shot { margin: clamp(28px, 3.6vh, 40px) 0 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--line-d); box-shadow: 0 30px 60px -36px rgba(0,0,0,.9); }
+    .vs-shot img { width: 100%; height: auto; }
 
     /* ─── False beliefs ──────────────────────────────────────── */
     .beliefs .cell h4 { font-size: clamp(40px, 4vw, 64px); font-weight: 300; position: relative; display: inline-block; }
@@ -1197,9 +1200,11 @@
           </div>
           <p class="lead" data-fade>When your content, consultation, and client experience look similar to every other lash artist in your area, potential clients default to the easiest comparison they know: price.</p>
         </div>
-        <div class="versus" data-stagger>
+        <div class="versus versus-shot" data-stagger>
           <div><span class="label">Price as the default</span><h4>You attract bargain hunters.</h4><p>When there is no clear differentiator, price becomes the deciding factor. You attract bargain hunters instead of loyal clients who value your expertise.</p></div>
-          <div class="win"><span class="label">Differentiation as the solution</span><h4>They choose you for fit and value.</h4><p>When clients understand what makes your process, eye for design, and service unique, they can choose based on fit and value instead of price alone.</p></div>
+          <div class="win"><span class="label">Differentiation as the solution</span><h4>They choose you for fit and value.</h4><p>When clients understand what makes your process, eye for design, and service unique, they can choose based on fit and value instead of price alone.</p>
+            <figure class="vs-shot"><img src="assets/hooks-compare.jpg" width="1200" height="807" alt="Basic hook versus strong hook: two lash Reels side by side, showing that a specific pain point earns more attention than a pretty caption" /></figure>
+          </div>
         </div>
       </div>
     </section>
