@@ -334,11 +334,11 @@
     .cycle-item h4 .strike { position: absolute; left: 0; right: 0; top: 55%; height: 2px; background: var(--rose); transform-origin: left; transform: scaleX(0); }
     .cycle-item p { color: var(--mute-d); font-size: 16px; }
     /* Slide 09 · Gem's Instagram screen recording beside the cycle */
-    .cycle-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(40px, 5vw, 88px); align-items: center; }
-    .cycle-grid .cycle-item { grid-template-columns: 1.15fr 1fr; gap: 28px; padding: 30px 0; }
-    .cycle-grid .cycle-item h4 { font-size: clamp(28px, 2.9vw, 46px); }
+    .cycle-video { grid-template-columns: 1fr 1fr; align-items: center; }
+    .cv-text p { margin-top: 18px; max-width: 34ch; }
+    .cycle-video .ig-phone { justify-self: start; }
     .ig-phone { margin: 0; display: grid; justify-items: center; gap: 16px; }
-    .ig-screen { width: min(300px, calc(64vh * 600 / 1222)); aspect-ratio: 600 / 1222; border-radius: 36px; overflow: hidden; border: 7px solid #1c2526; background: #fff; box-shadow: 0 0 0 1px rgba(123,216,208,.22), 0 50px 100px -40px rgba(0,0,0,.85); }
+    .ig-screen { width: min(270px, calc(56vh * 600 / 1222)); aspect-ratio: 600 / 1222; border-radius: 36px; overflow: hidden; border: 7px solid #1c2526; background: #fff; box-shadow: 0 0 0 1px rgba(123,216,208,.22), 0 50px 100px -40px rgba(0,0,0,.85); }
     .ig-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
     .ig-phone figcaption { font-size: 11px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--mute-d); }
 
@@ -767,8 +767,9 @@
       .row { grid-template-columns: 56px 1fr; gap: 10px 18px; }
       .row p { grid-column: 2; }
       .cycle-item { grid-template-columns: 1fr; gap: 10px; }
-      .cycle-grid { grid-template-columns: 1fr; }
-      .cycle-grid .cycle-item { grid-template-columns: 1fr; gap: 10px; }
+      .cycle-video { gap: 28px; }
+      .cycle-video .ig-phone { justify-self: center; }
+      .cv-text p { margin-top: 10px; }
       .ig-screen { width: min(78vw, 300px); }
       .panel { grid-template-columns: 1fr; width: 100%; min-height: 0; }
       .panel .p-media { aspect-ratio: 4 / 3; }
@@ -1171,17 +1172,17 @@
           </div>
           <p class="lead" data-fade>Most lash artists caught in this cycle are working hard. They simply are not working with a clear strategy. These habits feel productive, but without direction, they keep you stuck.</p>
         </div>
-        <div class="cycle-grid">
-          <div class="cycle-list" style="border-top: 1px solid var(--line-d);">
-            <div class="cycle-item" data-strike-row><h4>Posting Without a Plan<span class="strike"></span></h4><p>Activity without intention rarely attracts the right clients.</p></div>
-            <div class="cycle-item" data-strike-row><h4>Waiting for Referrals<span class="strike"></span></h4><p>Hoping someone else fills your calendar is not a growth strategy.</p></div>
-            <div class="cycle-item" data-strike-row><h4>Discounting to Fill Openings<span class="strike"></span></h4><p>Lowering your price trains clients to expect less, not more.</p></div>
-            <div class="cycle-item" data-strike-row><h4>Second-Guessing Every Decision<span class="strike"></span></h4><p>Without a system, every choice feels uncertain and exhausting.</p></div>
+        <div class="cycle-list" style="border-top: 1px solid var(--line-d);">
+          <div class="cycle-item cycle-video" data-strike-row data-step>
+            <div class="cv-text"><h4>Posting Without a Plan<span class="strike"></span></h4><p>Activity without intention rarely attracts the right clients.</p></div>
+            <figure class="ig-phone">
+              <div class="ig-screen"><video poster="assets/gem-ig-post.jpg" width="600" height="1222" muted loop playsinline preload="metadata" data-autoplay aria-label="Screen recording of a post on Gem's Instagram"><source src="assets/gem-ig-post.mp4" type="video/mp4" /><source src="assets/gem-ig-post.webm" type="video/webm" /></video></div>
+              <figcaption>@hiddengemely.lash</figcaption>
+            </figure>
           </div>
-          <figure class="ig-phone" data-fade>
-            <div class="ig-screen"><video poster="assets/gem-ig-post.jpg" width="600" height="1222" muted loop playsinline preload="metadata" data-autoplay aria-label="Screen recording of a post on Gem's Instagram"><source src="assets/gem-ig-post.mp4" type="video/mp4" /><source src="assets/gem-ig-post.webm" type="video/webm" /></video></div>
-            <figcaption>@hiddengemely.lash</figcaption>
-          </figure>
+          <div class="cycle-item" data-strike-row data-step><h4>Waiting for Referrals<span class="strike"></span></h4><p>Hoping someone else fills your calendar is not a growth strategy.</p></div>
+          <div class="cycle-item" data-strike-row><h4>Discounting to Fill Openings<span class="strike"></span></h4><p>Lowering your price trains clients to expect less, not more.</p></div>
+          <div class="cycle-item" data-strike-row><h4>Second-Guessing Every Decision<span class="strike"></span></h4><p>Without a system, every choice feels uncertain and exhausting.</p></div>
         </div>
       </div>
     </section>
